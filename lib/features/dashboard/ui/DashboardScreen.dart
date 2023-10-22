@@ -3,7 +3,9 @@
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:eduhub_institute/core/app_colors.dart';
+import 'package:eduhub_institute/features/course_details/ui/CourseDetailPage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -58,240 +60,249 @@ class DashboardScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.all(0),
-                  padding: EdgeInsets.all(0),
-                  height: 170,
-                  decoration: BoxDecoration(
-                    color: Color(0x00ffffff),
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.zero,
-                  ),
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
-                    shrinkWrap: true,
-                    physics: ScrollPhysics(),
-                    children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 16, 0),
-                        padding: EdgeInsets.all(12),
-                        width: 150,
-                        height: 170,
-                        decoration: BoxDecoration(
-                          color: Color(0x00ffffff),
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(12.0),
-                          border:
-                              Border.all(color: Color(0x4d9e9e9e), width: 1),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Icon(
-                                  Icons.push_pin,
-                                  color: Color(0xffffc000),
-                                  size: 24,
-                                ),
-                                Icon(
-                                  Icons.more_horiz,
-                                  color: Color(0xff212435),
-                                  size: 24,
-                                ),
-                              ],
-                            ),
-                            ImageIcon(
-                              NetworkImage(
-                                  "https://cdn4.iconfinder.com/data/icons/xicons/25/xicons_about_book-128.png"),
-                              size: 80,
-                              color: Color(0xffd46d24),
-                            ),
-                            Text(
-                              "Youtube Ideas",
-                              textAlign: TextAlign.start,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontStyle: FontStyle.normal,
-                                fontSize: 16,
-                                color: Color(0xff000000),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => CourseDetailPage());
+                  },
+                  child: Container(
+                    margin: EdgeInsets.all(0),
+                    padding: EdgeInsets.all(0),
+                    height: 170,
+                    decoration: BoxDecoration(
+                      color: Color(0x00ffffff),
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.zero,
+                    ),
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                      shrinkWrap: true,
+                      physics: ScrollPhysics(),
+                      children: [
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 16, 0),
+                          padding: EdgeInsets.all(12),
+                          width: 150,
+                          height: 170,
+                          decoration: BoxDecoration(
+                            color: Color(0x00ffffff),
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(12.0),
+                            border:
+                                Border.all(color: Color(0x4d9e9e9e), width: 1),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Icon(
+                                    Icons.push_pin,
+                                    color: Color(0xffffc000),
+                                    size: 24,
+                                  ),
+                                  Icon(
+                                    Icons.more_horiz,
+                                    color: Color(0xff212435),
+                                    size: 24,
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 16, 0),
-                        padding: EdgeInsets.all(12),
-                        width: 150,
-                        height: 170,
-                        decoration: BoxDecoration(
-                          color: Color(0x00ffffff),
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(12.0),
-                          border:
-                              Border.all(color: Color(0x4d9e9e9e), width: 1),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                SizedBox(
-                                  height: 16,
-                                  width: 16,
-                                ),
-                                Icon(
-                                  Icons.more_horiz,
-                                  color: Color(0xff212435),
-                                  size: 24,
-                                ),
-                              ],
-                            ),
-                            ImageIcon(
-                              NetworkImage(
-                                  "https://cdn4.iconfinder.com/data/icons/xicons/25/xicons_about_book-128.png"),
-                              size: 80,
-                              color: Color(0xff3a57e8),
-                            ),
-                            Text(
-                              "User Research Movie App",
-                              textAlign: TextAlign.start,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontStyle: FontStyle.normal,
-                                fontSize: 16,
-                                color: Color(0xff000000),
+                              ImageIcon(
+                                NetworkImage(
+                                    "https://cdn4.iconfinder.com/data/icons/xicons/25/xicons_about_book-128.png"),
+                                size: 80,
+                                color: Color(0xffd46d24),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 16, 0),
-                        padding: EdgeInsets.all(12),
-                        width: 150,
-                        height: 170,
-                        decoration: BoxDecoration(
-                          color: Color(0x00ffffff),
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(12.0),
-                          border:
-                              Border.all(color: Color(0x4d9e9e9e), width: 1),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                SizedBox(
-                                  height: 16,
-                                  width: 16,
+                              Text(
+                                "Youtube Ideas",
+                                textAlign: TextAlign.start,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 16,
+                                  color: Color(0xff000000),
                                 ),
-                                Icon(
-                                  Icons.more_horiz,
-                                  color: Color(0xff212435),
-                                  size: 24,
-                                ),
-                              ],
-                            ),
-                            ImageIcon(
-                              NetworkImage(
-                                  "https://cdn4.iconfinder.com/data/icons/xicons/25/xicons_about_book-128.png"),
-                              size: 80,
-                              color: Color(0xffe4c00d),
-                            ),
-                            Text(
-                              "Web Develop Portfolio",
-                              textAlign: TextAlign.start,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontStyle: FontStyle.normal,
-                                fontSize: 16,
-                                color: Color(0xff000000),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 16, 0),
-                        padding: EdgeInsets.all(12),
-                        width: 150,
-                        height: 170,
-                        decoration: BoxDecoration(
-                          color: Color(0x00ffffff),
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(12.0),
-                          border:
-                              Border.all(color: Color(0x4d9e9e9e), width: 1),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Icon(
-                                  Icons.push_pin,
-                                  color: Color(0xffffc000),
-                                  size: 24,
-                                ),
-                                Icon(
-                                  Icons.more_horiz,
-                                  color: Color(0xff212435),
-                                  size: 24,
-                                ),
-                              ],
-                            ),
-                            ImageIcon(
-                              NetworkImage(
-                                  "https://cdn4.iconfinder.com/data/icons/xicons/25/xicons_about_book-128.png"),
-                              size: 80,
-                              color: Color(0xffd46d24),
-                            ),
-                            Text(
-                              "Youtube Ideas",
-                              textAlign: TextAlign.start,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontStyle: FontStyle.normal,
-                                fontSize: 16,
-                                color: Color(0xff000000),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 16, 0),
+                          padding: EdgeInsets.all(12),
+                          width: 150,
+                          height: 170,
+                          decoration: BoxDecoration(
+                            color: Color(0x00ffffff),
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(12.0),
+                            border:
+                                Border.all(color: Color(0x4d9e9e9e), width: 1),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  SizedBox(
+                                    height: 16,
+                                    width: 16,
+                                  ),
+                                  Icon(
+                                    Icons.more_horiz,
+                                    color: Color(0xff212435),
+                                    size: 24,
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
+                              ImageIcon(
+                                NetworkImage(
+                                    "https://cdn4.iconfinder.com/data/icons/xicons/25/xicons_about_book-128.png"),
+                                size: 80,
+                                color: Color(0xff3a57e8),
+                              ),
+                              Text(
+                                "User Research Movie App",
+                                textAlign: TextAlign.start,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 16,
+                                  color: Color(0xff000000),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 16, 0),
+                          padding: EdgeInsets.all(12),
+                          width: 150,
+                          height: 170,
+                          decoration: BoxDecoration(
+                            color: Color(0x00ffffff),
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(12.0),
+                            border:
+                                Border.all(color: Color(0x4d9e9e9e), width: 1),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  SizedBox(
+                                    height: 16,
+                                    width: 16,
+                                  ),
+                                  Icon(
+                                    Icons.more_horiz,
+                                    color: Color(0xff212435),
+                                    size: 24,
+                                  ),
+                                ],
+                              ),
+                              ImageIcon(
+                                NetworkImage(
+                                    "https://cdn4.iconfinder.com/data/icons/xicons/25/xicons_about_book-128.png"),
+                                size: 80,
+                                color: Color(0xffe4c00d),
+                              ),
+                              Text(
+                                "Web Develop Portfolio",
+                                textAlign: TextAlign.start,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 16,
+                                  color: Color(0xff000000),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 16, 0),
+                          padding: EdgeInsets.all(12),
+                          width: 150,
+                          height: 170,
+                          decoration: BoxDecoration(
+                            color: Color(0x00ffffff),
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(12.0),
+                            border:
+                                Border.all(color: Color(0x4d9e9e9e), width: 1),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Icon(
+                                    Icons.push_pin,
+                                    color: Color(0xffffc000),
+                                    size: 24,
+                                  ),
+                                  Icon(
+                                    Icons.more_horiz,
+                                    color: Color(0xff212435),
+                                    size: 24,
+                                  ),
+                                ],
+                              ),
+                              ImageIcon(
+                                NetworkImage(
+                                    "https://cdn4.iconfinder.com/data/icons/xicons/25/xicons_about_book-128.png"),
+                                size: 80,
+                                color: Color(0xffd46d24),
+                              ),
+                              Text(
+                                "Youtube Ideas",
+                                textAlign: TextAlign.start,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 16,
+                                  color: Color(0xff000000),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
