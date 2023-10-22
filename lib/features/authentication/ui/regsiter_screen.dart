@@ -1,6 +1,9 @@
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../dashboard/ui/DashboardScreen.dart';
 
 class RegisterScreen extends StatelessWidget {
   @override
@@ -70,17 +73,17 @@ class RegisterScreen extends StatelessWidget {
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                        BorderSide(color: Color(0xff9e9e9e), width: 1),
+                            BorderSide(color: Color(0xff9e9e9e), width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                        BorderSide(color: Color(0xff9e9e9e), width: 1),
+                            BorderSide(color: Color(0xff9e9e9e), width: 1),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                        BorderSide(color: Color(0xff9e9e9e), width: 1),
+                            BorderSide(color: Color(0xff9e9e9e), width: 1),
                       ),
                       labelText: "Name",
                       labelStyle: TextStyle(
@@ -93,7 +96,7 @@ class RegisterScreen extends StatelessWidget {
                       fillColor: Color(0x00ffffff),
                       isDense: false,
                       contentPadding:
-                      EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                     ),
                   ),
                 ),
@@ -114,17 +117,17 @@ class RegisterScreen extends StatelessWidget {
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                        BorderSide(color: Color(0xff9e9e9e), width: 1),
+                            BorderSide(color: Color(0xff9e9e9e), width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                        BorderSide(color: Color(0xff9e9e9e), width: 1),
+                            BorderSide(color: Color(0xff9e9e9e), width: 1),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                        BorderSide(color: Color(0xff9e9e9e), width: 1),
+                            BorderSide(color: Color(0xff9e9e9e), width: 1),
                       ),
                       labelText: "Email",
                       labelStyle: TextStyle(
@@ -137,7 +140,7 @@ class RegisterScreen extends StatelessWidget {
                       fillColor: Color(0x00ffffff),
                       isDense: false,
                       contentPadding:
-                      EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                     ),
                   ),
                 ),
@@ -158,17 +161,17 @@ class RegisterScreen extends StatelessWidget {
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                        BorderSide(color: Color(0xff9e9e9e), width: 1),
+                            BorderSide(color: Color(0xff9e9e9e), width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                        BorderSide(color: Color(0xff9e9e9e), width: 1),
+                            BorderSide(color: Color(0xff9e9e9e), width: 1),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                        BorderSide(color: Color(0xff9e9e9e), width: 1),
+                            BorderSide(color: Color(0xff9e9e9e), width: 1),
                       ),
                       labelText: "Password",
                       labelStyle: TextStyle(
@@ -181,7 +184,7 @@ class RegisterScreen extends StatelessWidget {
                       fillColor: Color(0x00ffffff),
                       isDense: false,
                       contentPadding:
-                      EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                     ),
                   ),
                 ),
@@ -202,17 +205,17 @@ class RegisterScreen extends StatelessWidget {
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                        BorderSide(color: Color(0xff9e9e9e), width: 1),
+                            BorderSide(color: Color(0xff9e9e9e), width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                        BorderSide(color: Color(0xff9e9e9e), width: 1),
+                            BorderSide(color: Color(0xff9e9e9e), width: 1),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                        BorderSide(color: Color(0xff9e9e9e), width: 1),
+                            BorderSide(color: Color(0xff9e9e9e), width: 1),
                       ),
                       labelText: "Confirm Password",
                       labelStyle: TextStyle(
@@ -225,7 +228,7 @@ class RegisterScreen extends StatelessWidget {
                       fillColor: Color(0x00ffffff),
                       isDense: false,
                       contentPadding:
-                      EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                     ),
                   ),
                 ),
@@ -237,7 +240,9 @@ class RegisterScreen extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.offAll(() => DashboardScreen());
+                        },
                         color: Color(0xff3a57e8),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
@@ -253,33 +258,6 @@ class RegisterScreen extends StatelessWidget {
                           ),
                         ),
                         textColor: Color(0xffffffff),
-                        height: 40,
-                        minWidth: 140,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: MaterialButton(
-                        onPressed: () {},
-                        color: Color(0xffffffff),
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                          side: BorderSide(color: Color(0xff9e9e9e), width: 1),
-                        ),
-                        padding: EdgeInsets.all(16),
-                        child: Text(
-                          "Login",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                          ),
-                        ),
-                        textColor: Color(0xff000000),
                         height: 40,
                         minWidth: 140,
                       ),

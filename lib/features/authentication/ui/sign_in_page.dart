@@ -1,8 +1,15 @@
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
+import 'package:eduhub_institute/core/app_colors.dart';
+import 'package:eduhub_institute/features/authentication/get_controllers/sign_in_get_controller.dart';
+import 'package:eduhub_institute/features/dashboard/ui/DashboardScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
+  SignInGetController getController = Get.put(SignInGetController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,54 +38,11 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(height: 5.dp),
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: TextField(
-                    controller: TextEditingController(text: "John"),
-                    obscureText: false,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 16,
-                      color: Color(0xff000000),
-                    ),
-                    decoration: InputDecoration(
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            BorderSide(color: Color(0xff9e9e9e), width: 1),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            BorderSide(color: Color(0xff9e9e9e), width: 1),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            BorderSide(color: Color(0xff9e9e9e), width: 1),
-                      ),
-                      labelText: "Name",
-                      labelStyle: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 16,
-                        color: Color(0xff9e9e9e),
-                      ),
-                      filled: true,
-                      fillColor: Color(0x00ffffff),
-                      isDense: false,
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                  child: TextField(
-                    controller: TextEditingController(text: "john@test.com"),
+                    controller: getController.emailController,
                     obscureText: false,
                     textAlign: TextAlign.start,
                     maxLines: 1,
@@ -119,94 +83,65 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(height: 5.dp),
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                  child: TextField(
-                    controller: TextEditingController(text: "12345678"),
-                    obscureText: true,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 16,
-                      color: Color(0xff000000),
-                    ),
-                    decoration: InputDecoration(
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            BorderSide(color: Color(0xff9e9e9e), width: 1),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            BorderSide(color: Color(0xff9e9e9e), width: 1),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            BorderSide(color: Color(0xff9e9e9e), width: 1),
-                      ),
-                      labelText: "Password",
-                      labelStyle: TextStyle(
+                  child: Obx(() {
+                    return TextField(
+                      controller: TextEditingController(text: "12345678"),
+                      obscureText: getController.obscureText.value,
+                      textAlign: TextAlign.start,
+                      maxLines: 1,
+                      style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
                         fontSize: 16,
-                        color: Color(0xff9e9e9e),
+                        color: Color(0xff000000),
                       ),
-                      filled: true,
-                      fillColor: Color(0x00ffffff),
-                      isDense: false,
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                    ),
-                  ),
+                      decoration: InputDecoration(
+                        disabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4.0),
+                          borderSide:
+                              BorderSide(color: Color(0xff9e9e9e), width: 1),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4.0),
+                          borderSide:
+                              BorderSide(color: Color(0xff9e9e9e), width: 1),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4.0),
+                          borderSide:
+                              BorderSide(color: Color(0xff9e9e9e), width: 1),
+                        ),
+                        labelText: "Password",
+                        labelStyle: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 16,
+                          color: Color(0xff9e9e9e),
+                        ),
+                        filled: true,
+                        fillColor: Color(0x00ffffff),
+                        isDense: false,
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            getController.obscureText.toggle();
+                          },
+                          icon: Icon(
+                            getController.obscureText.value
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Color(0xff9e9e9e),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
                 ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 30),
-                  child: TextField(
-                    controller: TextEditingController(text: "12345678"),
-                    obscureText: true,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 16,
-                      color: Color(0xff000000),
-                    ),
-                    decoration: InputDecoration(
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            BorderSide(color: Color(0xff9e9e9e), width: 1),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            BorderSide(color: Color(0xff9e9e9e), width: 1),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            BorderSide(color: Color(0xff9e9e9e), width: 1),
-                      ),
-                      labelText: "Confirm Password",
-                      labelStyle: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 16,
-                        color: Color(0xff9e9e9e),
-                      ),
-                      filled: true,
-                      fillColor: Color(0x00ffffff),
-                      isDense: false,
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                    ),
-                  ),
-                ),
+                SizedBox(height: 15.dp),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -214,15 +149,10 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 1,
-                      child: MaterialButton(
-                        onPressed: () {},
-                        color: Color(0xffffffff),
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                          side: BorderSide(color: Color(0xff9e9e9e), width: 1),
-                        ),
-                        padding: EdgeInsets.all(16),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Get.offAll(() => DashboardScreen());
+                        },
                         child: Text(
                           "Login",
                           style: TextStyle(
@@ -231,9 +161,15 @@ class LoginScreen extends StatelessWidget {
                             fontStyle: FontStyle.normal,
                           ),
                         ),
-                        textColor: Color(0xff000000),
-                        height: 40,
-                        minWidth: 140,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                          foregroundColor: Colors.white,
+                          padding: EdgeInsets.symmetric(
+                              vertical: 12, horizontal: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4.0.dp),
+                          ),
+                        ),
                       ),
                     ),
                   ],
