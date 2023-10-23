@@ -3,7 +3,10 @@
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:eduhub_institute/core/app_colors.dart';
+import 'package:eduhub_institute/features/authentication/ui/sign_in_page.dart';
 import 'package:eduhub_institute/features/course_details/ui/CourseDetailPage.dart';
+import 'package:eduhub_institute/features/profile/ui/account.dart';
+import 'package:eduhub_institute/features/profile/ui/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,9 +34,11 @@ class DashboardScreen extends StatelessWidget {
         ),
         actions: [
           Icon(Icons.search, color: Color(0xffffffff), size: 22),
-          Padding(
-            padding: EdgeInsets.fromLTRB(8, 0, 16, 0),
-            child: Icon(Icons.dashboard, color: Color(0xffffffff), size: 22),
+          IconButton(
+            icon: Icon(Icons.person, color: Color(0xffffffff), size: 22),
+            onPressed: () {
+              Get.to(() => ProfilePage());
+            },
           ),
         ],
       ),
