@@ -3,11 +3,10 @@
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
 import 'package:eduhub_institute/core/app_colors.dart';
-import 'package:eduhub_institute/features/authentication/ui/sign_in_page.dart';
 import 'package:eduhub_institute/features/course_details/ui/CourseDetailPage.dart';
-import 'package:eduhub_institute/features/profile/ui/account.dart';
 import 'package:eduhub_institute/features/profile/ui/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:get/get.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -19,11 +18,10 @@ class DashboardScreen extends StatelessWidget {
         elevation: 4,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        backgroundColor: AppColors.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
-        title: Text(
+        title: /*Text(
           "Home",
           style: TextStyle(
             fontWeight: FontWeight.w700,
@@ -31,11 +29,16 @@ class DashboardScreen extends StatelessWidget {
             fontSize: 20,
             color: Color(0xfff9f9f9),
           ),
+        )*/
+            Image(
+          image: AssetImage(
+              'assets/images/WhatsApp_Image_2023-10-20_at_4.42.57_PM-removebg-preview.png'),
+          width: 50.w,
         ),
         actions: [
-          Icon(Icons.search, color: Color(0xffffffff), size: 22),
+          Icon(Icons.search, color: AppColors.secondary, size: 22),
           IconButton(
-            icon: Icon(Icons.person, color: Color(0xffffffff), size: 22),
+            icon: Icon(Icons.person, size: 22, color: AppColors.secondary),
             onPressed: () {
               Get.to(() => ProfilePage());
             },

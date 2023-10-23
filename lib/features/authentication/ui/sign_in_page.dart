@@ -3,6 +3,7 @@
 import 'package:eduhub_institute/core/app_colors.dart';
 import 'package:eduhub_institute/features/authentication/get_controllers/sign_in_get_controller.dart';
 import 'package:eduhub_institute/features/dashboard/ui/DashboardScreen.dart';
+import 'package:eduhub_institute/features/dashboard/ui/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:get/get.dart';
@@ -151,7 +152,7 @@ class LoginScreen extends StatelessWidget {
                       flex: 1,
                       child: ElevatedButton(
                         onPressed: () {
-                          Get.offAll(() => DashboardScreen());
+                          Get.offAll(() => HomePage());
                         },
                         child: Text(
                           "Login",
