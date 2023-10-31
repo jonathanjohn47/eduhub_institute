@@ -8,7 +8,9 @@
 */
 
 import 'package:eduhub_institute/core/app_colors.dart';
+import 'package:eduhub_institute/features/my_course/ui/chapter_in_course_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../../helper/style.dart';
@@ -34,16 +36,16 @@ class MyCoursePage extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            cource(0.15, '15% Complete'),
-            cource(0.55, '55% Complete'),
-            cource(0.15, '15% Complete'),
+            course(0.15, '15% Complete'),
+            course(0.55, '55% Complete'),
+            course(0.15, '15% Complete'),
           ],
         ),
       ),
     );
   }
 
-  Widget cource(persent, text) {
+  Widget course(persent, text) {
     return Container(
       margin: EdgeInsets.only(bottom: 20),
       padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
@@ -58,7 +60,9 @@ class MyCoursePage extends StatelessWidget {
         ],
       ),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Get.to(() => ChaptersInCoursePage());
+        },
         child: Row(
           children: [
             Container(

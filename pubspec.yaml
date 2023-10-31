@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.6
   flutter_sizer: ^1.0.5
   percent_indicator: ^4.2.3
+  youtube_player_flutter: ^8.1.2
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/icons/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

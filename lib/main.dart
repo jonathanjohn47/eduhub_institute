@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
           secondaryHeaderColor: AppColors.secondary,
           useMaterial3: true,
         ),
+        debugShowCheckedModeBanner: false,
         home: SplashPage(),
       );
     });
