@@ -39,6 +39,9 @@ dependencies:
   flutter_sizer: ^1.0.5
   percent_indicator: ^4.2.3
   youtube_player_flutter: ^8.1.2
+  firebase_core: ^2.21.0
+  cloud_firestore: ^4.12.2
+  firebase_auth: ^4.12.1
 
 dev_dependencies:
   flutter_test:

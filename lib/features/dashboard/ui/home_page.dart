@@ -1,12 +1,16 @@
 import 'package:eduhub_institute/core/app_colors.dart';
+import 'package:eduhub_institute/features/dashboard/get_controllers/home_get_controller.dart';
 import 'package:eduhub_institute/features/dashboard/ui/DashboardScreen.dart';
 import 'package:eduhub_institute/features/profile/ui/myCourse.dart';
 import 'package:eduhub_institute/features/support/ui/support.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  HomeGetController homeGetController = Get.put(HomeGetController());
 
   @override
   Widget build(BuildContext context) {
