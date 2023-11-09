@@ -19,7 +19,6 @@ class StudentModel {
   String phoneNumber;
   DateTime joinedOn;
   DateTime dateOfBirth;
-  QualificationModel qualificationModel;
 
   StudentModel({
     required this.firstName,
@@ -29,7 +28,6 @@ class StudentModel {
     required this.phoneNumber,
     required this.joinedOn,
     required this.dateOfBirth,
-    required this.qualificationModel,
   });
 
   StudentModel copyWith({
@@ -40,7 +38,6 @@ class StudentModel {
     String? phoneNumber,
     DateTime? joinedOn,
     DateTime? dateOfBirth,
-    QualificationModel? qualificationModel,
   }) =>
       StudentModel(
         firstName: firstName ?? this.firstName,
@@ -50,7 +47,6 @@ class StudentModel {
         phoneNumber: phoneNumber ?? this.phoneNumber,
         joinedOn: joinedOn ?? this.joinedOn,
         dateOfBirth: dateOfBirth ?? this.dateOfBirth,
-        qualificationModel: qualificationModel ?? this.qualificationModel,
       );
 
   factory StudentModel.fromJson(Map<String, dynamic> json) => StudentModel(
@@ -61,8 +57,6 @@ class StudentModel {
         phoneNumber: json["phone_number"],
         joinedOn: DateTime.parse(json["joined_on"]),
         dateOfBirth: DateTime.parse(json["date_of_birth"]),
-        qualificationModel:
-            QualificationModel.fromJson(json["qualification_model"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -73,7 +67,6 @@ class StudentModel {
         "phone_number": phoneNumber,
         "joined_on": joinedOn.toIso8601String(),
         "date_of_birth": dateOfBirth.toIso8601String(),
-        "qualification_model": qualificationModel.toJson(),
       };
 
   static StudentModel empty() => StudentModel(
@@ -84,6 +77,5 @@ class StudentModel {
         phoneNumber: '',
         joinedOn: DateTime.now(),
         dateOfBirth: DateTime.now(),
-        qualificationModel: QualificationModel(id: 0, name: ''),
       );
 }

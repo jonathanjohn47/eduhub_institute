@@ -2,6 +2,7 @@
 
 import 'package:eduhub_institute/core/app_colors.dart';
 import 'package:eduhub_institute/features/authentication/get_controllers/sign_in_get_controller.dart';
+import 'package:eduhub_institute/features/authentication/ui/regsiter_screen.dart';
 import 'package:eduhub_institute/features/dashboard/ui/DashboardScreen.dart';
 import 'package:eduhub_institute/features/dashboard/ui/home_page.dart';
 import 'package:flutter/material.dart';
@@ -14,83 +15,46 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //preferred size with container child and height 0
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(0),
+        child: Container(
+          color: AppColors.primary,
+        ),
+      ),
       backgroundColor: Color(0xffffffff),
       body: Align(
         alignment: Alignment.center,
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 0, horizontal: 16),
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Sign In",
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 24,
-                      color: Color(0xff000000),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 5.dp),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                  child: TextField(
-                    controller: getController.emailController,
-                    obscureText: false,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 16,
-                      color: Color(0xff000000),
-                    ),
-                    decoration: InputDecoration(
-                      disabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            BorderSide(color: Color(0xff9e9e9e), width: 1),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            BorderSide(color: Color(0xff9e9e9e), width: 1),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        borderSide:
-                            BorderSide(color: Color(0xff9e9e9e), width: 1),
-                      ),
-                      labelText: "Email",
-                      labelStyle: TextStyle(
-                        fontWeight: FontWeight.w400,
+            child: Form(
+              key: getController.formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Sign In",
+                      textAlign: TextAlign.start,
+                      overflow: TextOverflow.clip,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
                         fontStyle: FontStyle.normal,
-                        fontSize: 16,
-                        color: Color(0xff9e9e9e),
+                        fontSize: 24,
+                        color: Color(0xff000000),
                       ),
-                      filled: true,
-                      fillColor: Color(0x00ffffff),
-                      isDense: false,
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                     ),
                   ),
-                ),
-                SizedBox(height: 5.dp),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                  child: Obx(() {
-                    return TextField(
-                      controller: TextEditingController(text: "12345678"),
-                      obscureText: getController.obscureText.value,
+                  SizedBox(height: 5.dp),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    child: TextFormField(
+                      controller: getController.emailController,
+                      obscureText: false,
                       textAlign: TextAlign.start,
                       maxLines: 1,
                       style: TextStyle(
@@ -115,7 +79,7 @@ class LoginScreen extends StatelessWidget {
                           borderSide:
                               BorderSide(color: Color(0xff9e9e9e), width: 1),
                         ),
-                        labelText: "Password",
+                        labelText: "Email",
                         labelStyle: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
@@ -127,55 +91,146 @@ class LoginScreen extends StatelessWidget {
                         isDense: false,
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            getController.obscureText.toggle();
-                          },
-                          icon: Icon(
-                            getController.obscureText.value
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Color(0xff9e9e9e),
-                          ),
-                        ),
                       ),
-                    );
-                  }),
-                ),
-                SizedBox(height: 15.dp),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Get.offAll(() => HomePage());
-                        },
-                        child: Text(
-                          "Login",
-                          style: TextStyle(
-                            fontSize: 16,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter email';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 5.dp),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    child: Obx(() {
+                      return TextFormField(
+                        controller: getController.passwordController,
+                        obscureText: getController.obscureText.value,
+                        textAlign: TextAlign.start,
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 16,
+                          color: Color(0xff000000),
+                        ),
+                        decoration: InputDecoration(
+                          disabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(4.0),
+                            borderSide:
+                                BorderSide(color: Color(0xff9e9e9e), width: 1),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(4.0),
+                            borderSide:
+                                BorderSide(color: Color(0xff9e9e9e), width: 1),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(4.0),
+                            borderSide:
+                                BorderSide(color: Color(0xff9e9e9e), width: 1),
+                          ),
+                          labelText: "Password",
+                          labelStyle: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
+                            fontSize: 16,
+                            color: Color(0xff9e9e9e),
+                          ),
+                          filled: true,
+                          fillColor: Color(0x00ffffff),
+                          isDense: false,
+                          contentPadding:
+                              EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              getController.obscureText.toggle();
+                            },
+                            icon: Icon(
+                              getController.obscureText.value
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Color(0xff9e9e9e),
+                            ),
                           ),
                         ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          foregroundColor: Colors.white,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 12, horizontal: 16),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4.0.dp),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter password';
+                          }
+                          return null;
+                        },
+                      );
+                    }),
+                  ),
+                  SizedBox(height: 15.dp),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Get.offAll(() => HomePage());
+                          },
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.normal,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary,
+                            foregroundColor: Colors.white,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 12, horizontal: 16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4.0.dp),
+                            ),
                           ),
                         ),
                       ),
+                    ],
+                  ),
+                  SizedBox(height: 15.dp),
+                  GestureDetector(
+                    onTap: () {
+                      Get.offAll(() => RegisterScreen());
+                    },
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "Don't have an account? ",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.normal,
+                              color: Color(0xff000000),
+                            ),
+                          ),
+                          TextSpan(
+                            text: "Sign Up",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.normal,
+                              color: Colors.cyan,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
