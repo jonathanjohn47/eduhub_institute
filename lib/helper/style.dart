@@ -135,7 +135,7 @@ roundImage(val) {
           Radius.circular(16)
       ),
       image: DecorationImage(
-          image: AssetImage('$val'),
+          image: NetworkImage('$val'),
           fit: BoxFit.cover
       )
   );

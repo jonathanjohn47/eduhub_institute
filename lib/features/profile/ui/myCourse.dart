@@ -8,11 +8,16 @@
 */
 
 import 'package:eduhub_institute/core/app_colors.dart';
+import 'package:eduhub_institute/features/authentication/ui/sign_in_page.dart';
 import 'package:eduhub_institute/features/my_course/ui/chapter_in_course_page.dart';
+import 'package:eduhub_institute/features/profile/get_controllers/my_course_get_controller.dart';
+import 'package:eduhub_institute/models/enrolled_course_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import '../../../core/app_contants.dart';
 import '../../../helper/style.dart';
 
 class MyCoursePage extends StatelessWidget {
@@ -27,25 +32,56 @@ class MyCoursePage extends StatelessWidget {
   }
 
   Widget _buildBody() {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          children: [
-            searchbar(),
-            SizedBox(
-              height: 30,
+    return FirebaseAuth.instance.currentUser != null &&
+            FirebaseAuth.instance.currentUser!.email !=
+                AppConstants.emailForTemporaryLogin
+        ? SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: GetX<MyCourseGetController>(
+                  init: MyCourseGetController(),
+                  builder: (controller) {
+                    return Column(
+                      children: [
+                        searchbar(),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        //cours widgets
+                        ...controller.enrolledCourses
+                            .map((element) => course(element))
+                      ],
+                    );
+                  }),
             ),
-            course(0.15, '15% Complete'),
-            course(0.55, '55% Complete'),
-            course(0.15, '15% Complete'),
-          ],
-        ),
-      ),
-    );
+          )
+        : SizedBox(
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('Please login to see your courses'),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Get.offAll(() => LoginScreen());
+                  },
+                  style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: AppColors.primary,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10))),
+                  child: Text('Login'),
+                )
+              ],
+            ),
+          );
   }
 
-  Widget course(persent, text) {
+  Widget course(EnrolledCourseModel enrolledCourseModel) {
     return Container(
       margin: EdgeInsets.only(bottom: 20),
       padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
@@ -71,7 +107,8 @@ class MyCoursePage extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                      image: AssetImage('assets/images/course.jpg'),
+                      image:
+                          NetworkImage(enrolledCourseModel.courseModel.imageLink),
                       fit: BoxFit.cover)),
             ),
             Expanded(
@@ -115,21 +152,8 @@ class MyCoursePage extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      'Coding With Python Interface',
+                      enrolledCourseModel.courseModel.name,
                       style: headText(),
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.person_outline,
-                          color: Colors.grey,
-                          size: 20,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text('Stephen Moris')
-                      ],
                     ),
                     SizedBox(
                       height: 5,
@@ -138,12 +162,18 @@ class MyCoursePage extends StatelessWidget {
                       width: 150.0,
                       barRadius: Radius.circular(10),
                       lineHeight: 10.0,
-                      percent: persent,
+                      percent: enrolledCourseModel.percentCompleted / 100,
                       backgroundColor: AppColors.primary.withOpacity(0.3),
                       progressColor: AppColors.primary,
                       padding: EdgeInsets.all(0),
                     ),
-                    Text(text)
+                    Text(
+                      '${enrolledCourseModel.percentCompleted} % completed',
+                      style: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ],
                 ),
               ),

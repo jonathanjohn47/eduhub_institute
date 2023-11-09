@@ -5,4 +5,8 @@ class AppConstants {
   static String courses = "Courses";
 
   static String notes = "Notes";
+
+  static String students = "Students";
+
+  static String messages = "Messages";
 }

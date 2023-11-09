@@ -55,7 +55,7 @@ class AccountPage extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         image: DecorationImage(
-                            image: AssetImage('assets/images/profile.jpg'),
+                            image: NetworkImage('assets/images/profile.jpg'),
                             fit: BoxFit.cover)),
                   ),
                   SizedBox(

@@ -154,7 +154,7 @@ class CartPage extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
-                    image: AssetImage('assets/images/course.jpg'),
+                    image: NetworkImage('assets/images/course.jpg'),
                     fit: BoxFit.cover)),
           ),
           Expanded(
