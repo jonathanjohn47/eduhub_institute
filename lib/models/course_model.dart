@@ -14,6 +14,7 @@ class CourseModel {
   String description;
   int durationInDays;
   String imageLink;
+  double price;
 
   CourseModel({
     required this.id,
@@ -21,6 +22,7 @@ class CourseModel {
     required this.description,
     required this.durationInDays,
     required this.imageLink,
+    required this.price,
   });
 
   CourseModel copyWith({
@@ -29,6 +31,7 @@ class CourseModel {
     String? description,
     int? durationInDays,
     String? imageLink,
+    double? price,
   }) =>
       CourseModel(
         id: id ?? this.id,
@@ -36,6 +39,7 @@ class CourseModel {
         description: description ?? this.description,
         durationInDays: durationInDays ?? this.durationInDays,
         imageLink: imageLink ?? this.imageLink,
+        price: price ?? this.price,
       );
 
   factory CourseModel.fromJson(Map<String, dynamic> json) => CourseModel(
@@ -44,6 +48,7 @@ class CourseModel {
     description: json["description"],
     durationInDays: json["duration_in_days"],
     imageLink: json["image_link"],
+    price: json["price"]?.toDouble(),
   );
 
   Map<String, dynamic> toJson() => {
@@ -52,5 +57,6 @@ class CourseModel {
     "description": description,
     "duration_in_days": durationInDays,
     "image_link": imageLink,
+    "price": price,
   };
 }

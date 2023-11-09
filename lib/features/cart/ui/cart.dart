@@ -7,12 +7,16 @@
   Copyright and Good Faith Purchasers © 2021-present initappz.
 */
 import 'package:eduhub_institute/core/app_colors.dart';
+import 'package:eduhub_institute/features/cart/get_controllers/cart_get_controller.dart';
+import 'package:eduhub_institute/features/profile/get_controllers/profile_get_controller.dart';
+import 'package:eduhub_institute/models/course_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../helper/style.dart';
 
 class CartPage extends StatelessWidget {
-  const CartPage({super.key});
+  CartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +43,18 @@ class CartPage extends StatelessWidget {
       iconTheme: IconThemeData(color: Colors.black),
       title: SizedBox(
         width: 250,
-        child: Text(
-          'Hi,Jaydeep Hirani',
-          overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.center,
-          maxLines: 1,
-          softWrap: false,
-          style: headText(),
-        ),
+        child: GetX<ProfileGetController>(
+            init: ProfileGetController(),
+            builder: (controller) {
+              return Text(
+                'Hi, ${controller.currentStudent.value.firstName} ${controller.currentStudent.value.lastName}',
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                softWrap: false,
+                style: headText(),
+              );
+            }),
       ),
       actions: [
         IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart_outlined))
@@ -57,82 +65,91 @@ class CartPage extends StatelessWidget {
   Widget _buildBody() {
     return Padding(
       padding: EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          searchbar(),
-          SizedBox(
-            height: 30,
-          ),
-          cartItem(),
-          cartItem(),
-          Row(
-            children: [
-              Expanded(
-                flex: 8,
-                child: TextField(
-                  style: TextStyle(color: Colors.black),
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Coupen Code',
-                    hintStyle: TextStyle(color: Colors.black54),
-                    filled: true,
-                    fillColor: Colors.white,
-                  ),
+      child: GetX<CartGetController>(
+          init: CartGetController(),
+          builder: (controller) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                searchbar(),
+                SizedBox(
+                  height: 30,
                 ),
-              ),
-              Expanded(
-                flex: 4,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text('Apply Now'),
-                  style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    primary: Colors.teal,
-                    onPrimary: Colors.white,
-                    minimumSize: const Size.fromHeight(40),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                ...controller.cartCourses.map((e) => cartItem(e)).toList(),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 8,
+                      child: TextField(
+                        style: TextStyle(color: Colors.black),
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Coupon Code',
+                          hintStyle: TextStyle(color: Colors.black54),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
+                      ),
                     ),
-                  ),
+                    Expanded(
+                      flex: 4,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Text('Apply Now'),
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          primary: Colors.teal,
+                          onPrimary: Colors.white,
+                          minimumSize: const Size.fromHeight(40),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text('Subtotal'), Text('\$40.95')],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text('Shipping'), Text('Free')],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Total'),
-              Text(
-                '\$40.95',
-                style: TextStyle(
-                    color: Colors.teal, fontFamily: 'medium', fontSize: 16),
-              )
-            ],
-          ),
-        ],
-      ),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Subtotal'),
+                    Text(
+                        '\$${controller.cartCourses.map((e) => e.price).reduce((value, element) => value + element)}')
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [Text('Shipping'), Text('Free')],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Total'),
+                    Text(
+                      '\$${controller.cartCourses.map((e) => e.price).reduce((value, element) => value + element)}',
+                      style: TextStyle(
+                          color: Colors.teal,
+                          fontFamily: 'medium',
+                          fontSize: 16),
+                    )
+                  ],
+                ),
+              ],
+            );
+          }),
     );
   }
 
-  Widget cartItem() {
+  Widget cartItem(CourseModel courseModel) {
     return Container(
       margin: EdgeInsets.only(bottom: 20),
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -154,7 +171,7 @@ class CartPage extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
-                    image: NetworkImage('assets/images/course.jpg'),
+                    image: NetworkImage(courseModel.imageLink),
                     fit: BoxFit.cover)),
           ),
           Expanded(
@@ -163,9 +180,9 @@ class CartPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Get Started With Python'),
+                  Text(courseModel.name, style: headText()),
                   Text(
-                    '\$40.50',
+                    '\$${courseModel.price}',
                     style: TextStyle(
                         color: Colors.teal, fontSize: 18, fontFamily: 'medium'),
                   ),

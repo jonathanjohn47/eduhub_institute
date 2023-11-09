@@ -9,4 +9,6 @@ class AppConstants {
   static String students = "Students";
 
   static String messages = "Messages";
+
+  static String cart = "Cart";
 }
