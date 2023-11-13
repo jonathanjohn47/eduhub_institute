@@ -1,9 +1,13 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eduhub_institute/core/app_colors.dart';
 import 'package:eduhub_institute/features/authentication/ui/sign_in_page.dart';
 import 'package:eduhub_institute/features/cart/ui/cart.dart';
 import 'package:eduhub_institute/features/profile/get_controllers/profile_get_controller.dart';
 import 'package:eduhub_institute/features/profile/ui/account.dart';
 import 'package:eduhub_institute/features/profile/ui/myCourse.dart';
+import 'package:eduhub_institute/models/student_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +23,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FirebaseAuth.instance.currentUser != null &&
-            FirebaseAuth.instance.currentUser!.email !=
+            FirebaseAuth.instance.currentUser!.phoneNumber !=
                 AppConstants.emailForTemporaryLogin
         ? DefaultTabController(
             length: 2,
@@ -32,16 +36,33 @@ class ProfilePage extends StatelessWidget {
                 iconTheme: IconThemeData(color: Colors.black),
                 title: SizedBox(
                   width: 250,
-                  child: Obx(() {
-                    return Text(
-                      'Hi ${profileGetController.currentStudent.value.firstName} ${profileGetController.currentStudent.value.lastName}',
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      softWrap: false,
-                      style: headText(),
-                    );
-                  }),
+                  child: FutureBuilder<DocumentSnapshot>(
+                      future: FirebaseFirestore.instance
+                          .collection(AppConstants.students)
+                          .doc(FirebaseAuth.instance.currentUser!.phoneNumber)
+                          .get(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          StudentModel currentStudent = StudentModel.fromJson(
+                              jsonDecode(jsonEncode(snapshot.data!.data())));
+                          return Text(
+                            'Hi ${currentStudent.firstName} ${currentStudent.lastName}',
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            softWrap: false,
+                            style: headText(),
+                          );
+                        }
+                        return Text(
+                          'Hi',
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                          maxLines: 1,
+                          softWrap: false,
+                          style: headText(),
+                        );
+                      }),
                 ),
                 actions: [
                   IconButton(

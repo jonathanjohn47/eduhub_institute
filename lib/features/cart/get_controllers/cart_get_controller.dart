@@ -15,11 +15,11 @@ class CartGetController extends GetxController {
 
   void loadCartItems() {
     if (FirebaseAuth.instance.currentUser != null &&
-        FirebaseAuth.instance.currentUser!.email !=
+        FirebaseAuth.instance.currentUser!.phoneNumber !=
             AppConstants.emailForTemporaryLogin) {
       cartStreamSubscription = FirebaseFirestore.instance
           .collection(AppConstants.students)
-          .doc(FirebaseAuth.instance.currentUser!.email)
+          .doc(FirebaseAuth.instance.currentUser!.phoneNumber)
           .collection(AppConstants.cart)
           .snapshots()
           .listen((value) {

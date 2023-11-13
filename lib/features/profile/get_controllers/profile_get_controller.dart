@@ -12,11 +12,11 @@ class ProfileGetController extends GetxController {
   Future<void> loadCurrentStudent() async {
     await FirebaseFirestore.instance
         .collection(AppConstants.students)
-        .doc(FirebaseAuth.instance.currentUser!.email)
+        .doc(FirebaseAuth.instance.currentUser!.phoneNumber)
         .get()
         .then((value) {
-      currentStudent.value =
-          StudentModel.fromJson(jsonDecode(jsonEncode(value.data())));
+      currentStudent =
+          StudentModel.fromJson(jsonDecode(jsonEncode(value.data()))).obs;
     });
   }
 

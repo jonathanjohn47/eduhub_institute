@@ -33,7 +33,7 @@ class MyCoursePage extends StatelessWidget {
 
   Widget _buildBody() {
     return FirebaseAuth.instance.currentUser != null &&
-            FirebaseAuth.instance.currentUser!.email !=
+            FirebaseAuth.instance.currentUser!.phoneNumber !=
                 AppConstants.emailForTemporaryLogin
         ? SingleChildScrollView(
             child: Padding(

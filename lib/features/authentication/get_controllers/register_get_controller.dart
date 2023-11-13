@@ -10,16 +10,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../dashboard/ui/DashboardScreen.dart';
+import '../../dashboard/ui/home_page.dart';
+
 class RegisterGetController extends GetxController {
   GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
 
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController dateOfBirthController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
 
   Rx<CountryCode> selectedCountry = CountryCode.fromCountryCode('IN').obs;
 
@@ -31,67 +31,145 @@ class RegisterGetController extends GetxController {
 
   RxBool isConfirmPasswordVisible = false.obs;
 
+  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  RxBool showLoader = false.obs;
+  TextEditingController otpController = TextEditingController();
+
+  late Rx<CountryCode> countryCode;
+
   Future<void> registerNewStudent() async {
-    if (registerFormKey.currentState!.validate()) {
+    if (registerFormKey.currentState!.validate() &&
+        imageLink.value.isNotEmpty &&
+        dateOfBirthController.text.isNotEmpty) {
       try {
-        // Create the user with email and password
-        UserCredential userCredential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text);
-
-        // Upload profile picture to Firebase Storage
-        UploadTask uploadTask = FirebaseStorage.instance
-            .ref()
-            .child(AppConstants.students)
-            .child(emailController.text)
-            .putFile(File(imageLink.value));
-
-        // Finish uploading and get the download URL
-        TaskSnapshot snapshot = await uploadTask;
-        String downloadUrl = await snapshot.ref.getDownloadURL();
-
-        // Create the StudentModel with the necessary details
-        StudentModel currentStudent = StudentModel(
-          firstName: firstNameController.text,
-          lastName: lastNameController.text,
-          email: emailController.text,
-          profilePicLink: downloadUrl,
+        await FirebaseAuth.instance.signInWithPhoneNumber(
+            '${countryCode.value.dialCode}${phoneNumberController.text.trim()}');
+        await Get.offAll(() => DashboardScreen());
+      } catch (e) {
+        await FirebaseAuth.instance.verifyPhoneNumber(
           phoneNumber:
-          selectedCountry.value.dialCode! + phoneNumberController.text,
-          joinedOn: DateTime.now(),
-          dateOfBirth: dateOfBirth,
-        );
-
-        // Save the student's data to Firestore
-        await FirebaseFirestore.instance
-            .collection(AppConstants.students)
-            .doc(emailController.text)
-            .set(currentStudent.toJson());
-
-        // Show success message
-        Get.snackbar(
-          'Success',
-          'Student Registered Successfully',
-          snackPosition: SnackPosition.BOTTOM,
-        );
-      } catch (error) {
-        // Show error message
-        Get.snackbar(
-          'Error',
-          error.toString(),
-          snackPosition: SnackPosition.BOTTOM,
+              '${countryCode.value.dialCode}${phoneNumberController.text.trim()}',
+          verificationCompleted: (credential) async {
+            await FirebaseAuth.instance.signInWithCredential(credential);
+            final storageRef = FirebaseStorage.instance
+                .ref()
+                .child(AppConstants.students)
+                .child(
+                    '${countryCode.value.dialCode}${phoneNumberController.text.trim()}');
+            final uploadTask = storageRef.putFile(File(imageLink.value));
+            final snapshot = await uploadTask;
+            final downloadUrl = await snapshot.ref.getDownloadURL();
+            await FirebaseFirestore.instance
+                .collection(AppConstants.students)
+                .doc(
+                    '${countryCode.value.dialCode}${phoneNumberController.text.trim()}')
+                .set(StudentModel(
+                  firstName: firstNameController.text.trim(),
+                  lastName: lastNameController.text.trim(),
+                  phoneNumber:
+                      '${countryCode.value.dialCode}${phoneNumberController.text.trim()}',
+                  joinedOn: DateTime.now(),
+                  dateOfBirth: dateOfBirth,
+                  profilePicLink: downloadUrl,
+                ).toJson());
+            Get.offAll(DashboardScreen());
+          },
+          verificationFailed: (error) {},
+          codeSent: (verificationId, [forceResendingToken]) {
+            Get.defaultDialog(
+                title: 'Enter OTP',
+                content: Column(
+                  children: [
+                    TextFormField(
+                      controller: otpController,
+                      decoration: InputDecoration(
+                        labelText: 'OTP',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        final authCredential = PhoneAuthProvider.credential(
+                            verificationId: verificationId,
+                            smsCode: otpController.text.trim());
+                        await FirebaseAuth.instance
+                            .signInWithCredential(authCredential);
+                        final storageRef = FirebaseStorage.instance
+                            .ref()
+                            .child(AppConstants.students)
+                            .child(
+                                '${countryCode.value.dialCode}${phoneNumberController.text.trim()}');
+                        final uploadTask =
+                            storageRef.putFile(File(imageLink.value));
+                        final snapshot = await uploadTask;
+                        final downloadUrl = await snapshot.ref.getDownloadURL();
+                        await FirebaseFirestore.instance
+                            .collection(AppConstants.students)
+                            .doc(
+                                '${countryCode.value.dialCode}${phoneNumberController.text.trim()}')
+                            .set(StudentModel(
+                              firstName: firstNameController.text.trim(),
+                              lastName: lastNameController.text.trim(),
+                              phoneNumber:
+                                  '${countryCode.value.dialCode}${phoneNumberController.text.trim()}',
+                              joinedOn: DateTime.now(),
+                              dateOfBirth: dateOfBirth,
+                              profilePicLink: downloadUrl,
+                            ).toJson());
+                        Get.offAll(DashboardScreen());
+                      },
+                      child: Text('Submit'),
+                    ),
+                  ],
+                ));
+          },
+          codeAutoRetrievalTimeout: (verificationId) {},
         );
       }
     }
   }
 
-  void getImage() {
-    ImagePicker imagePicker = ImagePicker();
+  void getImage() async {
+    Get.dialog(AlertDialog(
+      title: Text('Select Image'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ListTile(
+            onTap: () async {
+              final ImagePicker _picker = ImagePicker();
+              final XFile? image =
+                  await _picker.pickImage(source: ImageSource.camera);
+              if (image != null) {
+                imageLink.value = image.path;
+              }
+            },
+            leading: Icon(Icons.camera_alt),
+            title: Text('Camera'),
+          ),
+          ListTile(
+            onTap: () {
+              final ImagePicker _picker = ImagePicker();
+              final XFile? image =
+                  _picker.pickImage(source: ImageSource.gallery) as XFile?;
+              if (image != null) {
+                imageLink.value = image.path;
+              }
+            },
+            leading: Icon(Icons.photo),
+            title: Text('Gallery'),
+          ),
+        ],
+      ),
+    ));
+  }
 
-    imagePicker.pickImage(source: ImageSource.gallery).then((value) {
-      if (value != null) {
-        imageLink.value = value.path;
-      }
-    });
+  @override
+  void onInit() {
+    countryCode = CountryCode.fromCountryCode('IN').obs;
+    super.onInit();
   }
 }

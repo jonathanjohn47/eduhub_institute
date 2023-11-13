@@ -15,49 +15,21 @@ class DashboardGetController extends GetxController {
   RxList<NotesModel> allNotes = RxList<NotesModel>([]);
 
   Future<void> getCourses() async {
-    if (FirebaseAuth.instance.currentUser == null) {
-      HomeGetController homeGetController = Get.find();
-
-      await homeGetController.signInTemporarily().then((value) async {
-        await FirebaseFirestore.instance
-            .collection(AppConstants.courses)
-            .get()
-            .then((value) {
-          allCourses.value = courseModelFromJson(jsonEncode(value.docs));
-        });
-      });
-      FirebaseAuth.instance.signOut();
-    } else {
-      await FirebaseFirestore.instance
-          .collection(AppConstants.courses)
-          .get()
-          .then((value) {
-        allCourses.value = courseModelFromJson(jsonEncode(value.docs));
-      });
-    }
+    await FirebaseFirestore.instance
+        .collection(AppConstants.courses)
+        .get()
+        .then((value) {
+      allCourses.value = courseModelFromJson(jsonEncode(value.docs));
+    });
   }
 
   void getNotes() {
-    if (FirebaseAuth.instance.currentUser == null) {
-      HomeGetController homeGetController = Get.find();
-
-      homeGetController.signInTemporarily().then((value) async {
-        await FirebaseFirestore.instance
-            .collection(AppConstants.notes)
-            .get()
-            .then((value) {
-          allNotes.value = notesModelFromJson(jsonEncode(value.docs));
-        });
-      });
-      FirebaseAuth.instance.signOut();
-    } else {
-      FirebaseFirestore.instance
-          .collection(AppConstants.notes)
-          .get()
-          .then((value) {
-        allNotes.value = notesModelFromJson(jsonEncode(value.docs));
-      });
-    }
+    FirebaseFirestore.instance
+        .collection(AppConstants.notes)
+        .get()
+        .then((value) {
+      allNotes.value = notesModelFromJson(jsonEncode(value.docs));
+    });
   }
 
   @override

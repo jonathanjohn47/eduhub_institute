@@ -7,11 +7,18 @@
   Copyright and Good Faith Purchasers © 2021-present initappz.
 */
 
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eduhub_institute/features/notifications/ui/notifications.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/app_contants.dart';
 import '../../../helper/style.dart';
+import '../../../models/student_model.dart';
+import '../../authentication/ui/sign_in_page.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -47,42 +54,64 @@ class AccountPage extends StatelessWidget {
                   ),
                 ],
               ),
-              child: Column(
-                children: [
-                  Container(
-                    height: 80,
-                    width: 80,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                            image: NetworkImage('assets/images/profile.jpg'),
-                            fit: BoxFit.cover)),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Jaydeep Hirani',
-                    style: headText(),
-                  ),
-                  Text(
-                    '(+91) 9820 202 202',
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  bottomFields(Icons.insert_drive_file_outlined,
-                      'Payment History', () {}),
-                  bottomFields(Icons.notifications_outlined, 'Notifications',
-                      () {
-                    Get.to(() => NotificationsPage());
+              child: FutureBuilder<DocumentSnapshot>(
+                  future: FirebaseFirestore.instance
+                      .collection(AppConstants.students)
+                      .doc(FirebaseAuth.instance.currentUser!.phoneNumber)
+                      .get(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      StudentModel currentStudent = StudentModel.fromJson(
+                          jsonDecode(jsonEncode(snapshot.data!.data())));
+                      return Column(
+                        children: [
+                          Container(
+                            height: 80,
+                            width: 80,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        'assets/images/profile.jpg'),
+                                    fit: BoxFit.cover)),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            '${currentStudent.firstName} ${currentStudent.lastName}',
+                            style: headText(),
+                          ),
+                          Text(
+                            currentStudent.phoneNumber,
+                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          bottomFields(Icons.insert_drive_file_outlined,
+                              'Payment History', () {}),
+                          bottomFields(
+                              Icons.notifications_outlined, 'Notifications',
+                              () {
+                            Get.to(() => NotificationsPage());
+                          }),
+                          bottomFields(
+                              Icons.help_outline, 'Help & Support', () {}),
+                          bottomFields(
+                              Icons.settings_outlined, 'Settings', () {}),
+                          bottomFields(Icons.logout_outlined, 'Logout', () {
+                            FirebaseAuth.instance.signOut().then((value) {
+                              Get.offAll(() => LoginScreen());
+                            });
+                          }),
+                        ],
+                      );
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
                   }),
-                  bottomFields(Icons.help_outline, 'Help & Support', () {}),
-                  bottomFields(Icons.settings_outlined, 'Settings', () {}),
-                  bottomFields(Icons.logout_outlined, 'Logout', () {}),
-                ],
-              ),
             ),
           ],
         ),

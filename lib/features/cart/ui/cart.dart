@@ -27,10 +27,17 @@ class CartPage extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(16),
         child: ElevatedButton(
-          onPressed: () {},
-          child: Text('Proceed to Checkout'),
-          style: simpleButton(),
-        ),
+            onPressed: () {},
+            child: Text('Proceed to Checkout'),
+            style: ElevatedButton.styleFrom(
+              elevation: 0,
+              backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white,
+              minimumSize: const Size.fromHeight(40),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            )),
       ),
     );
   }
@@ -117,7 +124,10 @@ class CartPage extends StatelessWidget {
                   children: [
                     Text('Subtotal'),
                     Text(
-                        '\$${controller.cartCourses.map((e) => e.price).reduce((value, element) => value + element)}')
+                      controller.cartCourses.isNotEmpty
+                          ? '\$${controller.cartCourses.map((e) => e.price).reduce((value, element) => value + element)}'
+                          : '\$0',
+                    ),
                   ],
                 ),
                 SizedBox(
@@ -135,7 +145,9 @@ class CartPage extends StatelessWidget {
                   children: [
                     Text('Total'),
                     Text(
-                      '\$${controller.cartCourses.map((e) => e.price).reduce((value, element) => value + element)}',
+                      controller.cartCourses.isNotEmpty
+                          ? '\$${controller.cartCourses.map((e) => e.price).reduce((value, element) => value + element)}'
+                          : '\$0',
                       style: TextStyle(
                           color: Colors.teal,
                           fontFamily: 'medium',

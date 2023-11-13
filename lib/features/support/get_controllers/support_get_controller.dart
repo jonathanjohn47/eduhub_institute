@@ -15,11 +15,11 @@ class SupportGetController extends GetxController {
 
   Future<void> loadMessages() async {
     if (FirebaseAuth.instance.currentUser != null &&
-        FirebaseAuth.instance.currentUser!.email !=
+        FirebaseAuth.instance.currentUser!.phoneNumber !=
             AppConstants.emailForTemporaryLogin) {
       messageSubscription = FirebaseFirestore.instance
           .collection(AppConstants.messages)
-          .doc(FirebaseAuth.instance.currentUser!.email)
+          .doc(FirebaseAuth.instance.currentUser!.phoneNumber)
           .collection(AppConstants.messages)
           .snapshots()
           .listen((value) {

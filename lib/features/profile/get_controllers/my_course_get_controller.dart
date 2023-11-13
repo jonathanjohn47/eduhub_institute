@@ -12,11 +12,11 @@ class MyCourseGetController extends GetxController {
 
   void getEnrolledCourses() {
     if (FirebaseAuth.instance.currentUser != null &&
-        FirebaseAuth.instance.currentUser!.email !=
+        FirebaseAuth.instance.currentUser!.phoneNumber !=
             AppConstants.emailForTemporaryLogin) {
       FirebaseFirestore.instance
           .collection(AppConstants.students)
-          .doc(FirebaseAuth.instance.currentUser!.email)
+          .doc(FirebaseAuth.instance.currentUser!.phoneNumber)
           .collection(AppConstants.courses)
           .get()
           .then((value) {

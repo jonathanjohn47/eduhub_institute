@@ -1,5 +1,6 @@
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:eduhub_institute/core/app_colors.dart';
 import 'package:eduhub_institute/features/authentication/get_controllers/sign_in_get_controller.dart';
 import 'package:eduhub_institute/features/authentication/ui/regsiter_screen.dart';
@@ -53,7 +54,8 @@ class LoginScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                     child: TextFormField(
-                      controller: getController.emailController,
+                      controller: getController.phoneController,
+                      keyboardType: TextInputType.phone,
                       obscureText: false,
                       textAlign: TextAlign.start,
                       maxLines: 1,
@@ -64,58 +66,6 @@ class LoginScreen extends StatelessWidget {
                         color: Color(0xff000000),
                       ),
                       decoration: InputDecoration(
-                        disabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                          borderSide:
-                              BorderSide(color: Color(0xff9e9e9e), width: 1),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                          borderSide:
-                              BorderSide(color: Color(0xff9e9e9e), width: 1),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                          borderSide:
-                              BorderSide(color: Color(0xff9e9e9e), width: 1),
-                        ),
-                        labelText: "Email",
-                        labelStyle: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 16,
-                          color: Color(0xff9e9e9e),
-                        ),
-                        filled: true,
-                        fillColor: Color(0x00ffffff),
-                        isDense: false,
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter email';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 5.dp),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                    child: Obx(() {
-                      return TextFormField(
-                        controller: getController.passwordController,
-                        obscureText: getController.obscureText.value,
-                        textAlign: TextAlign.start,
-                        maxLines: 1,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 16,
-                          color: Color(0xff000000),
-                        ),
-                        decoration: InputDecoration(
                           disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
                             borderSide:
@@ -131,7 +81,7 @@ class LoginScreen extends StatelessWidget {
                             borderSide:
                                 BorderSide(color: Color(0xff9e9e9e), width: 1),
                           ),
-                          labelText: "Password",
+                          labelText: "Phone",
                           labelStyle: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
@@ -143,26 +93,23 @@ class LoginScreen extends StatelessWidget {
                           isDense: false,
                           contentPadding:
                               EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                          suffixIcon: IconButton(
-                            onPressed: () {
-                              getController.obscureText.toggle();
+                          prefixIcon: CountryCodePicker(
+                            onChanged: (value) {
+                              getController.countryCode.value = value;
                             },
-                            icon: Icon(
-                              getController.obscureText.value
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: Color(0xff9e9e9e),
-                            ),
-                          ),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter password';
-                          }
-                          return null;
-                        },
-                      );
-                    }),
+                            initialSelection: 'IN',
+                            favorite: ['+91', 'IN'],
+                            showCountryOnly: false,
+                            showOnlyCountryWhenClosed: false,
+                            alignLeft: false,
+                          )),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter phone';
+                        }
+                        return null;
+                      },
+                    ),
                   ),
                   SizedBox(height: 15.dp),
                   Row(
@@ -174,7 +121,7 @@ class LoginScreen extends StatelessWidget {
                         flex: 1,
                         child: ElevatedButton(
                           onPressed: () {
-                            Get.offAll(() => HomePage());
+                            getController.initiateLogin();
                           },
                           child: Text(
                             "Login",
