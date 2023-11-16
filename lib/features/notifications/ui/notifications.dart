@@ -6,23 +6,24 @@
   terms found in the Website https://initappz.com/license
   Copyright and Good Faith Purchasers © 2021-present initappz.
 */
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eduhub_institute/core/app_contants.dart';
 import 'package:eduhub_institute/features/notifications/ui/notification-detail.dart';
+import 'package:eduhub_institute/models/notification_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:get/get.dart';
 
 import '../../../core/app_colors.dart';
 import '../../../helper/style.dart' as style;
+import '../get_controllers/notification_get_controller.dart';
 
 class NotificationsPage extends StatelessWidget {
-  List<Item> notifications = <Item>[
-    Item('Promo', 'You get 10% off from your last order',
-        'The gift can you use in next order'),
-    Item('Transaction', 'Waiting for payment',
-        'The gift can you use in next order'),
-    Item('Info', 'Rate your order experience',
-        'Give rating to increase our service'),
-    Item('Promos', 'Bananas day!', 'Get 5% off to all banana'),
-  ];
+  NotificationGetController getController =
+      Get.put(NotificationGetController());
 
   NotificationsPage({super.key});
 
@@ -38,6 +39,17 @@ class NotificationsPage extends StatelessWidget {
         title: Text('Notifications'),
         centerTitle: false,
         titleTextStyle: style.pageTitle(),
+        actions: [
+          Obx(() {
+            return Visibility(
+                visible: getController.allNotifications
+                    .any((element) => !element.read),
+                child: CircleAvatar(
+                  backgroundColor: Colors.red,
+                  child: Text('10', style: TextStyle(color: Colors.white)),
+                ));
+          })
+        ],
       ),
       body:
           _buildBody(), // This trailing comma makes auto-formatting nicer for build methods.
@@ -47,39 +59,49 @@ class NotificationsPage extends StatelessWidget {
   Widget _buildBody() {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.all(16),
-        child: ListView(
-          shrinkWrap: true,
-          children: List.generate(notifications.length, (index) {
-            return InkWell(
-              onTap: () {
-                Get.to(() => NotificationDetailPage());
-              },
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 16),
-                margin: EdgeInsets.only(bottom: 16),
-                decoration: style.bottomBorder(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      notifications[index].status,
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 255, 185, 48)),
-                    ),
-                    SizedBox(height: 8),
-                    Text(
-                      notifications[index].title,
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    SizedBox(height: 2),
-                    Text(notifications[index].text, style: greyText()),
-                  ],
-                ),
-              ),
-            );
-          }),
-        ),
+        padding: EdgeInsets.all(16.dp),
+        child: Obx(() {
+          return ListView(
+            shrinkWrap: true,
+            children: [
+              ...getController.allNotifications
+                  .map((e) => InkWell(
+                        onTap: () {
+                          getController.markNotificationAsRead(e);
+                          Get.to(() => NotificationDetailPage(
+                                notification: e,
+                              ));
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          margin: EdgeInsets.only(bottom: 16),
+                          decoration: style.bottomBorder(),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                e.notificationCategory.name,
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 255, 185, 48)),
+                              ),
+                              SizedBox(height: 8),
+                              Text(
+                                e.title,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight:
+                                        e.read ? null : FontWeight.bold),
+                              ),
+                              SizedBox(height: 2),
+                              Text(e.message, style: greyText()),
+                            ],
+                          ),
+                        ),
+                      ))
+                  .toList()
+            ],
+          );
+        }),
       ),
     );
   }

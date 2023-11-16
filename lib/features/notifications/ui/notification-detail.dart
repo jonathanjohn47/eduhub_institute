@@ -7,169 +7,60 @@
   Copyright and Good Faith Purchasers © 2021-present initappz.
 */
 import 'package:eduhub_institute/core/app_colors.dart';
+import 'package:eduhub_institute/helper/date_time_helpers.dart';
+import 'package:eduhub_institute/models/notification_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sizer/flutter_sizer.dart';
 import '../../../helper/style.dart' as style;
 
-class NotificationDetailPage extends StatefulWidget {
-    NotificationDetailPage({Key? key, Title? title}) : super(key: key);
-    final String title = '';
-    static const String page_id = 'Notification Detail';
+class NotificationDetailPage extends StatelessWidget {
+  NotificationDetailPage({Key? key, Title? title, required this.notification})
+      : super(key: key);
+  final NotificationModel notification;
 
-    @override
-    State<NotificationDetailPage> createState() => _NotificationDetailPageState();
-}
-
-class _NotificationDetailPageState extends State<NotificationDetailPage> {
-
-    List<Item> products = <Item>[
-        Item('2x', 'Thailand Orange'),
-        Item('4x', 'Broccoli'),
-        Item('1x', 'Vietnam Apple'),
-    ];
-
-    @override
-    Widget build(BuildContext context) {
-        return Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-                elevation: 0,
-                backgroundColor: Colors.white,
-                automaticallyImplyLeading: true,
-                iconTheme: IconThemeData(
-                    color: AppColors.primary
-                ),
-                title: Text('Notifications'),
-                centerTitle: false,
-                titleTextStyle: style.pageTitle(),
-            ),
-            body: _buildBody(), // This trailing comma makes auto-formatting nicer for build methods.
-        );
-    }
-
-    Widget _buildBody() {
-        return SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  color: Color.fromARGB(255, 244, 244, 244),
-                  child: Text('Order Information'),
-                ),
-                _buildOrderDetail(),
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  color: Color.fromARGB(255, 244, 244, 244),
-                  child: Text('Your Order'),
-                ),
-                Container(
-                  padding: EdgeInsets.all(16),
-                  child: ListView(
-                    shrinkWrap: true,
-                    physics: ScrollPhysics(),
-                    children: List.generate(products.length, (index) {
-                      return _buildSingleItem(products[index]);
-                    }),
-                  ),
-                ),
-              ],
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: true,
+        iconTheme: IconThemeData(color: AppColors.primary),
+        title: Text('Notifications'),
+        centerTitle: false,
+        titleTextStyle: style.pageTitle(),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(8.0.dp),
+            child: Text(
+              notification.title,
+              style: TextStyle(
+                fontSize: 20.dp,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-        );
-    }
-
-    Widget _buildOrderDetail() {
-        return Container(
-            padding: EdgeInsets.all(16),
-            child: Column(
-                children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                            Text('Order ID', style: greyLabel()),
-                            Text('#ASD468458')
-                        ],
-                    ),
-                    SizedBox(height: 16),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                            Text('Status', style: greyLabel()),
-                            Text('Completed')
-                        ],
-                    ),
-                    SizedBox(height: 16),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                            Text('Delivery Date', style: greyLabel()),
-                            Text('Fri, Jun 17, 2020 - 12.30')
-                        ],
-                    ),
-                    SizedBox(height: 16),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                            Text('Delivered to', style: greyLabel()),
-                            Text('Home')
-                        ],
-                    ),
-                    SizedBox(height: 16),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                            Text('Recipient Name', style: greyLabel()),
-                            Text('Jonh Doe')
-                        ],
-                    ),
-                ],
+          SizedBox(height: 10.dp),
+          Padding(
+            padding: EdgeInsets.all(8.0.dp),
+            child: Text(notification.message),
+          ),
+          SizedBox(height: 10.dp),
+          Padding(
+            padding: EdgeInsets.all(8.0.dp),
+            child: Text(
+              notification.sentAt.getHowMuchTimeAgo,
+              style: TextStyle(
+                fontSize: 12.dp,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-        );
-    }
-
-    Widget _buildSingleItem(product) {
-        return Container(
-            margin: EdgeInsets.only(bottom: 16),
-            child: Row(
-                children: [
-                    Container(
-                        width: 36,
-                        height: 36,
-                        margin: EdgeInsets.only(right: 16),
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 244, 244, 244),
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(3)
-                            )
-                        ),
-                        child: Center(
-                            child: Text(product.qty,style: qtyLabel()),
-                        ),
-                    ),
-                    Text(product.name, style: greyLabel()),
-                ],
-            )
-        );
-    }
-
-    greyLabel() {
-        return TextStyle(
-            color: Colors.grey,
-            fontSize: 16
-        );
-    }
-
-    qtyLabel() {
-        return TextStyle(
-            fontFamily: 'medium',
-        );
-    }
-}
-
-class Item {
-    const Item(this.qty, this.name);
-    final String qty;
-    final String name;
+          ),
+        ],
+      ),
+    );
+  }
 }
