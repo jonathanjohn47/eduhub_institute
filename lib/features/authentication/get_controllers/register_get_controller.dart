@@ -81,6 +81,7 @@ class RegisterGetController extends GetxController {
                 content: Column(
                   children: [
                     TextFormField(
+                      key: Key('otp_text_field'),
                       controller: otpController,
                       decoration: InputDecoration(
                         labelText: 'OTP',

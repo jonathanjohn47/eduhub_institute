@@ -54,6 +54,7 @@ class LoginScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                     child: TextFormField(
+                      key: Key('sign_in_phone_text_field'),
                       controller: getController.phoneController,
                       keyboardType: TextInputType.phone,
                       obscureText: false,
@@ -119,33 +120,42 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         flex: 1,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            getController.initiateLogin();
-                          },
-                          child: Text(
-                            "Login",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.normal,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primary,
-                            foregroundColor: Colors.white,
-                            padding: EdgeInsets.symmetric(
-                                vertical: 12, horizontal: 16),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4.0.dp),
-                            ),
-                          ),
-                        ),
+                        child: Obx(() {
+                          return !getController.showLoader.value
+                              ? ElevatedButton(
+                                  key: Key('sign_in_button'),
+                                  onPressed: () {
+                                    getController.initiateLogin();
+                                  },
+                                  child: Text(
+                                    "Login",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400,
+                                      fontStyle: FontStyle.normal,
+                                    ),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: AppColors.primary,
+                                    foregroundColor: Colors.white,
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 16),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(4.0.dp),
+                                    ),
+                                  ),
+                                )
+                              : Center(child: CircularProgressIndicator(
+                                key: Key('sign_in_loader'),
+                          ));
+                        }),
                       ),
                     ],
                   ),
                   SizedBox(height: 15.dp),
                   GestureDetector(
+                    key: Key('sign_up_button'),
                     onTap: () {
                       Get.offAll(() => RegisterScreen());
                     },

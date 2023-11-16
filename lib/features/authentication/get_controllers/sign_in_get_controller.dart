@@ -18,72 +18,77 @@ class SignInGetController extends GetxController {
     if (formKey.currentState!.validate()) {
       showLoader.value = true;
       await FirebaseAuth.instance.verifyPhoneNumber(
-          phoneNumber:
-              '${countryCode.value.dialCode}${phoneController.text.trim()}',
-          verificationCompleted: (credential) async {
-            try {
-              await FirebaseAuth.instance.signInWithPhoneNumber(
-                  '${countryCode.value.dialCode}${phoneController.text.trim()}');
-              await Get.offAll(() => DashboardScreen());
-            } catch (e) {
-              Get.snackbar(
-                'Error',
-                e.toString(),
-                snackPosition: SnackPosition.TOP,
-                backgroundColor: Colors.red,
-                colorText: Colors.white,
-              );
-            }
-          },
-          verificationFailed: (error) {
+        phoneNumber:
+        '${countryCode.value.dialCode}${phoneController.text.trim()}',
+        verificationCompleted: (credential) async {
+          try {
+            // The signInWithPhon`eCredential method call should be awaited.
+            await FirebaseAuth.instance.signInWithCredential(credential);
+            // Navigation should be awaited if it returns a Future.
+            await Get.offAll(() => DashboardScreen());
+          } catch (e) {
             Get.snackbar(
               'Error',
-              error.message!,
+              e.toString(),
               snackPosition: SnackPosition.TOP,
               backgroundColor: Colors.red,
               colorText: Colors.white,
             );
-          },
-          codeSent: (verificationId, [forceResendingToken]) async {
-            Get.defaultDialog(
-              title: 'Enter OTP',
-              content: Column(
-                children: [
-                  TextFormField(
-                    controller: otpController,
-                    decoration: InputDecoration(
-                      hintText: 'OTP',
-                    ),
+          }
+        },
+        verificationFailed: (error) {
+          Get.snackbar(
+            'Error',
+            error.message!,
+            snackPosition: SnackPosition.TOP,
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+          );
+        },
+        codeSent: (verificationId, [forceResendingToken]) async {
+          // Dialog display doesn't usually return a Future, so not awaiting is correct.
+          Get.defaultDialog(
+            title: 'Enter OTP',
+            content: Column(
+              children: [
+                TextFormField(
+                  key: Key('otp_text_field'),
+                  controller: otpController,
+                  decoration: InputDecoration(
+                    hintText: 'OTP',
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      try {
-                        var credential = PhoneAuthProvider.credential(
-                            verificationId: verificationId,
-                            smsCode: otpController.text.trim());
-                        await FirebaseAuth.instance.signInWithPhoneNumber(
-                            '${countryCode.value.dialCode}${phoneController.text.trim()}');
-                        await Get.offAll(() => DashboardScreen());
-                      } catch (e) {
-                        Get.snackbar(
-                          'Error',
-                          e.toString(),
-                          snackPosition: SnackPosition.TOP,
-                          backgroundColor: Colors.red,
-                          colorText: Colors.white,
-                        );
-                      }
-                    },
-                    child: Text('Submit'),
-                  ),
-                ],
-              ),
-            );
-          },
-          codeAutoRetrievalTimeout: (verificationId) {});
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  key: Key('otp_submit_button'),
+                  onPressed: () async {
+                    try {
+                      var credential = PhoneAuthProvider.credential(
+                          verificationId: verificationId,
+                          smsCode: otpController.text.trim());
+                      // signInWithCredential is the correct function to be called with a created PhoneAuthCredential.
+                      await FirebaseAuth.instance.signInWithCredential(credential);
+                      await Get.offAll(() => DashboardScreen());
+                    } catch (e) {
+                      Get.snackbar(
+                        'Error',
+                        e.toString(),
+                        snackPosition: SnackPosition.TOP,
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white,
+                      );
+                    }
+                  },
+                  child: Text('Submit'),
+                ),
+              ],
+            ),
+          );
+        },
+        codeAutoRetrievalTimeout: (verificationId) {},
+      );
       showLoader.value = false;
     }
   }
