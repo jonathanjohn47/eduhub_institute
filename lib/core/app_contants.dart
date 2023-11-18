@@ -13,4 +13,10 @@ class AppConstants {
   static String cart = "Cart";
 
   static String notifications = "Notifications";
+
+  static String reviews = "Reviews";
+
+  static String enrolledCourses = "EnrolledCourses";
+
+  static String chapters = "Chapters";
 }

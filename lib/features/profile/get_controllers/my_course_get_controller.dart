@@ -5,10 +5,11 @@ import 'package:eduhub_institute/core/app_contants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
+import '../../../models/course_model.dart';
 import '../../../models/enrolled_course_model.dart';
 
 class MyCourseGetController extends GetxController {
-  RxList<EnrolledCourseModel> enrolledCourses = RxList<EnrolledCourseModel>([]);
+  RxList<CourseModel> enrolledCourses = RxList<CourseModel>([]);
 
   void getEnrolledCourses() {
     if (FirebaseAuth.instance.currentUser != null &&
@@ -17,11 +18,12 @@ class MyCourseGetController extends GetxController {
       FirebaseFirestore.instance
           .collection(AppConstants.students)
           .doc(FirebaseAuth.instance.currentUser!.phoneNumber)
-          .collection(AppConstants.courses)
+          .collection(AppConstants.enrolledCourses)
           .get()
           .then((value) {
-        enrolledCourses.value =
-            enrolledCourseModelFromJson(jsonEncode(value.docs));
+        enrolledCourses.value = value.docs
+            .map((e) => CourseModel.fromJson(jsonDecode(jsonEncode(e.data()))))
+            .toList();
       });
     }
   }

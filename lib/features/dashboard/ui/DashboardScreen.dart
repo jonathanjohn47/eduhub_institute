@@ -69,31 +69,32 @@ class DashboardScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Get.to(() => CourseDetailPage());
-                  },
-                  child: Container(
-                    margin: EdgeInsets.all(0),
-                    padding: EdgeInsets.all(0),
-                    height: 170,
-                    decoration: BoxDecoration(
-                      color: Color(0x00ffffff),
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.zero,
-                    ),
-                    child: GetX<DashboardGetController>(
-                        init: DashboardGetController(),
-                        builder: (controller) {
-                          return ListView(
-                            scrollDirection: Axis.horizontal,
-                            padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
-                            shrinkWrap: true,
-                            physics: ScrollPhysics(),
-                            children: [
-                              ...controller.allCourses
-                                  .map(
-                                    (element) => Container(
+                Container(
+                  margin: EdgeInsets.all(0),
+                  padding: EdgeInsets.all(0),
+                  height: 170,
+                  decoration: BoxDecoration(
+                    color: Color(0x00ffffff),
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.zero,
+                  ),
+                  child: GetX<DashboardGetController>(
+                      init: DashboardGetController(),
+                      builder: (controller) {
+                        return ListView(
+                          scrollDirection: Axis.horizontal,
+                          padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                          shrinkWrap: true,
+                          physics: ScrollPhysics(),
+                          children: [
+                            ...controller.allCourses
+                                .map(
+                                  (element) => GestureDetector(
+                                    onTap: () {
+                                      Get.to(() => CourseDetailPage(
+                                          courseModel: element));
+                                    },
+                                    child: Container(
                                       margin: EdgeInsets.fromLTRB(0, 0, 16, 0),
                                       padding: EdgeInsets.all(12),
                                       width: 150,
@@ -151,12 +152,12 @@ class DashboardScreen extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-                                  )
-                                  .toList(),
-                            ],
-                          );
-                        }),
-                  ),
+                                  ),
+                                )
+                                .toList(),
+                          ],
+                        );
+                      }),
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(16, 16, 16, 0),

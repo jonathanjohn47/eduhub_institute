@@ -11,6 +11,7 @@ import 'package:eduhub_institute/core/app_colors.dart';
 import 'package:eduhub_institute/features/authentication/ui/sign_in_page.dart';
 import 'package:eduhub_institute/features/my_course/ui/chapter_in_course_page.dart';
 import 'package:eduhub_institute/features/profile/get_controllers/my_course_get_controller.dart';
+import 'package:eduhub_institute/models/course_model.dart';
 import 'package:eduhub_institute/models/enrolled_course_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +82,7 @@ class MyCoursePage extends StatelessWidget {
           );
   }
 
-  Widget course(EnrolledCourseModel enrolledCourseModel) {
+  Widget course(CourseModel courseModel) {
     return Container(
       margin: EdgeInsets.only(bottom: 20),
       padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
@@ -97,7 +98,7 @@ class MyCoursePage extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Get.to(() => ChaptersInCoursePage());
+          Get.to(() => ChaptersInCoursePage(courseModel: courseModel));
         },
         child: Row(
           children: [
@@ -107,8 +108,7 @@ class MyCoursePage extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                      image:
-                          NetworkImage(enrolledCourseModel.courseModel.imageLink),
+                      image: NetworkImage(courseModel.imageLink),
                       fit: BoxFit.cover)),
             ),
             Expanded(
@@ -152,17 +152,17 @@ class MyCoursePage extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      enrolledCourseModel.courseModel.name,
+                      courseModel.name,
                       style: headText(),
                     ),
                     SizedBox(
                       height: 5,
                     ),
-                    LinearPercentIndicator(
+                    /*LinearPercentIndicator(
                       width: 150.0,
                       barRadius: Radius.circular(10),
                       lineHeight: 10.0,
-                      percent: enrolledCourseModel.percentCompleted / 100,
+                      percent: .percentCompleted / 100,
                       backgroundColor: AppColors.primary.withOpacity(0.3),
                       progressColor: AppColors.primary,
                       padding: EdgeInsets.all(0),
@@ -173,7 +173,7 @@ class MyCoursePage extends StatelessWidget {
                           color: Colors.grey.shade600,
                           fontSize: 12,
                           fontWeight: FontWeight.w500),
-                    ),
+                    ),*/
                   ],
                 ),
               ),
