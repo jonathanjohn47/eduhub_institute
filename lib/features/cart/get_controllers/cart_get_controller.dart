@@ -23,8 +23,9 @@ class CartGetController extends GetxController {
           .collection(AppConstants.cart)
           .snapshots()
           .listen((value) {
-        cartCourses.value =
-            courseModelFromJson(jsonDecode(jsonEncode(value.docs)));
+        cartCourses.value = value.docs
+            .map((e) => CourseModel.fromJson(jsonDecode(jsonEncode(e.data()))))
+            .toList();
       });
     }
   }

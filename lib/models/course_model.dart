@@ -6,11 +6,10 @@ import 'dart:convert';
 
 import 'category_model.dart';
 
-List<CourseModel> courseModelFromJson(String str) => List<CourseModel>.from(
-    json.decode(str).map((x) => CourseModel.fromJson(x)));
+CourseModel courseModelFromJson(String str) =>
+    CourseModel.fromJson(json.decode(str));
 
-String courseModelToJson(List<CourseModel> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String courseModelToJson(CourseModel data) => json.encode(data.toJson());
 
 class CourseModel {
   String id;
@@ -20,7 +19,6 @@ class CourseModel {
   String imageLink;
   double price;
   CategoryModel categoryModel;
-  List<String> courseVideosLinks;
   List<String> notesLinks;
 
   CourseModel({
@@ -31,7 +29,6 @@ class CourseModel {
     required this.imageLink,
     required this.price,
     required this.categoryModel,
-    required this.courseVideosLinks,
     required this.notesLinks,
   });
 
@@ -43,7 +40,6 @@ class CourseModel {
     String? imageLink,
     double? price,
     CategoryModel? categoryModel,
-    List<String>? courseVideosLinks,
     List<String>? notesLinks,
   }) =>
       CourseModel(
@@ -54,7 +50,6 @@ class CourseModel {
         imageLink: imageLink ?? this.imageLink,
         price: price ?? this.price,
         categoryModel: categoryModel ?? this.categoryModel,
-        courseVideosLinks: courseVideosLinks ?? this.courseVideosLinks,
         notesLinks: notesLinks ?? this.notesLinks,
       );
 
@@ -66,8 +61,6 @@ class CourseModel {
         imageLink: json["image_link"],
         price: json["price"]?.toDouble(),
         categoryModel: CategoryModel.fromJson(json["category_model"]),
-        courseVideosLinks:
-            List<String>.from(json["course_videos_links"].map((x) => x)),
         notesLinks: List<String>.from(json["notes_links"].map((x) => x)),
       );
 
@@ -79,8 +72,6 @@ class CourseModel {
         "image_link": imageLink,
         "price": price,
         "category_model": categoryModel.toJson(),
-        "course_videos_links":
-            List<dynamic>.from(courseVideosLinks.map((x) => x)),
         "notes_links": List<dynamic>.from(notesLinks.map((x) => x)),
       };
 }

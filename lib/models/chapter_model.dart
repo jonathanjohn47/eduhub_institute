@@ -4,9 +4,9 @@
 
 import 'dart:convert';
 
-List<ChapterModel> chapterModelFromJson(String str) => List<ChapterModel>.from(json.decode(str).map((x) => ChapterModel.fromJson(x)));
+ChapterModel chapterModelFromJson(String str) => ChapterModel.fromJson(json.decode(str));
 
-String chapterModelToJson(List<ChapterModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String chapterModelToJson(ChapterModel data) => json.encode(data.toJson());
 
 class ChapterModel {
   String id;
@@ -14,7 +14,6 @@ class ChapterModel {
   String description;
   String thumbnail;
   List<String> videosLinks;
-  List<String> notes;
 
   ChapterModel({
     required this.id,
@@ -22,7 +21,6 @@ class ChapterModel {
     required this.description,
     required this.thumbnail,
     required this.videosLinks,
-    required this.notes,
   });
 
   ChapterModel copyWith({
@@ -31,7 +29,6 @@ class ChapterModel {
     String? description,
     String? thumbnail,
     List<String>? videosLinks,
-    List<String>? notes,
   }) =>
       ChapterModel(
         id: id ?? this.id,
@@ -39,7 +36,6 @@ class ChapterModel {
         description: description ?? this.description,
         thumbnail: thumbnail ?? this.thumbnail,
         videosLinks: videosLinks ?? this.videosLinks,
-        notes: notes ?? this.notes,
       );
 
   factory ChapterModel.fromJson(Map<String, dynamic> json) => ChapterModel(
@@ -48,7 +44,6 @@ class ChapterModel {
     description: json["description"],
     thumbnail: json["thumbnail"],
     videosLinks: List<String>.from(json["videos_links"].map((x) => x)),
-    notes: List<String>.from(json["notes"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
@@ -57,6 +52,5 @@ class ChapterModel {
     "description": description,
     "thumbnail": thumbnail,
     "videos_links": List<dynamic>.from(videosLinks.map((x) => x)),
-    "notes": List<dynamic>.from(notes.map((x) => x)),
   };
 }
