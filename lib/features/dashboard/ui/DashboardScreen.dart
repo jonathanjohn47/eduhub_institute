@@ -32,8 +32,7 @@ class DashboardScreen extends StatelessWidget {
           ),
         )*/
             Image(
-          image: AssetImage
-            (
+          image: AssetImage(
               'assets/images/WhatsApp_Image_2023-10-20_at_4.42.57_PM-removebg-preview.png'),
           width: 50.w,
         ),
@@ -133,10 +132,9 @@ class DashboardScreen extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          ImageIcon(
-                                            NetworkImage(element.imageLink),
-                                            size: 80,
-                                            color: Color(0xffd46d24),
+                                          Image.network(
+                                            element.imageLink,
+                                            height: 80.dp,
                                           ),
                                           Text(
                                             element.name,

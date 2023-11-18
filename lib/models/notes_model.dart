@@ -17,14 +17,14 @@ class NotesModel {
   String name;
   String description;
   CategoryModel categoryModel;
-  String pdfLink;
+  List<String> links;
 
   NotesModel({
     required this.id,
     required this.name,
     required this.description,
     required this.categoryModel,
-    required this.pdfLink,
+    required this.links,
   });
 
   NotesModel copyWith({
@@ -32,14 +32,14 @@ class NotesModel {
     String? name,
     String? description,
     CategoryModel? categoryModel,
-    String? pdfLink,
+    List<String>? links,
   }) =>
       NotesModel(
         id: id ?? this.id,
         name: name ?? this.name,
         description: description ?? this.description,
         categoryModel: categoryModel ?? this.categoryModel,
-        pdfLink: pdfLink ?? this.pdfLink,
+        links: links ?? this.links,
       );
 
   factory NotesModel.fromJson(Map<String, dynamic> json) => NotesModel(
@@ -47,7 +47,7 @@ class NotesModel {
         name: json["name"],
         description: json["description"],
         categoryModel: CategoryModel.fromJson(json["category_model"]),
-        pdfLink: json["pdf_link"],
+        links: List<String>.from(json["links"].map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
@@ -55,6 +55,6 @@ class NotesModel {
         "name": name,
         "description": description,
         "category_model": categoryModel.toJson(),
-        "pdf_link": pdfLink,
+        "links": List<dynamic>.from(links.map((x) => x)),
       };
 }

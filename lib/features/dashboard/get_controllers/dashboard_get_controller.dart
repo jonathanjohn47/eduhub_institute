@@ -19,7 +19,10 @@ class DashboardGetController extends GetxController {
         .collection(AppConstants.courses)
         .get()
         .then((value) {
-      allCourses.value = courseModelFromJson(jsonEncode(value.docs));
+      allCourses.value = value.docs
+          .map(
+              (doc) => CourseModel.fromJson(jsonDecode(jsonEncode(doc.data()))))
+          .toList();
     });
   }
 
@@ -28,13 +31,16 @@ class DashboardGetController extends GetxController {
         .collection(AppConstants.notes)
         .get()
         .then((value) {
-      allNotes.value = notesModelFromJson(jsonEncode(value.docs));
+      allNotes.value = value.docs
+          .map((doc) => NotesModel.fromJson(jsonDecode(jsonEncode(doc.data()))))
+          .toList();
     });
   }
 
   @override
   void onInit() {
     getCourses();
+    getNotes();
     super.onInit();
   }
 }
