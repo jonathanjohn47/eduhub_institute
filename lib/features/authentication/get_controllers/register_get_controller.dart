@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_code_picker/country_code_picker.dart';
+
 import 'package:eduhub_institute/core/app_contants.dart';
 import 'package:eduhub_institute/models/student_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,7 +12,6 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../dashboard/ui/DashboardScreen.dart';
-import '../../dashboard/ui/home_page.dart';
 
 class RegisterGetController extends GetxController {
   GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
@@ -44,7 +44,7 @@ class RegisterGetController extends GetxController {
       try {
         await FirebaseAuth.instance.signInWithPhoneNumber(
             '${countryCode.value.dialCode}${phoneNumberController.text.trim()}');
-        await Get.offAll(() => DashboardScreen());
+        await Get.offAll(() => const DashboardScreen());
       } catch (e) {
         await FirebaseAuth.instance.verifyPhoneNumber(
           phoneNumber:
@@ -72,7 +72,7 @@ class RegisterGetController extends GetxController {
                   dateOfBirth: dateOfBirth,
                   profilePicLink: downloadUrl,
                 ).toJson());
-            Get.offAll(DashboardScreen());
+            Get.offAll(const DashboardScreen());
           },
           verificationFailed: (error) {},
           codeSent: (verificationId, [forceResendingToken]) {
@@ -81,14 +81,14 @@ class RegisterGetController extends GetxController {
                 content: Column(
                   children: [
                     TextFormField(
-                      key: Key('otp_text_field'),
+                      key: const Key('otp_text_field'),
                       controller: otpController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'OTP',
                         border: OutlineInputBorder(),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     ElevatedButton(
@@ -120,9 +120,9 @@ class RegisterGetController extends GetxController {
                               dateOfBirth: dateOfBirth,
                               profilePicLink: downloadUrl,
                             ).toJson());
-                        Get.offAll(DashboardScreen());
+                        Get.offAll(const DashboardScreen());
                       },
-                      child: Text('Submit'),
+                      child: const Text('Submit'),
                     ),
                   ],
                 ));
@@ -135,33 +135,33 @@ class RegisterGetController extends GetxController {
 
   void getImage() async {
     Get.dialog(AlertDialog(
-      title: Text('Select Image'),
+      title: const Text('Select Image'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           ListTile(
             onTap: () async {
-              final ImagePicker _picker = ImagePicker();
+              final ImagePicker picker = ImagePicker();
               final XFile? image =
-                  await _picker.pickImage(source: ImageSource.camera);
+                  await picker.pickImage(source: ImageSource.camera);
               if (image != null) {
                 imageLink.value = image.path;
               }
             },
-            leading: Icon(Icons.camera_alt),
-            title: Text('Camera'),
+            leading: const Icon(Icons.camera_alt),
+            title: const Text('Camera'),
           ),
           ListTile(
             onTap: () {
-              final ImagePicker _picker = ImagePicker();
-              final XFile? image =
-                  _picker.pickImage(source: ImageSource.gallery) as XFile?;
-              if (image != null) {
-                imageLink.value = image.path;
-              }
+              ImagePicker picker = ImagePicker();
+              picker.pickImage(source: ImageSource.gallery).then((value) {
+                if (value != null) {
+                  imageLink.value = value.path;
+                }
+              });
             },
-            leading: Icon(Icons.photo),
-            title: Text('Gallery'),
+            leading: const Icon(Icons.photo),
+            title: const Text('Gallery'),
           ),
         ],
       ),

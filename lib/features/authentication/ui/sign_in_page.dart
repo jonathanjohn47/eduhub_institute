@@ -4,8 +4,6 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:eduhub_institute/core/app_colors.dart';
 import 'package:eduhub_institute/features/authentication/get_controllers/sign_in_get_controller.dart';
 import 'package:eduhub_institute/features/authentication/ui/regsiter_screen.dart';
-import 'package:eduhub_institute/features/dashboard/ui/DashboardScreen.dart';
-import 'package:eduhub_institute/features/dashboard/ui/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:get/get.dart';
@@ -13,21 +11,23 @@ import 'package:get/get.dart';
 class LoginScreen extends StatelessWidget {
   SignInGetController getController = Get.put(SignInGetController());
 
+  LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //preferred size with container child and height 0
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0),
+        preferredSize: const Size.fromHeight(0),
         child: Container(
           color: AppColors.primary,
         ),
       ),
-      backgroundColor: Color(0xffffffff),
+      backgroundColor: const Color(0xffffffff),
       body: Align(
         alignment: Alignment.center,
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
           child: SingleChildScrollView(
             child: Form(
               key: getController.formKey,
@@ -36,7 +36,7 @@ class LoginScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Align(
+                  const Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "Sign In",
@@ -52,15 +52,15 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 5.dp),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                     child: TextFormField(
-                      key: Key('sign_in_phone_text_field'),
+                      key: const Key('sign_in_phone_text_field'),
                       controller: getController.phoneController,
                       keyboardType: TextInputType.phone,
                       obscureText: false,
                       textAlign: TextAlign.start,
                       maxLines: 1,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
                         fontSize: 16,
@@ -70,36 +70,36 @@ class LoginScreen extends StatelessWidget {
                           disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
                             borderSide:
-                                BorderSide(color: Color(0xff9e9e9e), width: 1),
+                                const BorderSide(color: Color(0xff9e9e9e), width: 1),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
                             borderSide:
-                                BorderSide(color: Color(0xff9e9e9e), width: 1),
+                                const BorderSide(color: Color(0xff9e9e9e), width: 1),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
                             borderSide:
-                                BorderSide(color: Color(0xff9e9e9e), width: 1),
+                                const BorderSide(color: Color(0xff9e9e9e), width: 1),
                           ),
                           labelText: "Phone",
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
                             fontSize: 16,
                             color: Color(0xff9e9e9e),
                           ),
                           filled: true,
-                          fillColor: Color(0x00ffffff),
+                          fillColor: const Color(0x00ffffff),
                           isDense: false,
                           contentPadding:
-                              EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                              const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                           prefixIcon: CountryCodePicker(
                             onChanged: (value) {
                               getController.countryCode.value = value;
                             },
                             initialSelection: 'IN',
-                            favorite: ['+91', 'IN'],
+                            favorite: const ['+91', 'IN'],
                             showCountryOnly: false,
                             showOnlyCountryWhenClosed: false,
                             alignLeft: false,
@@ -123,11 +123,21 @@ class LoginScreen extends StatelessWidget {
                         child: Obx(() {
                           return !getController.showLoader.value
                               ? ElevatedButton(
-                                  key: Key('sign_in_button'),
+                                  key: const Key('sign_in_button'),
                                   onPressed: () {
                                     getController.initiateLogin();
                                   },
-                                  child: Text(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: AppColors.primary,
+                                    foregroundColor: Colors.white,
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 16),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(4.0.dp),
+                                    ),
+                                  ),
+                                  child: const Text(
                                     "Login",
                                     style: TextStyle(
                                       fontSize: 16,
@@ -135,18 +145,8 @@ class LoginScreen extends StatelessWidget {
                                       fontStyle: FontStyle.normal,
                                     ),
                                   ),
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppColors.primary,
-                                    foregroundColor: Colors.white,
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 12, horizontal: 16),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(4.0.dp),
-                                    ),
-                                  ),
                                 )
-                              : Center(child: CircularProgressIndicator(
+                              : const Center(child: CircularProgressIndicator(
                                 key: Key('sign_in_loader'),
                           ));
                         }),
@@ -155,13 +155,13 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 15.dp),
                   GestureDetector(
-                    key: Key('sign_up_button'),
+                    key: const Key('sign_up_button'),
                     onTap: () {
                       Get.offAll(() => RegisterScreen());
                     },
                     child: RichText(
                       textAlign: TextAlign.center,
-                      text: TextSpan(
+                      text: const TextSpan(
                         children: [
                           TextSpan(
                             text: "Don't have an account? ",

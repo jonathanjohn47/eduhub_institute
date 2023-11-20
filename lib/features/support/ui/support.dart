@@ -28,12 +28,12 @@ class SupportPage extends StatelessWidget {
         toolbarHeight: 70,
         // elevation: 0,
         automaticallyImplyLeading: false,
-        iconTheme: IconThemeData(color: Colors.black45),
+        iconTheme: const IconThemeData(color: Colors.black45),
         title: appColorText('Customer Support'),
         actions: <Widget>[
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.phone),
+            icon: const Icon(Icons.phone),
           ),
         ],
       ),
@@ -44,7 +44,7 @@ class SupportPage extends StatelessWidget {
 
   Widget _buildBody() {
     return SingleChildScrollView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: GetX<SupportGetController>(
             init: SupportGetController(),
             builder: (controller) {
@@ -53,7 +53,7 @@ class SupportPage extends StatelessWidget {
                 children: controller.messages.map((msg) {
                   return !msg.sentByStudent
                       ? Container(
-                          margin: EdgeInsets.only(bottom: 16),
+                          margin: const EdgeInsets.only(bottom: 16),
                           width: MediaQuery.of(context).size.width - 120,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -61,19 +61,19 @@ class SupportPage extends StatelessWidget {
                             children: <Widget>[
                               Flexible(
                                 child: Container(
-                                  margin: EdgeInsets.only(left: 10),
-                                  padding: EdgeInsets.all(16),
+                                  margin: const EdgeInsets.only(left: 10),
+                                  padding: const EdgeInsets.all(16),
                                   decoration: BoxDecoration(
                                       color: AppColors.secondary.shade50
                                           .withOpacity(0.2),
-                                      borderRadius: BorderRadius.only(
+                                      borderRadius: const BorderRadius.only(
                                         topRight: Radius.circular(26),
                                         topLeft: Radius.circular(26),
                                         bottomRight: Radius.circular(26),
                                       )),
                                   child: Text(
                                     msg.text,
-                                    style: TextStyle(fontSize: 14),
+                                    style: const TextStyle(fontSize: 14),
                                   ),
                                 ),
                               )
@@ -84,7 +84,7 @@ class SupportPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Container(
-                              margin: EdgeInsets.only(bottom: 16),
+                              margin: const EdgeInsets.only(bottom: 16),
                               width: MediaQuery.of(context).size.width - 120,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
@@ -92,11 +92,11 @@ class SupportPage extends StatelessWidget {
                                 children: <Widget>[
                                   Flexible(
                                     child: Container(
-                                      margin: EdgeInsets.only(right: 10),
-                                      padding: EdgeInsets.all(16),
+                                      margin: const EdgeInsets.only(right: 10),
+                                      padding: const EdgeInsets.all(16),
                                       decoration: BoxDecoration(
                                         color: AppColors.primary,
-                                        borderRadius: BorderRadius.only(
+                                        borderRadius: const BorderRadius.only(
                                           topRight: Radius.circular(26),
                                           topLeft: Radius.circular(26),
                                           bottomLeft: Radius.circular(26),
@@ -104,7 +104,7 @@ class SupportPage extends StatelessWidget {
                                       ),
                                       child: Text(
                                         msg.text,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: Colors.white, fontSize: 14),
                                       ),
                                     ),
@@ -123,10 +123,10 @@ class SupportPage extends StatelessWidget {
     return Container(
       color: AppColors.secondary.shade50.withOpacity(0.2),
       height: 65,
-      padding: EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Row(
         children: <Widget>[
-          Expanded(
+          const Expanded(
             child: TextField(
               decoration: InputDecoration(
                   border: InputBorder.none, hintText: 'write your message..'),
@@ -136,7 +136,7 @@ class SupportPage extends StatelessWidget {
             radius: 20,
             backgroundColor: AppColors.primary,
             child: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.near_me,
                 color: Colors.white,
               ),

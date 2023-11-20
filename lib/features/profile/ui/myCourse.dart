@@ -12,11 +12,9 @@ import 'package:eduhub_institute/features/authentication/ui/sign_in_page.dart';
 import 'package:eduhub_institute/features/my_course/ui/chapter_in_course_page.dart';
 import 'package:eduhub_institute/features/profile/get_controllers/my_course_get_controller.dart';
 import 'package:eduhub_institute/models/course_model.dart';
-import 'package:eduhub_institute/models/enrolled_course_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../../core/app_contants.dart';
 import '../../../helper/style.dart';
@@ -38,14 +36,14 @@ class MyCoursePage extends StatelessWidget {
                 AppConstants.emailForTemporaryLogin
         ? SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: GetX<MyCourseGetController>(
                   init: MyCourseGetController(),
                   builder: (controller) {
                     return Column(
                       children: [
                         searchbar(),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         //cours widgets
@@ -62,8 +60,8 @@ class MyCoursePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('Please login to see your courses'),
-                SizedBox(
+                const Text('Please login to see your courses'),
+                const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
@@ -75,7 +73,7 @@ class MyCoursePage extends StatelessWidget {
                       backgroundColor: AppColors.primary,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10))),
-                  child: Text('Login'),
+                  child: const Text('Login'),
                 )
               ],
             ),
@@ -84,8 +82,8 @@ class MyCoursePage extends StatelessWidget {
 
   Widget course(CourseModel courseModel) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
-      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+      margin: const EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
@@ -113,12 +111,12 @@ class MyCoursePage extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(left: 20),
+                padding: const EdgeInsets.only(left: 20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    const Row(
                       children: [
                         Text('4.5'),
                         SizedBox(
@@ -155,7 +153,7 @@ class MyCoursePage extends StatelessWidget {
                       courseModel.name,
                       style: headText(),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     /*LinearPercentIndicator(

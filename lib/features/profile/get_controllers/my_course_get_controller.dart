@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 import '../../../models/course_model.dart';
-import '../../../models/enrolled_course_model.dart';
 
 class MyCourseGetController extends GetxController {
   RxList<CourseModel> enrolledCourses = RxList<CourseModel>([]);

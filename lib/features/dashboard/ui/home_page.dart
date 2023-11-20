@@ -19,8 +19,8 @@ class HomePage extends StatelessWidget {
         child: Scaffold(
           body: TabBarView(
             children: [
-              DashboardScreen(),
-              MyCoursePage(),
+              const DashboardScreen(),
+              const MyCoursePage(),
               SupportPage(),
             ],
           ),
@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
             tabs: [
               Tab(
                 icon: Image(
-                  image: NetworkImage(
+                  image: const NetworkImage(
                       'https://cdn1.iconfinder.com/data/icons/freeline/32/home_house_real_estate-1024.png'),
                   color: AppColors.primary,
                   height: 20.dp,
@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
               ),
               Tab(
                 icon: Image(
-                  image: NetworkImage(
+                  image: const NetworkImage(
                       'https://cdn3.iconfinder.com/data/icons/outline-education-1/100/education-06-1024.png'),
                   color: AppColors.primary,
                   height: 20.dp,
@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
               ),
               Tab(
                 icon: Image(
-                  image: NetworkImage(
+                  image: const NetworkImage(
                       'https://cdn1.iconfinder.com/data/icons/aami-web-internet/64/aami16-39-1024.png'),
                   color: AppColors.primary,
                   height: 20.dp,

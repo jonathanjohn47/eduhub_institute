@@ -12,12 +12,12 @@ import 'package:flutter/material.dart';
 
 
 headText() {
-  return TextStyle(
+  return const TextStyle(
       fontSize: 18.0, fontFamily: 'semi-bold', color: Colors.black);
 }
 
 simpleText() {
-  return TextStyle(fontFamily: 'regular', fontSize: 14);
+  return const TextStyle(fontFamily: 'regular', fontSize: 14);
 }
 
 simpleButton() {
@@ -38,7 +38,7 @@ simpleInputIconText(text, icn) {
           borderSide: BorderSide(color: Colors.grey.shade300),
           borderRadius: BorderRadius.circular(15)),
       prefixIcon: icn,
-      contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 16));
+      contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16));
 }
 
 simpleInputText(text) {
@@ -53,11 +53,11 @@ simpleInputText(text) {
 
 searchbar() {
   return TextField(
-    style: TextStyle(color: Colors.black),
+    style: const TextStyle(color: Colors.black),
     decoration: InputDecoration(
       border: InputBorder.none,
       hintText: 'Search here...',
-      prefixIcon: Icon(Icons.search, color: Colors.black54),
+      prefixIcon: const Icon(Icons.search, color: Colors.black54),
       hintStyle: TextStyle(color: Colors.grey.shade400),
       filled: true,
       fillColor: Colors.white,
@@ -67,9 +67,9 @@ searchbar() {
 
 inputTextFieldDecoration(val, icn) {
   return InputDecoration(
-    contentPadding: EdgeInsets.all(0),
+    contentPadding: const EdgeInsets.all(0),
     labelText: '$val',
-    floatingLabelStyle: TextStyle(color: Colors.grey),
+    floatingLabelStyle: const TextStyle(color: Colors.grey),
     suffixIcon: icn != '' ? Icon(icn, color: AppColors.primary) : null,
     floatingLabelBehavior: FloatingLabelBehavior.auto,
     enabledBorder: UnderlineInputBorder(
@@ -90,10 +90,9 @@ inputTextFieldDecoration(val, icn) {
 
 outlineButton() {
   return OutlinedButton.styleFrom(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      foregroundColor: Colors.black, padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       elevation: 0,
-      primary: Colors.black,
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         fontFamily: 'medium',
         letterSpacing: 0.5,
         fontSize: 16,
@@ -107,13 +106,13 @@ shadowContainer() {
         BoxShadow(
             color: (Colors.grey[200])!,
             blurRadius: 5.0,
-            offset: Offset(
+            offset: const Offset(
               0.0,
               0.0,
             )
         ),
       ],
-      borderRadius: BorderRadius.all(
+      borderRadius: const BorderRadius.all(
           Radius.circular(5)
       ),
       color: Colors.white
@@ -121,7 +120,7 @@ shadowContainer() {
 }
 
 pageTitle() {
-  return TextStyle(
+  return const TextStyle(
       color: Colors.black,
       fontFamily: 'semi-bold',
       fontSize: 20
@@ -131,7 +130,7 @@ pageTitle() {
 roundImage(val) {
   return BoxDecoration(
       color: Colors.grey[300],
-      borderRadius: BorderRadius.all(
+      borderRadius: const BorderRadius.all(
           Radius.circular(16)
       ),
       image: DecorationImage(
@@ -153,7 +152,7 @@ bottomBorder() {
 }
 
 offContainer() {
-  return BoxDecoration(
+  return const BoxDecoration(
       borderRadius: BorderRadius.all(
           Radius.circular(5)
       ),
@@ -162,7 +161,7 @@ offContainer() {
 }
 
 offLabel() {
-  return TextStyle(
+  return const TextStyle(
       color: Colors.white,
       fontFamily: 'medium'
   );
@@ -171,14 +170,14 @@ offLabel() {
 greyText(val) {
   return Text(
     val,
-    style: TextStyle(fontSize: 14, color: Colors.black54),
+    style: const TextStyle(fontSize: 14, color: Colors.black54),
   );
 }
 
 greyTextSmall(val) {
   return Text(
     val,
-    style: TextStyle(fontSize: 12, color: Colors.black54),
+    style: const TextStyle(fontSize: 12, color: Colors.black54),
   );
 }
 
@@ -186,7 +185,7 @@ blackText(val) {
   return Container(
     child: Text(
       val,
-      style: TextStyle(fontSize: 14, fontFamily: 'bold'),
+      style: const TextStyle(fontSize: 14, fontFamily: 'bold'),
     ),
   );
 }
@@ -194,14 +193,14 @@ blackText(val) {
 blackBoldText(val) {
   return Text(
     val,
-    style: TextStyle(fontSize: 16, fontFamily: 'bold'),
+    style: const TextStyle(fontSize: 16, fontFamily: 'bold'),
   );
 }
 
 blackHeading(val) {
   return Text(
     val,
-    style: TextStyle(fontSize: 20, fontFamily: 'bold'),
+    style: const TextStyle(fontSize: 20, fontFamily: 'bold'),
   );
 }
 
@@ -214,7 +213,7 @@ appColorText(val) {
 
 textField(hint, icn) {
   return Container(
-    padding: EdgeInsets.symmetric(vertical: 8),
+    padding: const EdgeInsets.symmetric(vertical: 8),
     child: TextField(
       decoration: InputDecoration(
         labelText: hint,
@@ -222,7 +221,7 @@ textField(hint, icn) {
           icn,
           color: Colors.black12,
         ),
-        labelStyle: TextStyle(color: Colors.black54, fontSize: 12),
+        labelStyle: const TextStyle(color: Colors.black54, fontSize: 12),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: AppColors.primary),
         ),
@@ -257,8 +256,8 @@ SearchBox(hint) {
         decoration: InputDecoration(
             border: InputBorder.none,
             hintText: hint,
-            hintStyle: TextStyle(color: Colors.black26),
-            prefixIcon: Icon(
+            hintStyle: const TextStyle(color: Colors.black26),
+            prefixIcon: const Icon(
               Icons.location_on,
               color: Colors.black26,
             )),

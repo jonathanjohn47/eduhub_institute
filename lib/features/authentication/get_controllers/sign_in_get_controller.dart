@@ -1,7 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:eduhub_institute/features/dashboard/ui/DashboardScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +24,7 @@ class SignInGetController extends GetxController {
             // The signInWithPhon`eCredential method call should be awaited.
             await FirebaseAuth.instance.signInWithCredential(credential);
             // Navigation should be awaited if it returns a Future.
-            await Get.offAll(() => DashboardScreen());
+            await Get.offAll(() => const DashboardScreen());
           } catch (e) {
             Get.snackbar(
               'Error',
@@ -52,17 +51,17 @@ class SignInGetController extends GetxController {
             content: Column(
               children: [
                 TextFormField(
-                  key: Key('otp_text_field'),
+                  key: const Key('otp_text_field'),
                   controller: otpController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'OTP',
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
-                  key: Key('otp_submit_button'),
+                  key: const Key('otp_submit_button'),
                   onPressed: () async {
                     try {
                       var credential = PhoneAuthProvider.credential(
@@ -70,7 +69,7 @@ class SignInGetController extends GetxController {
                           smsCode: otpController.text.trim());
                       // signInWithCredential is the correct function to be called with a created PhoneAuthCredential.
                       await FirebaseAuth.instance.signInWithCredential(credential);
-                      await Get.offAll(() => DashboardScreen());
+                      await Get.offAll(() => const DashboardScreen());
                     } catch (e) {
                       Get.snackbar(
                         'Error',
@@ -81,7 +80,7 @@ class SignInGetController extends GetxController {
                       );
                     }
                   },
-                  child: Text('Submit'),
+                  child: const Text('Submit'),
                 ),
               ],
             ),
@@ -95,8 +94,8 @@ class SignInGetController extends GetxController {
 
   void checkIfAlreadyLoggedIn() {
     if (FirebaseAuth.instance.currentUser != null) {
-      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-        Get.offAll(() => DashboardScreen());
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        Get.offAll(() => const DashboardScreen());
       });
     }
   }

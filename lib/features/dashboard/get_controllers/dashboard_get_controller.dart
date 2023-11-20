@@ -2,10 +2,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eduhub_institute/core/app_contants.dart';
-import 'package:eduhub_institute/features/dashboard/get_controllers/home_get_controller.dart';
 import 'package:eduhub_institute/models/notes_model.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 
 import '../../../models/course_model.dart';

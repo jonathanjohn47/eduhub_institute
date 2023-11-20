@@ -26,7 +26,7 @@ class CourseDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xffffffff),
+        backgroundColor: const Color(0xffffffff),
         body: SizedBox(
           height: MediaQuery
               .of(context)
@@ -57,8 +57,8 @@ class CourseDetailPage extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                   Container(
-                    margin: EdgeInsets.all(0),
-                    padding: EdgeInsets.all(0),
+                    margin: const EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                     width: MediaQuery
                         .of(context)
                         .size
@@ -68,14 +68,14 @@ class CourseDetailPage extends StatelessWidget {
                         .size
                         .height * 0.4,
                     decoration: BoxDecoration(
-                      color: Color(0x89000000),
+                      color: const Color(0x89000000),
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.zero,
-                      border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+                      border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -86,16 +86,16 @@ class CourseDetailPage extends StatelessWidget {
                             Get.back();
                           },
                           child: Container(
-                            margin: EdgeInsets.all(0),
-                            padding: EdgeInsets.all(0),
+                            margin: const EdgeInsets.all(0),
+                            padding: const EdgeInsets.all(0),
                             width: 40,
                             height: 40,
                             decoration: BoxDecoration(
-                              color: Color(0xffffffff),
+                              color: const Color(0xffffffff),
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(4.0),
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.arrow_back,
                               color: Color(0xff000000),
                               size: 24,
@@ -103,16 +103,16 @@ class CourseDetailPage extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.all(0),
-                          padding: EdgeInsets.all(0),
+                          margin: const EdgeInsets.all(0),
+                          padding: const EdgeInsets.all(0),
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                            color: Color(0xff3a57e8),
+                            color: const Color(0xff3a57e8),
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(4.0),
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.favorite_border,
                             color: Color(0xffffffff),
                             size: 24,
@@ -127,8 +127,8 @@ class CourseDetailPage extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: Container(
                   alignment: Alignment.topCenter,
-                  margin: EdgeInsets.all(0),
-                  padding: EdgeInsets.all(0),
+                  margin: const EdgeInsets.all(0),
+                  padding: const EdgeInsets.all(0),
                   width: MediaQuery
                       .of(context)
                       .size
@@ -138,13 +138,13 @@ class CourseDetailPage extends StatelessWidget {
                       .size
                       .height * 0.65,
                   decoration: BoxDecoration(
-                    color: Color(0xffffffff),
+                    color: const Color(0xffffffff),
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(16.0),
-                    border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+                    border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 60),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 60),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -152,12 +152,12 @@ class CourseDetailPage extends StatelessWidget {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+                            padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                             child: Text(
                               courseModel.name,
                               textAlign: TextAlign.start,
                               overflow: TextOverflow.clip,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontStyle: FontStyle.normal,
                                 fontSize: 22,
@@ -166,12 +166,12 @@ class CourseDetailPage extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.all(16),
+                            padding: const EdgeInsets.all(16),
                             child: Text(
                               courseModel.description,
                               textAlign: TextAlign.start,
                               overflow: TextOverflow.clip,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,
                                 fontSize: 14,
@@ -181,19 +181,19 @@ class CourseDetailPage extends StatelessWidget {
                           ),
                           Container(
                             alignment: Alignment.centerLeft,
-                            margin: EdgeInsets.all(0),
-                            padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
+                            margin: const EdgeInsets.all(0),
+                            padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
                             width: MediaQuery
                                 .of(context)
                                 .size
                                 .width,
                             height: 40,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Color(0xfff5f3f3),
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.zero,
                             ),
-                            child: Text(
+                            child: const Text(
                               "Reviews",
                               textAlign: TextAlign.left,
                               overflow: TextOverflow.clip,
@@ -228,20 +228,20 @@ class CourseDetailPage extends StatelessWidget {
                                       ...reviewModels
                                           .map((e) =>
                                           ListTile(
-                                            tileColor: Color(0x1f000000),
+                                            tileColor: const Color(0x1f000000),
                                             title: Text(
                                               e.title,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w600,
                                                 fontStyle: FontStyle.normal,
                                                 fontSize: 14.dp,
-                                                color: Color(0xff000000),
+                                                color: const Color(0xff000000),
                                               ),
                                               textAlign: TextAlign.start,
                                             ),
                                             subtitle: Text(
                                               e.text,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontWeight: FontWeight.w400,
                                                 fontStyle: FontStyle.normal,
                                                 fontSize: 12,
@@ -255,12 +255,12 @@ class CourseDetailPage extends StatelessWidget {
                                                 horizontal: 16.0.dp),
                                             selected: false,
                                             selectedTileColor:
-                                            Color(0x42000000),
+                                            const Color(0x42000000),
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                               BorderRadius.zero,
                                               side: BorderSide(
-                                                  color: Color(0x4d9e9e9e),
+                                                  color: const Color(0x4d9e9e9e),
                                                   width: 1.dp),
                                             ),
                                             leading: CircleAvatar(
@@ -274,7 +274,7 @@ class CourseDetailPage extends StatelessWidget {
                                     ],
                                   );
                                 }
-                                return Center(
+                                return const Center(
                                   child: CircularProgressIndicator(),
                                 );
                               }),
@@ -285,7 +285,7 @@ class CourseDetailPage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: StreamBuilder<DocumentSnapshot>(
@@ -302,13 +302,19 @@ class CourseDetailPage extends StatelessWidget {
                               onPressed: () {
                                 courseDetailsGetController.enroll(courseModel);
                               },
-                              color: Color(0xff3a57e8),
+                              color: const Color(0xff3a57e8),
                               elevation: 0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(24.0),
                               ),
-                              padding: EdgeInsets.all(16),
-                              child: Text(
+                              padding: const EdgeInsets.all(16),
+                              textColor: const Color(0xffffffff),
+                              height: 45,
+                              minWidth: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width,
+                              child: const Text(
                                 "Enroll",
                                 style: TextStyle(
                                   fontSize: 14,
@@ -316,17 +322,11 @@ class CourseDetailPage extends StatelessWidget {
                                   fontStyle: FontStyle.normal,
                                 ),
                               ),
-                              textColor: Color(0xffffffff),
-                              height: 45,
-                              minWidth: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width,
                             );
                           }
                           return FloatingActionButton.extended(
                             onPressed: () {},
-                            label: Text('Already Enrolled'),
+                            label: const Text('Already Enrolled'),
                             backgroundColor: Colors.green,
                             foregroundColor: Colors.white,);
                         }

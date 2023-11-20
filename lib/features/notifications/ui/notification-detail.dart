@@ -14,7 +14,7 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import '../../../helper/style.dart' as style;
 
 class NotificationDetailPage extends StatelessWidget {
-  NotificationDetailPage({Key? key, Title? title, required this.notification})
+  const NotificationDetailPage({Key? key, Title? title, required this.notification})
       : super(key: key);
   final NotificationModel notification;
 
@@ -27,7 +27,7 @@ class NotificationDetailPage extends StatelessWidget {
         backgroundColor: Colors.white,
         automaticallyImplyLeading: true,
         iconTheme: IconThemeData(color: AppColors.primary),
-        title: Text('Notifications'),
+        title: const Text('Notifications'),
         centerTitle: false,
         titleTextStyle: style.pageTitle(),
       ),

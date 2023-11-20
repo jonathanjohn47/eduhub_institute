@@ -2,24 +2,32 @@
 
 ///File download from FlutterViz- Drag and drop a tools. For more details visit https://flutterviz.io/
 
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:eduhub_institute/core/app_colors.dart';
+import 'package:eduhub_institute/core/app_contants.dart';
 import 'package:eduhub_institute/features/course_details/ui/CourseDetailPage.dart';
 import 'package:eduhub_institute/features/dashboard/get_controllers/dashboard_get_controller.dart';
 import 'package:eduhub_institute/features/profile/ui/profile_page.dart';
+import 'package:eduhub_institute/models/student_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:get/get.dart';
 
 class DashboardScreen extends StatelessWidget {
+  const DashboardScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
+      backgroundColor: const Color(0xffffffff),
       appBar: AppBar(
         elevation: 4,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
         title: /*Text(
@@ -32,18 +40,34 @@ class DashboardScreen extends StatelessWidget {
           ),
         )*/
             Image(
-          image: AssetImage(
+          image: const AssetImage(
               'assets/images/WhatsApp_Image_2023-10-20_at_4.42.57_PM-removebg-preview.png'),
           width: 50.w,
         ),
         actions: [
           Icon(Icons.search, color: AppColors.secondary, size: 22),
-          IconButton(
-            icon: Icon(Icons.person, size: 22, color: AppColors.secondary),
-            onPressed: () {
-              Get.to(() => ProfilePage());
-            },
-          ),
+          SizedBox(width: 16.dp),
+          FutureBuilder<DocumentSnapshot>(
+              future: FirebaseFirestore.instance
+                  .collection(AppConstants.students)
+                  .doc(FirebaseAuth.instance.currentUser!.phoneNumber)
+                  .get(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  StudentModel currentStudent = StudentModel.fromJson(
+                      jsonDecode(jsonEncode(snapshot.data!.data())));
+                  return GestureDetector(
+                    onTap: () {
+                      Get.to(() => ProfilePage());
+                    },
+                    child: CircleAvatar(
+                      backgroundImage:
+                          NetworkImage(currentStudent.profilePicLink),
+                    ),
+                  );
+                }
+                return Container();
+              }),
         ],
       ),
       body: Stack(
@@ -55,7 +79,7 @@ class DashboardScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(16),
                   child: Text(
                     "Courses",
@@ -70,10 +94,10 @@ class DashboardScreen extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(0),
-                  padding: EdgeInsets.all(0),
+                  margin: const EdgeInsets.all(0),
+                  padding: const EdgeInsets.all(0),
                   height: 170,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color(0x00ffffff),
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.zero,
@@ -83,9 +107,9 @@ class DashboardScreen extends StatelessWidget {
                       builder: (controller) {
                         return ListView(
                           scrollDirection: Axis.horizontal,
-                          padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                          padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
                           shrinkWrap: true,
-                          physics: ScrollPhysics(),
+                          physics: const ScrollPhysics(),
                           children: [
                             ...controller.allCourses
                                 .map(
@@ -95,17 +119,17 @@ class DashboardScreen extends StatelessWidget {
                                           courseModel: element));
                                     },
                                     child: Container(
-                                      margin: EdgeInsets.fromLTRB(0, 0, 16, 0),
-                                      padding: EdgeInsets.all(12),
+                                      margin: const EdgeInsets.fromLTRB(0, 0, 16, 0),
+                                      padding: const EdgeInsets.all(12),
                                       width: 150,
                                       height: 170,
                                       decoration: BoxDecoration(
-                                        color: Color(0x00ffffff),
+                                        color: const Color(0x00ffffff),
                                         shape: BoxShape.rectangle,
                                         borderRadius:
                                             BorderRadius.circular(12.0),
                                         border: Border.all(
-                                            color: Color(0x4d9e9e9e), width: 1),
+                                            color: const Color(0x4d9e9e9e), width: 1),
                                       ),
                                       child: Column(
                                         mainAxisAlignment:
@@ -114,7 +138,7 @@ class DashboardScreen extends StatelessWidget {
                                             CrossAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Row(
+                                          const Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             crossAxisAlignment:
@@ -142,7 +166,7 @@ class DashboardScreen extends StatelessWidget {
                                             textAlign: TextAlign.start,
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontWeight: FontWeight.w700,
                                               fontStyle: FontStyle.normal,
                                               fontSize: 16,
@@ -159,7 +183,7 @@ class DashboardScreen extends StatelessWidget {
                         );
                       }),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
                   child: Text(
                     "Notes",
@@ -177,11 +201,11 @@ class DashboardScreen extends StatelessWidget {
                     init: DashboardGetController(),
                     builder: (controller) {
                       return GridView(
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        physics: NeverScrollableScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 16,
                           mainAxisSpacing: 16,
@@ -189,21 +213,21 @@ class DashboardScreen extends StatelessWidget {
                         ),
                         children: [
                           ...controller.allNotes.map((element) => Container(
-                                margin: EdgeInsets.all(0),
-                                padding: EdgeInsets.all(12),
+                                margin: const EdgeInsets.all(0),
+                                padding: const EdgeInsets.all(12),
                                 decoration: BoxDecoration(
-                                  color: Color(0x00ffffff),
+                                  color: const Color(0x00ffffff),
                                   shape: BoxShape.rectangle,
                                   borderRadius: BorderRadius.circular(12.0),
                                   border: Border.all(
-                                      color: Color(0x4d9e9e9e), width: 1),
+                                      color: const Color(0x4d9e9e9e), width: 1),
                                 ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Row(
+                                    const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       crossAxisAlignment:
@@ -223,13 +247,13 @@ class DashboardScreen extends StatelessWidget {
                                       ],
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
+                                      padding: const EdgeInsets.fromLTRB(0, 16, 0, 8),
                                       child: Text(
                                         element.name,
                                         textAlign: TextAlign.start,
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.w700,
                                           fontStyle: FontStyle.normal,
                                           fontSize: 16,
@@ -243,7 +267,7 @@ class DashboardScreen extends StatelessWidget {
                                         element.description,
                                         textAlign: TextAlign.start,
                                         overflow: TextOverflow.clip,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontStyle: FontStyle.normal,
                                           fontSize: 14,
@@ -252,11 +276,11 @@ class DashboardScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Container(
-                                      margin: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                                      padding: EdgeInsets.symmetric(
+                                      margin: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                                      padding: const EdgeInsets.symmetric(
                                           vertical: 4, horizontal: 8),
                                       decoration: BoxDecoration(
-                                        color: Color(0x343a57e8),
+                                        color: const Color(0x343a57e8),
                                         shape: BoxShape.rectangle,
                                         borderRadius:
                                             BorderRadius.circular(4.0),
@@ -265,7 +289,7 @@ class DashboardScreen extends StatelessWidget {
                                         element.categoryModel.name,
                                         textAlign: TextAlign.start,
                                         overflow: TextOverflow.clip,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontStyle: FontStyle.normal,
                                           fontSize: 14,
