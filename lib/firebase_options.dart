@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD4hhd113J7M-4vQJlXy3kaEwReu-qEgTs',
-    appId: '1:1023622398744:android:38ad2ba0ac4fc49f11146d',
-    messagingSenderId: '1023622398744',
-    projectId: 'eduhub-839f9',
-    storageBucket: 'eduhub-839f9.appspot.com',
+    apiKey: 'AIzaSyAA2SWUVlISglDPz5T4GI6Wju5aUHf4BLM',
+    appId: '1:459567930431:android:206e04bfe02939790d6c8a',
+    messagingSenderId: '459567930431',
+    projectId: 'eduhub-e8c08',
+    storageBucket: 'eduhub-e8c08.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCSINs8al9xtKmj1hu0C0tzoNyI6gGgySw',
-    appId: '1:1023622398744:ios:ff87297807dc4ee711146d',
-    messagingSenderId: '1023622398744',
-    projectId: 'eduhub-839f9',
-    storageBucket: 'eduhub-839f9.appspot.com',
+    apiKey: 'AIzaSyC3zhF_tynbFyBJkoa5SdUfzfyrV3wmSDs',
+    appId: '1:459567930431:ios:cfc795416988dc8e0d6c8a',
+    messagingSenderId: '459567930431',
+    projectId: 'eduhub-e8c08',
+    storageBucket: 'eduhub-e8c08.appspot.com',
     iosBundleId: 'com.app.eduhubInstitute',
   );
 }

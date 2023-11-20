@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1023622398744",
-    "project_id": "eduhub-839f9",
-    "storage_bucket": "eduhub-839f9.appspot.com"
+    "project_number": "459567930431",
+    "project_id": "eduhub-e8c08",
+    "storage_bucket": "eduhub-e8c08.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1023622398744:android:38ad2ba0ac4fc49f11146d",
+        "mobilesdk_app_id": "1:459567930431:android:206e04bfe02939790d6c8a",
         "android_client_info": {
           "package_name": "com.app.eduhub_institute"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD4hhd113J7M-4vQJlXy3kaEwReu-qEgTs"
+          "current_key": "AIzaSyAA2SWUVlISglDPz5T4GI6Wju5aUHf4BLM"
         }
       ],
       "services": {
