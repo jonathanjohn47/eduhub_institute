@@ -41,11 +41,20 @@ class RegisterGetController extends GetxController {
     if (registerFormKey.currentState!.validate() &&
         imageLink.value.isNotEmpty &&
         dateOfBirthController.text.isNotEmpty) {
-      try {
-        await FirebaseAuth.instance.signInWithPhoneNumber(
-            '${countryCode.value.dialCode}${phoneNumberController.text.trim()}');
-        await Get.offAll(() => const DashboardScreen());
-      } catch (e) {
+      showLoader.value = true;
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: AppConstants.emailForTemporaryLogin,
+          password: AppConstants.passwordForTemporaryLogin);
+      final userDoc = await FirebaseFirestore.instance
+          .collection(AppConstants.students)
+          .doc(
+              '${countryCode.value.dialCode}${phoneNumberController.text.trim()}')
+          .get();
+      await FirebaseAuth.instance.signOut();
+      if (userDoc.exists) {
+        Get.snackbar('Error', 'User already exists',
+            backgroundColor: Colors.red, colorText: Colors.white);
+      } else {
         await FirebaseAuth.instance.verifyPhoneNumber(
           phoneNumber:
               '${countryCode.value.dialCode}${phoneNumberController.text.trim()}',
@@ -74,8 +83,8 @@ class RegisterGetController extends GetxController {
                 ).toJson());
             Get.offAll(const DashboardScreen());
           },
-          verificationFailed: (error) {},
-          codeSent: (verificationId, [forceResendingToken]) {
+          verificationFailed: (error) async {},
+          codeSent: (verificationId, [forceResendingToken]) async {
             Get.defaultDialog(
                 title: 'Enter OTP',
                 content: Column(
@@ -127,9 +136,10 @@ class RegisterGetController extends GetxController {
                   ],
                 ));
           },
-          codeAutoRetrievalTimeout: (verificationId) {},
+          codeAutoRetrievalTimeout: (verificationId) async {},
         );
       }
+      showLoader.value = false;
     }
   }
 
