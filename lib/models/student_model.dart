@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-StudentModel studentModelFromJson(String str) => StudentModel.fromJson(json.decode(str));
+StudentModel studentModelFromJson(String str) =>
+    StudentModel.fromJson(json.decode(str));
 
 String studentModelToJson(StudentModel data) => json.encode(data.toJson());
 
@@ -13,6 +14,7 @@ class StudentModel {
   String lastName;
   String profilePicLink;
   String phoneNumber;
+  String email;
   DateTime joinedOn;
   DateTime dateOfBirth;
 
@@ -21,6 +23,7 @@ class StudentModel {
     required this.lastName,
     required this.profilePicLink,
     required this.phoneNumber,
+    required this.email,
     required this.joinedOn,
     required this.dateOfBirth,
   });
@@ -30,6 +33,7 @@ class StudentModel {
     String? lastName,
     String? profilePicLink,
     String? phoneNumber,
+    String? email,
     DateTime? joinedOn,
     DateTime? dateOfBirth,
   }) =>
@@ -38,34 +42,40 @@ class StudentModel {
         lastName: lastName ?? this.lastName,
         profilePicLink: profilePicLink ?? this.profilePicLink,
         phoneNumber: phoneNumber ?? this.phoneNumber,
+        email: email ?? this.email,
         joinedOn: joinedOn ?? this.joinedOn,
         dateOfBirth: dateOfBirth ?? this.dateOfBirth,
       );
 
   factory StudentModel.fromJson(Map<String, dynamic> json) => StudentModel(
-    firstName: json["first_name"],
-    lastName: json["last_name"],
-    profilePicLink: json["profile_pic_link"],
-    phoneNumber: json["phone_number"],
-    joinedOn: DateTime.parse(json["joined_on"]),
-    dateOfBirth: DateTime.parse(json["date_of_birth"]),
-  );
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        profilePicLink: json["profilePicLink"],
+        phoneNumber: json["phoneNumber"],
+        email: json["email"],
+        joinedOn: DateTime.parse(json["joinedOn"]),
+        dateOfBirth: DateTime.parse(json["dateOfBirth"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "first_name": firstName,
-    "last_name": lastName,
-    "profile_pic_link": profilePicLink,
-    "phone_number": phoneNumber,
-    "joined_on": joinedOn.toIso8601String(),
-    "date_of_birth": dateOfBirth.toIso8601String(),
-  };
+        "firstName": firstName,
+        "lastName": lastName,
+        "profilePicLink": profilePicLink,
+        "phoneNumber": phoneNumber,
+        "email": email,
+        "joinedOn": joinedOn.toIso8601String(),
+        "dateOfBirth": dateOfBirth.toIso8601String(),
+      };
 
-  static StudentModel empty() => StudentModel(
-    firstName: '',
-    lastName: '',
-    profilePicLink: '',
-    phoneNumber: '',
-    joinedOn: DateTime.now(),
-    dateOfBirth: DateTime.now(),
-  );
+  static StudentModel empty() {
+    return StudentModel(
+      firstName: "",
+      lastName: "",
+      profilePicLink: "",
+      phoneNumber: "",
+      email: "",
+      joinedOn: DateTime.now(),
+      dateOfBirth: DateTime.now(),
+    );
+  }
 }

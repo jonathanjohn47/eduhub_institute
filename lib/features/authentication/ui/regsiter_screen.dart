@@ -83,7 +83,7 @@ class RegisterScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         Expanded(
-                          child: TextField(
+                          child: TextFormField(
                             controller:
                                 registerGetController.firstNameController,
                             obscureText: false,
@@ -124,13 +124,19 @@ class RegisterScreen extends StatelessWidget {
                               contentPadding: const EdgeInsets.symmetric(
                                   vertical: 8, horizontal: 12),
                             ),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter first name';
+                              }
+                              return null;
+                            },
                           ),
                         ),
                         SizedBox(
                           width: 8.dp,
                         ),
                         Expanded(
-                          child: TextField(
+                          child: TextFormField(
                             controller:
                                 registerGetController.lastNameController,
                             obscureText: false,
@@ -171,6 +177,12 @@ class RegisterScreen extends StatelessWidget {
                               contentPadding: const EdgeInsets.symmetric(
                                   vertical: 8, horizontal: 12),
                             ),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter last name';
+                              }
+                              return null;
+                            },
                           ),
                         ),
                       ],
@@ -178,7 +190,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-                    child: TextField(
+                    child: TextFormField(
                       controller: registerGetController.phoneNumberController,
                       obscureText: false,
                       textAlign: TextAlign.start,
@@ -229,6 +241,63 @@ class RegisterScreen extends StatelessWidget {
                           alignLeft: false,
                         ),
                       ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter phone number';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    child: TextFormField(
+                      controller: registerGetController.emailController,
+                      obscureText: false,
+                      textAlign: TextAlign.start,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontStyle: FontStyle.normal,
+                        fontSize: 16,
+                        color: Color(0xff000000),
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        disabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4.0),
+                          borderSide: const BorderSide(
+                              color: Color(0xff9e9e9e), width: 1),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4.0),
+                          borderSide: const BorderSide(
+                              color: Color(0xff9e9e9e), width: 1),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4.0),
+                          borderSide: const BorderSide(
+                              color: Color(0xff9e9e9e), width: 1),
+                        ),
+                        labelText: "Email",
+                        labelStyle: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.normal,
+                          fontSize: 16,
+                          color: Color(0xff9e9e9e),
+                        ),
+                        filled: true,
+                        fillColor: const Color(0x00ffffff),
+                        isDense: false,
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 12),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter email';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   //date of birth
@@ -250,7 +319,7 @@ class RegisterScreen extends StatelessWidget {
                           }
                         });
                       },
-                      child: TextField(
+                      child: TextFormField(
                         enabled: false,
                         controller: registerGetController.dateOfBirthController,
                         obscureText: false,
@@ -291,6 +360,12 @@ class RegisterScreen extends StatelessWidget {
                           contentPadding: const EdgeInsets.symmetric(
                               vertical: 8, horizontal: 12),
                         ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter date of birth';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                   ),

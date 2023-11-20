@@ -19,6 +19,7 @@ class RegisterGetController extends GetxController {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController dateOfBirthController = TextEditingController();
 
   Rx<CountryCode> selectedCountry = CountryCode.fromCountryCode('IN').obs;
@@ -80,6 +81,7 @@ class RegisterGetController extends GetxController {
                   joinedOn: DateTime.now(),
                   dateOfBirth: dateOfBirth,
                   profilePicLink: downloadUrl,
+                  email: emailController.text.trim(),
                 ).toJson());
             Get.offAll(const DashboardScreen());
           },
@@ -92,6 +94,7 @@ class RegisterGetController extends GetxController {
                     TextFormField(
                       key: const Key('otp_text_field'),
                       controller: otpController,
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         labelText: 'OTP',
                         border: OutlineInputBorder(),
@@ -128,6 +131,7 @@ class RegisterGetController extends GetxController {
                               joinedOn: DateTime.now(),
                               dateOfBirth: dateOfBirth,
                               profilePicLink: downloadUrl,
+                              email: emailController.text.trim(),
                             ).toJson());
                         Get.offAll(const DashboardScreen());
                       },
