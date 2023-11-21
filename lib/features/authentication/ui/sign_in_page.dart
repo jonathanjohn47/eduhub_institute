@@ -69,18 +69,18 @@ class LoginScreen extends StatelessWidget {
                       decoration: InputDecoration(
                           disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
-                            borderSide:
-                                const BorderSide(color: Color(0xff9e9e9e), width: 1),
+                            borderSide: const BorderSide(
+                                color: Color(0xff9e9e9e), width: 1),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
-                            borderSide:
-                                const BorderSide(color: Color(0xff9e9e9e), width: 1),
+                            borderSide: const BorderSide(
+                                color: Color(0xff9e9e9e), width: 1),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
-                            borderSide:
-                                const BorderSide(color: Color(0xff9e9e9e), width: 1),
+                            borderSide: const BorderSide(
+                                color: Color(0xff9e9e9e), width: 1),
                           ),
                           labelText: "Phone",
                           labelStyle: const TextStyle(
@@ -92,8 +92,8 @@ class LoginScreen extends StatelessWidget {
                           filled: true,
                           fillColor: const Color(0x00ffffff),
                           isDense: false,
-                          contentPadding:
-                              const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 8, horizontal: 12),
                           prefixIcon: CountryCodePicker(
                             onChanged: (value) {
                               getController.countryCode.value = value;
@@ -146,9 +146,8 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                   ),
                                 )
-                              : const Center(child: CircularProgressIndicator(
-                                key: Key('sign_in_loader'),
-                          ));
+                              : const Center(
+                                  child: CircularProgressIndicator());
                         }),
                       ),
                     ],

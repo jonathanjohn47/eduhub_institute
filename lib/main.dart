@@ -1,5 +1,6 @@
 import 'package:eduhub_institute/core/app_colors.dart';
 import 'package:eduhub_institute/features/splash/ui/splash_page.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
@@ -12,6 +13,8 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await FirebaseAppCheck.instance.activate();
   runApp(const MyApp());
 }
 

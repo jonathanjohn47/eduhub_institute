@@ -17,13 +17,10 @@ class SignInGetController extends GetxController {
     if (formKey.currentState!.validate()) {
       showLoader.value = true;
       await FirebaseAuth.instance.verifyPhoneNumber(
-        phoneNumber:
-        '${countryCode.value.dialCode}${phoneController.text.trim()}',
+        phoneNumber: '${countryCode.value.dialCode}${phoneController.text.trim()}',
         verificationCompleted: (credential) async {
           try {
-            // The signInWithPhon`eCredential method call should be awaited.
             await FirebaseAuth.instance.signInWithCredential(credential);
-            // Navigation should be awaited if it returns a Future.
             await Get.offAll(() => const DashboardScreen());
           } catch (e) {
             Get.snackbar(
@@ -45,8 +42,7 @@ class SignInGetController extends GetxController {
           );
         },
         codeSent: (verificationId, [forceResendingToken]) async {
-          // Dialog display doesn't usually return a Future, so not awaiting is correct.
-          Get.defaultDialog(
+          await Get.defaultDialog(
             title: 'Enter OTP',
             content: Column(
               children: [
@@ -65,9 +61,9 @@ class SignInGetController extends GetxController {
                   onPressed: () async {
                     try {
                       var credential = PhoneAuthProvider.credential(
-                          verificationId: verificationId,
-                          smsCode: otpController.text.trim());
-                      // signInWithCredential is the correct function to be called with a created PhoneAuthCredential.
+                        verificationId: verificationId,
+                        smsCode: otpController.text.trim(),
+                      );
                       await FirebaseAuth.instance.signInWithCredential(credential);
                       await Get.offAll(() => const DashboardScreen());
                     } catch (e) {
@@ -88,6 +84,7 @@ class SignInGetController extends GetxController {
         },
         codeAutoRetrievalTimeout: (verificationId) {},
       );
+
       showLoader.value = false;
     }
   }
