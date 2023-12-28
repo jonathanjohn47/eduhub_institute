@@ -1,5 +1,4 @@
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:eduhub_institute/features/authentication/ui/sign_in_page.dart';
 import 'package:eduhub_institute/features/dashboard/ui/DashboardScreen.dart';
 import 'package:eduhub_institute/features/dashboard/ui/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';

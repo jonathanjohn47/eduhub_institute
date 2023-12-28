@@ -2,7 +2,6 @@ import 'package:eduhub_institute/core/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
-import 'package:get/get.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});

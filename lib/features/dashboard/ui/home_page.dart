@@ -4,7 +4,6 @@ import 'package:eduhub_institute/features/dashboard/get_controllers/home_get_con
 import 'package:eduhub_institute/features/dashboard/ui/DashboardScreen.dart';
 import 'package:eduhub_institute/features/profile/ui/myCourse.dart';
 import 'package:eduhub_institute/features/services/ui/services_page.dart';
-import 'package:eduhub_institute/features/support/ui/support.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:get/get.dart';
@@ -19,10 +18,10 @@ class HomePage extends StatelessWidget {
     return DefaultTabController(
         length: 4,
         child: Scaffold(
-          body: TabBarView(
+          body: const TabBarView(
             children: [
-              const DashboardScreen(),
-              const MyCoursePage(),
+              DashboardScreen(),
+              MyCoursePage(),
               AboutPage(),
               ServicesPage()
             ],

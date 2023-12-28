@@ -381,7 +381,7 @@ class RegisterScreen extends StatelessWidget {
                         flex: 1,
                         child: Obx(() {
                           return registerGetController.showLoader.value
-                              ? Center(
+                              ? const Center(
                                   child: CircularProgressIndicator(),
                                 )
                               : MaterialButton(
