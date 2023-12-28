@@ -6,6 +6,7 @@ import 'dart:convert';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:eduhub_institute/core/app_colors.dart';
 import 'package:eduhub_institute/core/app_contants.dart';
 import 'package:eduhub_institute/features/course_details/ui/CourseDetailPage.dart';
@@ -92,60 +93,67 @@ class DashboardScreen extends StatelessWidget {
       children: [
         Image.asset(
           imageLink,
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
           height: 80.h,
           width: 100.w,
         ),
         Positioned.fill(
             child: Container(
-          color: Colors.black.withOpacity(0.3),
+          color: Colors.black.withOpacity(0.5),
         )),
         Positioned.fill(
           child: Padding(
-            padding: EdgeInsets.all(2.h),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.8),
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 1.dp,
-                      blurRadius: 2.h,
-                      offset: Offset(1.h, 1.h))
-                ],
-              ),
-              padding: EdgeInsets.all(2.h),
-              child: Column(
-                children: [
-                  Image.asset(
-                    iconLink,
-                    height: 10.h,
-                  ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 4.h,
-                      fontWeight: FontWeight.bold,
+            padding: EdgeInsets.all(4.h),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Image.asset(
+                      iconLink,
+                      height: 10.h,
+                      color: Colors.white,
                     ),
-                  ),
-                  SizedBox(
-                    height: 1.h,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      description,
-                      style: TextStyle(
-                        fontSize: 2.h,
+                  ],
+                ),
+                SizedBox(
+                  height: 2.h,
+                ),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 4.h,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black,
+                        blurRadius: 2.h,
+                        offset: Offset(0.5.h, 0.5.h),
                       ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 1.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    description,
+                    style: TextStyle(
+                      fontSize: 2.h,
+                      color: Colors.white,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black,
+                          blurRadius: 2.h,
+                          offset: Offset(0.5.h, 0.5.h),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
@@ -157,13 +165,42 @@ class DashboardScreen extends StatelessWidget {
     return [
       Stack(
         children: [
-          CarouselSlider(items: [
-            _carouselCard(
-                "assets/images/pixlr-image-generator-9ceed882-4a85-4b48-b9e6-5e98285ec59e.png",
-                "assets/icons/3586363_idea_light_lightbulb_icon.png",
-                "Empowering Minds, Shaping Futures",
-                "At EduHUB, we believe in empowering minds and shaping futures. As your dedicated partner in educational success, we provide a nurturing environment where students not only learn but also thrive. Our commitment extends beyond academic achievement, encompassing personal growth, leadership development, and the realization of individual potential."),
-          ], options: CarouselOptions(viewportFraction: 1, height: 80.h)),
+          CarouselSlider(
+              items: [
+                _carouselCard(
+                    "assets/images/pixlr-image-generator-cc448eb6-84fe-438f-9275-2f230365ecc0.png",
+                    "assets/icons/3586363_idea_light_lightbulb_icon.png",
+                    "Empowering Minds, Shaping Futures",
+                    "At EduHUB, we believe in empowering minds and shaping futures. As your dedicated partner in educational success, we provide a nurturing environment where students not only learn but also thrive. Our commitment extends beyond academic achievement, encompassing personal growth, leadership development, and the realization of individual potential."),
+                _carouselCard(
+                    "assets/images/pixlr-image-generator-5c287dae-e6e4-47ed-9ea3-155598ea291f.png",
+                    "assets/icons/9035573_rocket_outline_icon.png",
+                    "Innovative Learning for Modern Achievers",
+                    "Welcome to EduHUB Institute, where knowledge meets innovation. Our futuristic approach to learning goes beyond traditional boundaries. Join a community of modern achievers who explore education with cutting-edge technology, collaborative tools, and a passion for innovation. At EduHUB, we shape the leaders of tomorrow through innovative learning experiences."),
+                _carouselCard(
+                    "assets/images/pixlr-image-generator-1ad22320-5606-438e-b3f0-a87acf2879e0.png",
+                    "assets/icons/4243306_basic_unlock_app_ux_icon.png",
+                    "Unlock Your Potential with EduHUB",
+                    "Discover a transformative learning experience at EduHUB, where we unlock the full potential of students through a blend of academic excellence and comprehensive coaching for competitive exams. Our commitment to guiding and preparing students goes beyond the ordinary, ensuring success in both studies and future professional pursuits."),
+              ],
+              options: CarouselOptions(
+                  viewportFraction: 1,
+                  height: 80.h,
+                  onPageChanged: (index, reason) {
+                    getController.currentSlideIndex.value = index;
+                  })),
+          Positioned.fill(
+              top: 60.h,
+              child: Obx(() {
+                return DotsIndicator(
+                  dotsCount: 3,
+                  position: getController.currentSlideIndex.value,
+                  decorator: DotsDecorator(
+                    color: Colors.white,
+                    activeColor: AppColors.primary,
+                  ),
+                );
+              }))
         ],
       ),
       Padding(
