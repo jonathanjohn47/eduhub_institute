@@ -419,6 +419,245 @@ class DashboardScreen extends StatelessWidget {
               ],
             );
           }),
+      SizedBox(
+        height: 2.h,
+      ),
+      Container(
+        color: AppColors.secondary,
+        padding: EdgeInsets.all(2.h),
+        child: Column(
+          children: [
+            Text(
+              "About Us",
+              style: TextStyle(
+                  fontSize: 4.h,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white),
+            ),
+            Container(
+              height: 1.dp,
+              width: 20.w,
+              color: Colors.white,
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            Text(
+              """EduHUB is a leading coaching institute located in the heart of the city of Temples, Jammu. Established on January 1, 2011, EduHUB has been dedicated to guiding and preparing students for academic excellence and success in competitive fields. With over 7 years of experience, EduHUB stands out among professional coaching institutes in Jammu.
+
+We believe in a personalized approach to education, going beyond simply helping students pass exams. At EduHUB, we strive to ensure that students not only perform well academically but also gain a deep understanding of concepts, develop problem-solving skills, and master their subjects.""",
+              style: TextStyle(
+                  fontSize: 2.h,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white),
+            ),
+          ],
+        ),
+      ),
+      SizedBox(
+        height: 2.h,
+      ),
+      Container(
+        padding: EdgeInsets.all(2.h),
+        color: Colors.black.withOpacity(0.7),
+        child: Column(
+          children: [
+            Text("Why Choose Us",
+                style: TextStyle(
+                    fontSize: 4.h,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white)),
+            Container(
+              height: 1.dp,
+              width: 20.w,
+              color: Colors.white,
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            Text(
+                "Our strength roots in our profound knowledge, painstaking team and zeal to care the clients in best possible way.",
+                style: TextStyle(
+                    fontSize: 2.h,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white)),
+            SizedBox(
+              height: 2.h,
+            ),
+            CarouselSlider(
+                items: [
+                  _whyChooseUsCard(
+                      'assets/icons/8675239_ic_fluent_people_team_regular_icon.png',
+                      'Team and Technology',
+                      'Technology-driven automated and manual screening process. A team of industry experts to assure top quality of applicants.'),
+                  _whyChooseUsCard(
+                      'assets/icons/2877000_dashboard_gauge_meter_speed_icon.png',
+                      'Speed and Consistency',
+                      'Our turn around times are amongst the best in the industry. We strive for consistent, timely and reliable sourcing of staff.'),
+                  _whyChooseUsCard(
+                      'assets/icons/8674877_ic_fluent_extended_dock_regular_icon.png',
+                      'Extended Reach',
+                      'We have been providing staffing solutions to our clients or students.'),
+                ],
+                options: CarouselOptions(
+                    viewportFraction: 0.9,
+                    height: 40.h,
+                    enableInfiniteScroll: false)),
+          ],
+        ),
+      ),
+      SizedBox(
+        height: 2.h,
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Testimonials",
+              style: TextStyle(
+                fontSize: 4.h,
+                fontWeight: FontWeight.w500,
+              )),
+        ],
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: 1.dp,
+            width: 20.w,
+            color: AppColors.primary,
+          ),
+        ],
+      ),
+      SizedBox(
+        height: 2.h,
+      ),
+      CarouselSlider(
+          items: [
+            /*Choosing EduHUB for my banking exam preparation was the best decision. The experienced faculty provided clear concepts, and the regular doubt-solving sessions were immensely helpful.
+Rahul Kapoor
+I owe my success in the J\&K SSB exam to EduHUB Institute. The comprehensive course structure and strategic approach to each topic laid a strong foundation. The institute not only prepares you for exams but also instills confidence.
+Nisha Sharma
+EduHUB Institute is more than just a coaching center; it's a mentor and guide. The faculty's commitment to students' success is commendable.
+Vikram Patel*/
+            _testimonialCard(
+                "Choosing EduHUB for my banking exam preparation was the best decision. The experienced faculty provided clear concepts, and the regular doubt-solving sessions were immensely helpful.",
+                "Rahul Kapoor"),
+            _testimonialCard(
+                "I owe my success in the J\&K SSB exam to EduHUB Institute. The comprehensive course structure and strategic approach to each topic laid a strong foundation. The institute not only prepares you for exams but also instills confidence.",
+                "Nisha Sharma"),
+            _testimonialCard(
+                "EduHUB Institute is more than just a coaching center; it's a mentor and guide. The faculty's commitment to students' success is commendable.",
+                "Vikram Patel"),
+          ],
+          options: CarouselOptions(
+              viewportFraction: 0.9,
+              height: 30.h,
+              enableInfiniteScroll: false)),
+      SizedBox(
+        height: 2.h,
+      ),
     ];
+  }
+
+  Widget _whyChooseUsCard(String iconLink, String title, String description) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 2.h),
+      child: Stack(
+        children: [
+          Column(
+            children: [
+              Container(
+                height: 5.h,
+              ),
+              Container(
+                height: 30.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.5),
+                        spreadRadius: 1.dp,
+                        blurRadius: 2.h,
+                        offset: Offset(1.h, 1.h))
+                  ],
+                ),
+                padding: EdgeInsets.all(2.h),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 4.h,
+                    ),
+                    Text(title,
+                        style: TextStyle(
+                            fontSize: 3.h,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black)),
+                    Container(
+                      height: 2.dp,
+                      width: 20.w,
+                      color: AppColors.primary,
+                    ),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    Text(description),
+                  ],
+                ),
+              )
+            ],
+          ),
+          Positioned(
+            top: 0,
+            left: 10.w,
+            right: 10.w,
+            child: Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(2.h),
+                  color: AppColors.primary,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withOpacity(0.5),
+                        spreadRadius: 1.dp,
+                        blurRadius: 1.w,
+                        offset: Offset(1.h, 1.h))
+                  ],
+                ),
+                padding: EdgeInsets.all(2.h),
+                child: Image.asset(
+                  iconLink,
+                  height: 6.h,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _testimonialCard(String testimonial, String name) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 2.h),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.5),
+          border: Border.all(color: Colors.black.withOpacity(0.5), width: 1.dp),
+        ),
+        padding: EdgeInsets.all(2.h),
+        child: Column(
+          children: [
+            Text(testimonial),
+            SizedBox(
+              height: 2.h,
+            ),
+            Text(name, style: TextStyle(fontWeight: FontWeight.bold))
+          ],
+        ),
+      ),
+    );
   }
 }
