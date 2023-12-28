@@ -1,6 +1,7 @@
 import 'package:eduhub_institute/core/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:get/get.dart';
 
 class AboutPage extends StatelessWidget {
@@ -18,7 +19,7 @@ class AboutPage extends StatelessWidget {
               children: [
                 Text("About Us",
                     style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 3.h,
                         fontWeight: FontWeight.bold,
                         color: Colors.black)),
               ],
@@ -27,14 +28,14 @@ class AboutPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 1,
-                  width: Get.width / 5,
+                  height: 1.dp,
+                  width: 25.w,
                   color: AppColors.primary,
                 ),
               ],
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 2.h,
             ),
             Html(
                 data:
