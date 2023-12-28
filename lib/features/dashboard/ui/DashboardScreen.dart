@@ -45,8 +45,7 @@ class DashboardScreen extends StatelessWidget {
           width: 50.w,
         ),
         actions: [
-          Icon(Icons.search, color: AppColors.secondary, size: 22),
-          SizedBox(width: 16.dp),
+
           FutureBuilder<DocumentSnapshot>(
               future: FirebaseFirestore.instance
                   .collection(AppConstants.students)
