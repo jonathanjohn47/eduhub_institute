@@ -10,7 +10,7 @@ class SplashGetController extends GetxController
   void onInit() {
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: Duration(seconds: 2),
     )..forward(from: 0).then((value) {
         Get.offAll(() => LoginScreen());
       });

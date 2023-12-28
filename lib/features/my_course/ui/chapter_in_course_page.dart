@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'youtube_videos_page.dart';
 
 class ChaptersInCoursePage extends StatelessWidget {
-  const ChaptersInCoursePage({super.key, required this.courseModel});
+  ChaptersInCoursePage({super.key, required this.courseModel});
 
   final CourseModel courseModel;
 
@@ -19,7 +19,7 @@ class ChaptersInCoursePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Select Chapter'),
+        title: Text('Select Chapter'),
       ),
       body: FutureBuilder<QuerySnapshot>(
           future: FirebaseFirestore.instance
@@ -120,7 +120,7 @@ class ChaptersInCoursePage extends StatelessWidget {
                 itemCount: chapters.length,
               );
             }
-            return const Center(
+            return Center(
               child: CircularProgressIndicator(),
             );
           }),

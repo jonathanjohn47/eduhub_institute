@@ -11,6 +11,8 @@ class DashboardGetController extends GetxController {
   RxList<CourseModel> allCourses = RxList<CourseModel>([]);
   RxList<NotesModel> allNotes = RxList<NotesModel>([]);
 
+  RxInt currentSlideIndex = 0.obs;
+
   Future<void> getCourses() async {
     await FirebaseFirestore.instance
         .collection(AppConstants.courses)

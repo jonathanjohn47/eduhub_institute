@@ -23,7 +23,7 @@ class SignInGetController extends GetxController {
         verificationCompleted: (credential) async {
           try {
             await FirebaseAuth.instance.signInWithCredential(credential);
-            await Get.offAll(() => const DashboardScreen());
+            await Get.offAll(() => DashboardScreen());
           } catch (e) {
             Get.snackbar(
               'Error',
@@ -49,17 +49,17 @@ class SignInGetController extends GetxController {
             content: Column(
               children: [
                 TextFormField(
-                  key: const Key('otp_text_field'),
+                  key: Key('otp_text_field'),
                   controller: otpController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: 'OTP',
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
-                  key: const Key('otp_submit_button'),
+                  key: Key('otp_submit_button'),
                   onPressed: () async {
                     try {
                       var credential = PhoneAuthProvider.credential(
@@ -68,7 +68,7 @@ class SignInGetController extends GetxController {
                       );
                       await FirebaseAuth.instance
                           .signInWithCredential(credential);
-                      await Get.offAll(() => const DashboardScreen());
+                      await Get.offAll(() => DashboardScreen());
                     } catch (e) {
                       Get.snackbar(
                         'Error',
@@ -79,7 +79,7 @@ class SignInGetController extends GetxController {
                       );
                     }
                   },
-                  child: const Text('Submit'),
+                  child: Text('Submit'),
                 ),
               ],
             ),

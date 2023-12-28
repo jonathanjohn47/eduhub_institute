@@ -21,7 +21,7 @@ import '../../../models/student_model.dart';
 import '../../authentication/ui/sign_in_page.dart';
 
 class AccountPage extends StatelessWidget {
-  const AccountPage({super.key});
+  AccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,16 +34,16 @@ class AccountPage extends StatelessWidget {
   Widget _buildBody() {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16),
         child: Column(
           children: [
             searchbar(),
-            const SizedBox(
+            SizedBox(
               height: 30,
             ),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              margin: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
@@ -70,7 +70,7 @@ class AccountPage extends StatelessWidget {
                             backgroundImage:
                                 NetworkImage(currentStudent.profilePicLink),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 10,
                           ),
                           Text(
@@ -79,9 +79,9 @@ class AccountPage extends StatelessWidget {
                           ),
                           Text(
                             currentStudent.phoneNumber,
-                            style: const TextStyle(fontSize: 16, color: Colors.grey),
+                            style: TextStyle(fontSize: 16, color: Colors.grey),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 20,
                           ),
                           bottomFields(Icons.insert_drive_file_outlined,
@@ -103,7 +103,7 @@ class AccountPage extends StatelessWidget {
                         ],
                       );
                     }
-                    return const Center(
+                    return Center(
                       child: CircularProgressIndicator(),
                     );
                   }),
@@ -120,14 +120,14 @@ class AccountPage extends StatelessWidget {
         onPressed();
       },
       child: Container(
-        margin: const EdgeInsets.only(bottom: 25),
+        margin: EdgeInsets.only(bottom: 25),
         child: Row(
           children: [
             Icon(
               icon,
               color: Colors.teal,
             ),
-            const SizedBox(
+            SizedBox(
               width: 10,
             ),
             Text(text)

@@ -4,13 +4,13 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
 class AboutPage extends StatelessWidget {
-  const AboutPage({super.key});
+  AboutPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: EdgeInsets.all(8),
         child: ListView(
           children: [
             Row(

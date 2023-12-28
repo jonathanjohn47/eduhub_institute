@@ -49,7 +49,7 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
+  static FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAA2SWUVlISglDPz5T4GI6Wju5aUHf4BLM',
     appId: '1:459567930431:android:206e04bfe02939790d6c8a',
     messagingSenderId: '459567930431',
@@ -57,7 +57,7 @@ class DefaultFirebaseOptions {
     storageBucket: 'eduhub-e8c08.appspot.com',
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
+  static FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyC3zhF_tynbFyBJkoa5SdUfzfyrV3wmSDs',
     appId: '1:459567930431:ios:cfc795416988dc8e0d6c8a',
     messagingSenderId: '459567930431',

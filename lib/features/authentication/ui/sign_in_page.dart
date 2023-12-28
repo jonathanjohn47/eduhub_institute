@@ -18,16 +18,16 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       //preferred size with container child and height 0
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(0),
+        preferredSize: Size.fromHeight(0),
         child: Container(
           color: AppColors.primary,
         ),
       ),
-      backgroundColor: const Color(0xffffffff),
+      backgroundColor: Color(0xffffffff),
       body: Align(
         alignment: Alignment.center,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 16),
           child: SingleChildScrollView(
             child: Form(
               key: getController.formKey,
@@ -36,7 +36,7 @@ class LoginScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  const Align(
+                  Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "Sign In",
@@ -52,15 +52,15 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 5.dp),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                     child: TextFormField(
-                      key: const Key('sign_in_phone_text_field'),
+                      key: Key('sign_in_phone_text_field'),
                       controller: getController.phoneController,
                       keyboardType: TextInputType.phone,
                       obscureText: false,
                       textAlign: TextAlign.start,
                       maxLines: 1,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
                         fontSize: 16,
@@ -69,37 +69,37 @@ class LoginScreen extends StatelessWidget {
                       decoration: InputDecoration(
                           disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                                 color: Color(0xff9e9e9e), width: 1),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                                 color: Color(0xff9e9e9e), width: 1),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                                 color: Color(0xff9e9e9e), width: 1),
                           ),
                           labelText: "Phone",
-                          labelStyle: const TextStyle(
+                          labelStyle: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
                             fontSize: 16,
                             color: Color(0xff9e9e9e),
                           ),
                           filled: true,
-                          fillColor: const Color(0x00ffffff),
+                          fillColor: Color(0x00ffffff),
                           isDense: false,
-                          contentPadding: const EdgeInsets.symmetric(
+                          contentPadding: EdgeInsets.symmetric(
                               vertical: 8, horizontal: 12),
                           prefixIcon: CountryCodePicker(
                             onChanged: (value) {
                               getController.countryCode.value = value;
                             },
                             initialSelection: 'IN',
-                            favorite: const ['+91', 'IN'],
+                            favorite: ['+91', 'IN'],
                             showCountryOnly: false,
                             showOnlyCountryWhenClosed: false,
                             alignLeft: false,
@@ -123,21 +123,21 @@ class LoginScreen extends StatelessWidget {
                         child: Obx(() {
                           return !getController.showLoader.value
                               ? ElevatedButton(
-                                  key: const Key('sign_in_button'),
+                                  key: Key('sign_in_button'),
                                   onPressed: () {
                                     getController.initiateLogin();
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: AppColors.primary,
                                     foregroundColor: Colors.white,
-                                    padding: const EdgeInsets.symmetric(
+                                    padding: EdgeInsets.symmetric(
                                         vertical: 12, horizontal: 16),
                                     shape: RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.circular(4.0.dp),
                                     ),
                                   ),
-                                  child: const Text(
+                                  child: Text(
                                     "Login",
                                     style: TextStyle(
                                       fontSize: 16,
@@ -146,7 +146,7 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                   ),
                                 )
-                              : const Center(
+                              : Center(
                                   child: CircularProgressIndicator());
                         }),
                       ),
@@ -154,13 +154,13 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 15.dp),
                   GestureDetector(
-                    key: const Key('sign_up_button'),
+                    key: Key('sign_up_button'),
                     onTap: () {
                       Get.offAll(() => RegisterScreen());
                     },
                     child: RichText(
                       textAlign: TextAlign.center,
-                      text: const TextSpan(
+                      text: TextSpan(
                         children: [
                           TextSpan(
                             text: "Don't have an account? ",

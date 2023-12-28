@@ -83,7 +83,7 @@ class RegisterGetController extends GetxController {
                   profilePicLink: downloadUrl,
                   email: emailController.text.trim(),
                 ).toJson());
-            Get.offAll(const DashboardScreen());
+            Get.offAll(DashboardScreen());
           },
           verificationFailed: (error) async {},
           codeSent: (verificationId, [forceResendingToken]) async {
@@ -92,15 +92,15 @@ class RegisterGetController extends GetxController {
                 content: Column(
                   children: [
                     TextFormField(
-                      key: const Key('otp_text_field'),
+                      key: Key('otp_text_field'),
                       controller: otpController,
                       keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText: 'OTP',
                         border: OutlineInputBorder(),
                       ),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 10,
                     ),
                     ElevatedButton(
@@ -133,9 +133,9 @@ class RegisterGetController extends GetxController {
                               profilePicLink: downloadUrl,
                               email: emailController.text.trim(),
                             ).toJson());
-                        Get.offAll(const DashboardScreen());
+                        Get.offAll(DashboardScreen());
                       },
-                      child: const Text('Submit'),
+                      child: Text('Submit'),
                     ),
                   ],
                 ));
@@ -149,7 +149,7 @@ class RegisterGetController extends GetxController {
 
   void getImage() async {
     Get.dialog(AlertDialog(
-      title: const Text('Select Image'),
+      title: Text('Select Image'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -162,8 +162,8 @@ class RegisterGetController extends GetxController {
                 imageLink.value = image.path;
               }
             },
-            leading: const Icon(Icons.camera_alt),
-            title: const Text('Camera'),
+            leading: Icon(Icons.camera_alt),
+            title: Text('Camera'),
           ),
           ListTile(
             onTap: () {
@@ -174,8 +174,8 @@ class RegisterGetController extends GetxController {
                 }
               });
             },
-            leading: const Icon(Icons.photo),
-            title: const Text('Gallery'),
+            leading: Icon(Icons.photo),
+            title: Text('Gallery'),
           ),
         ],
       ),

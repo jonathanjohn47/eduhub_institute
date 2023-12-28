@@ -33,7 +33,7 @@ class ProfilePage extends StatelessWidget {
                 elevation: 0,
                 centerTitle: true,
                 automaticallyImplyLeading: false,
-                iconTheme: const IconThemeData(color: Colors.black),
+                iconTheme: IconThemeData(color: Colors.black),
                 title: SizedBox(
                   width: 250,
                   child: FutureBuilder<DocumentSnapshot>(
@@ -67,11 +67,11 @@ class ProfilePage extends StatelessWidget {
                 actions: [
                   IconButton(
                       onPressed: () {
-                        Get.to(() => const CartPage());
+                        Get.to(() => CartPage());
                       },
-                      icon: const Icon(Icons.shopping_cart_outlined))
+                      icon: Icon(Icons.shopping_cart_outlined))
                 ],
-                bottom: const TabBar(
+                bottom: TabBar(
                   indicatorColor: Colors.black,
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.grey,
@@ -85,7 +85,7 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
-              body: const TabBarView(
+              body: TabBarView(
                 children: [
                   AccountPage(),
                   MyCoursePage(),
@@ -97,11 +97,11 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     'Please Login to Continue',
                     style: TextStyle(fontSize: 20),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 20,
                   ),
                   ElevatedButton(
@@ -111,9 +111,9 @@ class ProfilePage extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
                           foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
+                          padding: EdgeInsets.symmetric(
                               horizontal: 30, vertical: 10)),
-                      child: const Text('Login'))
+                      child: Text('Login'))
                 ],
               ),
             ),
