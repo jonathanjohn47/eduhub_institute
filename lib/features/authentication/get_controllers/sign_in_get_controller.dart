@@ -23,7 +23,7 @@ class SignInGetController extends GetxController {
         verificationCompleted: (credential) async {
           try {
             await FirebaseAuth.instance.signInWithCredential(credential);
-            await Get.offAll(() => DashboardScreen());
+            await Get.offAll(() => HomePage());
           } catch (e) {
             Get.snackbar(
               'Error',
@@ -68,7 +68,7 @@ class SignInGetController extends GetxController {
                       );
                       await FirebaseAuth.instance
                           .signInWithCredential(credential);
-                      await Get.offAll(() => DashboardScreen());
+                      await Get.offAll(() => HomePage());
                     } catch (e) {
                       Get.snackbar(
                         'Error',
