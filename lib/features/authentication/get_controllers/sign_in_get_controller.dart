@@ -1,5 +1,7 @@
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:eduhub_institute/features/authentication/ui/sign_in_page.dart';
 import 'package:eduhub_institute/features/dashboard/ui/DashboardScreen.dart';
+import 'package:eduhub_institute/features/dashboard/ui/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +19,8 @@ class SignInGetController extends GetxController {
     if (formKey.currentState!.validate()) {
       showLoader.value = true;
       await FirebaseAuth.instance.verifyPhoneNumber(
-        phoneNumber: '${countryCode.value.dialCode}${phoneController.text.trim()}',
+        phoneNumber:
+            '${countryCode.value.dialCode}${phoneController.text.trim()}',
         verificationCompleted: (credential) async {
           try {
             await FirebaseAuth.instance.signInWithCredential(credential);
@@ -64,7 +67,8 @@ class SignInGetController extends GetxController {
                         verificationId: verificationId,
                         smsCode: otpController.text.trim(),
                       );
-                      await FirebaseAuth.instance.signInWithCredential(credential);
+                      await FirebaseAuth.instance
+                          .signInWithCredential(credential);
                       await Get.offAll(() => const DashboardScreen());
                     } catch (e) {
                       Get.snackbar(
@@ -92,7 +96,7 @@ class SignInGetController extends GetxController {
   void checkIfAlreadyLoggedIn() {
     if (FirebaseAuth.instance.currentUser != null) {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        Get.offAll(() => const DashboardScreen());
+        Get.offAll(() => HomePage());
       });
     }
   }

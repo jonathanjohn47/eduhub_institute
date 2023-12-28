@@ -1,7 +1,9 @@
 import 'package:eduhub_institute/core/app_colors.dart';
+import 'package:eduhub_institute/features/about/ui/about_page.dart';
 import 'package:eduhub_institute/features/dashboard/get_controllers/home_get_controller.dart';
 import 'package:eduhub_institute/features/dashboard/ui/DashboardScreen.dart';
 import 'package:eduhub_institute/features/profile/ui/myCourse.dart';
+import 'package:eduhub_institute/features/services/ui/services_page.dart';
 import 'package:eduhub_institute/features/support/ui/support.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
@@ -15,21 +17,22 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 3,
+        length: 4,
         child: Scaffold(
           body: TabBarView(
             children: [
               const DashboardScreen(),
               const MyCoursePage(),
-              SupportPage(),
+              AboutPage(),
+              ServicesPage()
             ],
           ),
           bottomNavigationBar: TabBar(
             tabs: [
               Tab(
                 icon: Image(
-                  image: const NetworkImage(
-                      'https://cdn1.iconfinder.com/data/icons/freeline/32/home_house_real_estate-1024.png'),
+                  image: const AssetImage(
+                      'assets/icons/392500_estate_home_house_real_icon.png'),
                   color: AppColors.primary,
                   height: 20.dp,
                 ),
@@ -37,8 +40,8 @@ class HomePage extends StatelessWidget {
               ),
               Tab(
                 icon: Image(
-                  image: const NetworkImage(
-                      'https://cdn3.iconfinder.com/data/icons/outline-education-1/100/education-06-1024.png'),
+                  image: const AssetImage(
+                      'assets/icons/2205242_college_course_degree_education_university_icon.png'),
                   color: AppColors.primary,
                   height: 20.dp,
                 ),
@@ -46,12 +49,20 @@ class HomePage extends StatelessWidget {
               ),
               Tab(
                 icon: Image(
-                  image: const NetworkImage(
-                      'https://cdn1.iconfinder.com/data/icons/aami-web-internet/64/aami16-39-1024.png'),
+                  image: const AssetImage(
+                      'assets/icons/7628371_about_information_info_help_icon.png'),
                   color: AppColors.primary,
                   height: 20.dp,
                 ),
-                text: 'Support',
+                text: 'About Us',
+              ),Tab(
+                icon: Image(
+                  image: const AssetImage(
+                      'assets/icons/7898531_services_business_finance_office_marketing_icon.png'),
+                  color: AppColors.primary,
+                  height: 20.dp,
+                ),
+                text: 'Services',
               ),
             ],
           ),
