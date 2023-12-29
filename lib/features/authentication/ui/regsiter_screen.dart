@@ -205,18 +205,18 @@ class RegisterScreen extends StatelessWidget {
                       decoration: InputDecoration(
                         disabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4.0),
-                          borderSide: BorderSide(
-                              color: Color(0xff9e9e9e), width: 1),
+                          borderSide:
+                              BorderSide(color: Color(0xff9e9e9e), width: 1),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4.0),
-                          borderSide: BorderSide(
-                              color: Color(0xff9e9e9e), width: 1),
+                          borderSide:
+                              BorderSide(color: Color(0xff9e9e9e), width: 1),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4.0),
-                          borderSide: BorderSide(
-                              color: Color(0xff9e9e9e), width: 1),
+                          borderSide:
+                              BorderSide(color: Color(0xff9e9e9e), width: 1),
                         ),
                         labelText: "Phone Number",
                         labelStyle: TextStyle(
@@ -228,8 +228,8 @@ class RegisterScreen extends StatelessWidget {
                         filled: true,
                         fillColor: Color(0x00ffffff),
                         isDense: false,
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 8, horizontal: 12),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                         prefixIcon: CountryCodePicker(
                           onChanged: (value) {
                             registerGetController.selectedCountry.value = value;
@@ -266,18 +266,18 @@ class RegisterScreen extends StatelessWidget {
                       decoration: InputDecoration(
                         disabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4.0),
-                          borderSide: BorderSide(
-                              color: Color(0xff9e9e9e), width: 1),
+                          borderSide:
+                              BorderSide(color: Color(0xff9e9e9e), width: 1),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4.0),
-                          borderSide: BorderSide(
-                              color: Color(0xff9e9e9e), width: 1),
+                          borderSide:
+                              BorderSide(color: Color(0xff9e9e9e), width: 1),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4.0),
-                          borderSide: BorderSide(
-                              color: Color(0xff9e9e9e), width: 1),
+                          borderSide:
+                              BorderSide(color: Color(0xff9e9e9e), width: 1),
                         ),
                         labelText: "Email",
                         labelStyle: TextStyle(
@@ -289,8 +289,8 @@ class RegisterScreen extends StatelessWidget {
                         filled: true,
                         fillColor: Color(0x00ffffff),
                         isDense: false,
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 8, horizontal: 12),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                       ),
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -334,18 +334,18 @@ class RegisterScreen extends StatelessWidget {
                         decoration: InputDecoration(
                           disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
-                            borderSide: BorderSide(
-                                color: Color(0xff9e9e9e), width: 1),
+                            borderSide:
+                                BorderSide(color: Color(0xff9e9e9e), width: 1),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
-                            borderSide: BorderSide(
-                                color: Color(0xff9e9e9e), width: 1),
+                            borderSide:
+                                BorderSide(color: Color(0xff9e9e9e), width: 1),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
-                            borderSide: BorderSide(
-                                color: Color(0xff9e9e9e), width: 1),
+                            borderSide:
+                                BorderSide(color: Color(0xff9e9e9e), width: 1),
                           ),
                           labelText: "Date of Birth",
                           labelStyle: TextStyle(
@@ -357,8 +357,8 @@ class RegisterScreen extends StatelessWidget {
                           filled: true,
                           fillColor: Color(0x00ffffff),
                           isDense: false,
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 8, horizontal: 12),
+                          contentPadding:
+                              EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -389,7 +389,7 @@ class RegisterScreen extends StatelessWidget {
                                     registerGetController.registerNewStudent();
                                   },
                                   color: Color(0xff3a57e8),
-                                  elevation: 0,
+                                  elevation: 2.h,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12.0),
                                   ),
