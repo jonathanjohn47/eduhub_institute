@@ -488,8 +488,8 @@ We believe in a personalized approach to education, going beyond simply helping 
                 items: [
                   _whyChooseUsCard(
                       'assets/icons/8675239_ic_fluent_people_team_regular_icon.png',
-                      'Team and Technology',
-                      'Technology-driven automated and manual screening process. A team of industry experts to assure top quality of applicants.'),
+                      'Expert Guidance',
+                      'Benefit from a team of seasoned educators and industry experts committed to your success. Our cutting-edge technology ensures a dynamic and immersive learning experience.'),
                   _whyChooseUsCard(
                       'assets/icons/2877000_dashboard_gauge_meter_speed_icon.png',
                       'Speed and Consistency',
@@ -506,6 +506,51 @@ We believe in a personalized approach to education, going beyond simply helping 
           ],
         ),
       ),
+      SizedBox(
+        height: 2.h,
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("What We Do",
+              style: TextStyle(
+                fontSize: 4.h,
+                fontWeight: FontWeight.w500,
+              )),
+        ],
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: 1.dp,
+            width: 20.w,
+            color: AppColors.primary,
+          ),
+        ],
+      ),
+      SizedBox(
+        height: 2.h,
+      ),
+      CarouselSlider(
+          items: [
+            _serviceTile(
+                "assets/images/pixlr-image-generator-d0ec09c3-762b-48ab-96da-41ca475dfe57.png",
+                "Education",
+                "EduHUB is committed to delivering a comprehensive education experience that transcends traditional boundaries. Our educational services are meticulously designed to empower individuals with knowledge, skills, and a holistic learning environment."),
+            _serviceTile(
+                "assets/images/pixlr-image-generator-74a3a3d4-5f19-45c5-8c10-b0ef356bea7a.png",
+                "Reading Library",
+                "Immerse yourself in a haven of knowledge at our Reading Library. Explore an extensive collection of books, journals, and references covering a wide array of subjects, fostering a love for learning and exploration."),
+            _serviceTile(
+                "assets/images/pixlr-image-generator-e4b27a66-9287-4ccf-bd76-6468ae9281ab.png",
+                "Consultancy",
+                "Our consultancy services are dedicated to supporting and guiding you on your educational journey. Whether it’s receiving personalized insights for career decisions, exploring higher education opportunities, or fostering personal growth and life skills, our consultancy services aim to enhance your overall educational experience."),
+          ],
+          options: CarouselOptions(
+              enableInfiniteScroll: false,
+              viewportFraction: 0.9,
+              height: 50.h)),
       SizedBox(
         height: 2.h,
       ),
@@ -655,6 +700,59 @@ Vikram Patel*/
               height: 2.h,
             ),
             Text(name, style: TextStyle(fontWeight: FontWeight.bold))
+          ],
+        ),
+      ),
+    );
+  }
+
+  _serviceTile(String imageLink, String title, String description) {
+    return Padding(
+      padding: EdgeInsets.all(2.h),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 1.dp,
+                blurRadius: 2.h,
+                offset: Offset(1.h, 1.h))
+          ],
+        ),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+              child: Image.asset(
+                imageLink,
+                height: 20.h,
+                width: 100.w,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(
+              height: 2.h,
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                  fontSize: 4.h,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primary),
+            ),
+            SizedBox(
+              height: 1.h,
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                description,
+                style: TextStyle(fontSize: 2.5.w, color: Colors.black),
+              ),
+            ),
           ],
         ),
       ),
