@@ -4,7 +4,7 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import '../../../core/app_colors.dart';
 
 class ServicesPage extends StatelessWidget {
-  ServicesPage({super.key});
+  const ServicesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +69,7 @@ class ServicesPage extends StatelessWidget {
         child: Column(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10), topRight: Radius.circular(10)),
               child: Image.asset(
                 imageLink,
@@ -92,7 +92,7 @@ class ServicesPage extends StatelessWidget {
               height: 1.h,
             ),
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Text(
                 description,
                 style: TextStyle(fontSize: 2.5.h, color: Colors.black),

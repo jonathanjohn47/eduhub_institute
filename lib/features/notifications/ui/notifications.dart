@@ -31,7 +31,7 @@ class NotificationsPage extends StatelessWidget {
         backgroundColor: Colors.white,
         automaticallyImplyLeading: true,
         iconTheme: IconThemeData(color: AppColors.primary),
-        title: Text('Notifications'),
+        title: const Text('Notifications'),
         centerTitle: false,
         titleTextStyle: style.pageTitle(),
         actions: [
@@ -39,7 +39,7 @@ class NotificationsPage extends StatelessWidget {
             return Visibility(
                 visible: getController.allNotifications
                     .any((element) => !element.read),
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   backgroundColor: Colors.red,
                   child: Text('10', style: TextStyle(color: Colors.white)),
                 ));
@@ -68,18 +68,18 @@ class NotificationsPage extends StatelessWidget {
                               ));
                         },
                         child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 16),
-                          margin: EdgeInsets.only(bottom: 16),
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          margin: const EdgeInsets.only(bottom: 16),
                           decoration: style.bottomBorder(),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 e.notificationCategory.name,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Color.fromARGB(255, 255, 185, 48)),
                               ),
-                              SizedBox(height: 8),
+                              const SizedBox(height: 8),
                               Text(
                                 e.title,
                                 style: TextStyle(
@@ -87,7 +87,7 @@ class NotificationsPage extends StatelessWidget {
                                     fontWeight:
                                         e.read ? null : FontWeight.bold),
                               ),
-                              SizedBox(height: 2),
+                              const SizedBox(height: 2),
                               Text(e.message, style: greyText()),
                             ],
                           ),
@@ -102,7 +102,7 @@ class NotificationsPage extends StatelessWidget {
   }
 
   greyText() {
-    return TextStyle(color: Colors.grey);
+    return const TextStyle(color: Colors.grey);
   }
 }
 

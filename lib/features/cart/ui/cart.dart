@@ -16,7 +16,7 @@ import 'package:get/get.dart';
 import '../../../helper/style.dart';
 
 class CartPage extends StatelessWidget {
-  CartPage({super.key});
+  const CartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +25,19 @@ class CartPage extends StatelessWidget {
       appBar: _buildAppbar(),
       body: _buildBody(),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
               elevation: 0,
               backgroundColor: AppColors.primary,
               foregroundColor: Colors.white,
-              minimumSize: Size.fromHeight(40),
+              minimumSize: const Size.fromHeight(40),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            child: Text('Proceed to Checkout')),
+            child: const Text('Proceed to Checkout')),
       ),
     );
   }
@@ -47,7 +47,7 @@ class CartPage extends StatelessWidget {
       backgroundColor: Colors.white,
       elevation: 0,
       centerTitle: true,
-      iconTheme: IconThemeData(color: Colors.black),
+      iconTheme: const IconThemeData(color: Colors.black),
       title: SizedBox(
         width: 250,
         child: GetX<ProfileGetController>(
@@ -64,14 +64,14 @@ class CartPage extends StatelessWidget {
             }),
       ),
       actions: [
-        IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart_outlined))
+        IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart_outlined))
       ],
     );
   }
 
   Widget _buildBody() {
     return Padding(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: GetX<CartGetController>(
           init: CartGetController(),
           builder: (controller) {
@@ -79,13 +79,13 @@ class CartPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 searchbar(),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 ...controller.cartCourses.map((e) => cartItem(e)).toList(),
                 Row(
                   children: [
-                    Expanded(
+                    const Expanded(
                       flex: 8,
                       child: TextField(
                         style: TextStyle(color: Colors.black),
@@ -104,23 +104,23 @@ class CartPage extends StatelessWidget {
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.white, backgroundColor: Colors.teal, elevation: 0,
-                          minimumSize: Size.fromHeight(40),
+                          minimumSize: const Size.fromHeight(40),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: Text('Apply Now'),
+                        child: const Text('Apply Now'),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Subtotal'),
+                    const Text('Subtotal'),
                     Text(
                       controller.cartCourses.isNotEmpty
                           ? '\$${controller.cartCourses.map((e) => e.price).reduce((value, element) => value + element)}'
@@ -128,25 +128,25 @@ class CartPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [Text('Shipping'), Text('Free')],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Total'),
+                    const Text('Total'),
                     Text(
                       controller.cartCourses.isNotEmpty
                           ? '\$${controller.cartCourses.map((e) => e.price).reduce((value, element) => value + element)}'
                           : '\$0',
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.teal,
                           fontFamily: 'medium',
                           fontSize: 16),
@@ -161,8 +161,8 @@ class CartPage extends StatelessWidget {
 
   Widget cartItem(CourseModel courseModel) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20),
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      margin: const EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -186,14 +186,14 @@ class CartPage extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(left: 10),
+              padding: const EdgeInsets.only(left: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(courseModel.name, style: headText()),
                   Text(
                     '\$${courseModel.price}',
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.teal, fontSize: 18, fontFamily: 'medium'),
                   ),
                 ],
@@ -201,11 +201,11 @@ class CartPage extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
             decoration: BoxDecoration(
                 border: Border.all(color: AppColors.primary),
                 borderRadius: BorderRadius.circular(10)),
-            child: Column(
+            child: const Column(
               children: [
                 Icon(
                   Icons.remove,

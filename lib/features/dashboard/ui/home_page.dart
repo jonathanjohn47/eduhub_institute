@@ -21,16 +21,16 @@ class HomePage extends StatelessWidget {
           body: TabBarView(
             children: [
               DashboardScreen(),
-              MyCoursePage(),
-              AboutPage(),
-              ServicesPage()
+              const MyCoursePage(),
+              const AboutPage(),
+              const ServicesPage()
             ],
           ),
           bottomNavigationBar: TabBar(
             tabs: [
               Tab(
                 icon: Image(
-                  image: AssetImage(
+                  image: const AssetImage(
                       'assets/icons/392500_estate_home_house_real_icon.png'),
                   color: AppColors.primary,
                   height: 20.dp,
@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
               ),
               Tab(
                 icon: Image(
-                  image: AssetImage(
+                  image: const AssetImage(
                       'assets/icons/2205242_college_course_degree_education_university_icon.png'),
                   color: AppColors.primary,
                   height: 20.dp,
@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
               ),
               Tab(
                 icon: Image(
-                  image: AssetImage(
+                  image: const AssetImage(
                       'assets/icons/7628371_about_information_info_help_icon.png'),
                   color: AppColors.primary,
                   height: 20.dp,
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
               ),
               Tab(
                 icon: Image(
-                  image: AssetImage(
+                  image: const AssetImage(
                       'assets/icons/7898531_services_business_finance_office_marketing_icon.png'),
                   color: AppColors.primary,
                   height: 20.dp,

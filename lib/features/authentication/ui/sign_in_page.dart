@@ -18,16 +18,16 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       //preferred size with container child and height 0
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(0),
+        preferredSize: const Size.fromHeight(0),
         child: Container(
           color: AppColors.primary,
         ),
       ),
-      backgroundColor: Color(0xffffffff),
+      backgroundColor: const Color(0xffffffff),
       body: Align(
         alignment: Alignment.center,
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
           child: SingleChildScrollView(
             child: Form(
               key: getController.formKey,
@@ -36,7 +36,7 @@ class LoginScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Align(
+                  const Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "Sign In",
@@ -52,15 +52,15 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 5.dp),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                     child: TextFormField(
-                      key: Key('sign_in_phone_text_field'),
+                      key: const Key('sign_in_phone_text_field'),
                       controller: getController.phoneController,
                       keyboardType: TextInputType.phone,
                       obscureText: false,
                       textAlign: TextAlign.start,
                       maxLines: 1,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
                         fontSize: 16,
@@ -70,36 +70,36 @@ class LoginScreen extends StatelessWidget {
                           disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
                             borderSide:
-                                BorderSide(color: Color(0xff9e9e9e), width: 1),
+                                const BorderSide(color: Color(0xff9e9e9e), width: 1),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
                             borderSide:
-                                BorderSide(color: Color(0xff9e9e9e), width: 1),
+                                const BorderSide(color: Color(0xff9e9e9e), width: 1),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
                             borderSide:
-                                BorderSide(color: Color(0xff9e9e9e), width: 1),
+                                const BorderSide(color: Color(0xff9e9e9e), width: 1),
                           ),
                           labelText: "Phone",
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
                             fontSize: 16,
                             color: Color(0xff9e9e9e),
                           ),
                           filled: true,
-                          fillColor: Color(0x00ffffff),
+                          fillColor: const Color(0x00ffffff),
                           isDense: false,
                           contentPadding:
-                              EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                              const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                           prefixIcon: CountryCodePicker(
                             onChanged: (value) {
                               getController.countryCode.value = value;
                             },
                             initialSelection: 'IN',
-                            favorite: ['+91', 'IN'],
+                            favorite: const ['+91', 'IN'],
                             showCountryOnly: false,
                             showOnlyCountryWhenClosed: false,
                             alignLeft: false,
@@ -123,7 +123,7 @@ class LoginScreen extends StatelessWidget {
                         child: Obx(() {
                           return !getController.showLoader.value
                               ? MaterialButton(
-                                  key: Key('sign_in_button'),
+                                  key: const Key('sign_in_button'),
                                   onPressed: () {
                                     getController
                                         .initiateLogin()
@@ -140,7 +140,7 @@ class LoginScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(4.0.dp),
                                   ),
                                   elevation: 1.h,
-                                  child: Text(
+                                  child: const Text(
                                     "Send OTP",
                                     style: TextStyle(
                                         fontSize: 16,
@@ -149,20 +149,20 @@ class LoginScreen extends StatelessWidget {
                                         color: Colors.white),
                                   ),
                                 )
-                              : Center(child: CircularProgressIndicator());
+                              : const Center(child: CircularProgressIndicator());
                         }),
                       ),
                     ],
                   ),
                   SizedBox(height: 15.dp),
                   GestureDetector(
-                    key: Key('sign_up_button'),
+                    key: const Key('sign_up_button'),
                     onTap: () {
                       Get.offAll(() => RegisterScreen());
                     },
                     child: RichText(
                       textAlign: TextAlign.center,
-                      text: TextSpan(
+                      text: const TextSpan(
                         children: [
                           TextSpan(
                             text: "Don't have an account? ",

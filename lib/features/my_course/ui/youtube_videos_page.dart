@@ -4,7 +4,7 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class YoutubeVideosPage extends StatelessWidget {
-  YoutubeVideosPage({super.key, required this.chapterModel});
+  const YoutubeVideosPage({super.key, required this.chapterModel});
 
   final ChapterModel chapterModel;
 

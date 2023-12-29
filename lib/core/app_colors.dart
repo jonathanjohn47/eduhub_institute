@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static MaterialColor secondary = MaterialColor(
+  static MaterialColor secondary = const MaterialColor(
     0xFF0c0c0c,
     <int, Color>{
       /*868686
@@ -23,7 +23,7 @@ class AppColors {
     },
   );
 
-  static MaterialColor primary = MaterialColor(
+  static MaterialColor primary = const MaterialColor(
     0xFF77a10e,
     <int, Color>{
       /*b5d170

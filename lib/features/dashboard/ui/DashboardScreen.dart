@@ -26,12 +26,12 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
+      backgroundColor: const Color(0xffffffff),
       appBar: AppBar(
         elevation: 4,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
         title: /*Text(
@@ -44,7 +44,7 @@ class DashboardScreen extends StatelessWidget {
           ),
         )*/
             Image(
-          image: AssetImage(
+          image: const AssetImage(
               'assets/images/WhatsApp_Image_2023-10-20_at_4.42.57_PM-removebg-preview.png'),
           width: 50.w,
         ),
@@ -137,7 +137,7 @@ class DashboardScreen extends StatelessWidget {
                   height: 1.h,
                 ),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
                     description,
                     style: TextStyle(
@@ -203,7 +203,7 @@ class DashboardScreen extends StatelessWidget {
               }))
         ],
       ),
-      Padding(
+      const Padding(
         padding: EdgeInsets.all(16),
         child: Text(
           "Courses",
@@ -218,10 +218,10 @@ class DashboardScreen extends StatelessWidget {
         ),
       ),
       Container(
-        margin: EdgeInsets.all(0),
-        padding: EdgeInsets.all(0),
+        margin: const EdgeInsets.all(0),
+        padding: const EdgeInsets.all(0),
         height: 170,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0x00ffffff),
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.zero,
@@ -231,9 +231,9 @@ class DashboardScreen extends StatelessWidget {
             builder: (controller) {
               return ListView(
                 scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
                 shrinkWrap: true,
-                physics: ScrollPhysics(),
+                physics: const ScrollPhysics(),
                 children: [
                   ...controller.allCourses
                       .map(
@@ -243,23 +243,23 @@ class DashboardScreen extends StatelessWidget {
                                 () => CourseDetailPage(courseModel: element));
                           },
                           child: Container(
-                            margin: EdgeInsets.fromLTRB(0, 0, 16, 0),
-                            padding: EdgeInsets.all(12),
+                            margin: const EdgeInsets.fromLTRB(0, 0, 16, 0),
+                            padding: const EdgeInsets.all(12),
                             width: 150,
                             height: 170,
                             decoration: BoxDecoration(
-                              color: Color(0x00ffffff),
+                              color: const Color(0x00ffffff),
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(12.0),
                               border: Border.all(
-                                  color: Color(0x4d9e9e9e), width: 1),
+                                  color: const Color(0x4d9e9e9e), width: 1),
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Row(
+                                const Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -286,7 +286,7 @@ class DashboardScreen extends StatelessWidget {
                                   textAlign: TextAlign.start,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontStyle: FontStyle.normal,
                                     fontSize: 16,
@@ -303,7 +303,7 @@ class DashboardScreen extends StatelessWidget {
               );
             }),
       ),
-      Padding(
+      const Padding(
         padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
         child: Text(
           "Notes",
@@ -321,11 +321,11 @@ class DashboardScreen extends StatelessWidget {
           init: DashboardGetController(),
           builder: (controller) {
             return GridView(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
@@ -333,20 +333,21 @@ class DashboardScreen extends StatelessWidget {
               ),
               children: [
                 ...controller.allNotes.map((element) => Container(
-                      margin: EdgeInsets.all(0),
-                      padding: EdgeInsets.all(12),
+                      margin: const EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: Color(0x00ffffff),
+                        color: const Color(0x00ffffff),
                         shape: BoxShape.rectangle,
                         borderRadius: BorderRadius.circular(12.0),
-                        border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+                        border: Border.all(
+                            color: const Color(0x4d9e9e9e), width: 1),
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Row(
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.max,
@@ -364,13 +365,13 @@ class DashboardScreen extends StatelessWidget {
                             ],
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(0, 16, 0, 8),
+                            padding: const EdgeInsets.fromLTRB(0, 16, 0, 8),
                             child: Text(
                               element.name,
                               textAlign: TextAlign.start,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontStyle: FontStyle.normal,
                                 fontSize: 16,
@@ -384,7 +385,7 @@ class DashboardScreen extends StatelessWidget {
                               element.description,
                               textAlign: TextAlign.start,
                               overflow: TextOverflow.clip,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,
                                 fontSize: 14,
@@ -393,11 +394,11 @@ class DashboardScreen extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                            padding: EdgeInsets.symmetric(
+                            margin: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 4, horizontal: 8),
                             decoration: BoxDecoration(
-                              color: Color(0x343a57e8),
+                              color: const Color(0x343a57e8),
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(4.0),
                             ),
@@ -405,7 +406,7 @@ class DashboardScreen extends StatelessWidget {
                               element.categoryModel.name,
                               textAlign: TextAlign.start,
                               overflow: TextOverflow.clip,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,
                                 fontSize: 14,
@@ -589,7 +590,7 @@ Vikram Patel*/
                 "Choosing EduHUB for my banking exam preparation was the best decision. The experienced faculty provided clear concepts, and the regular doubt-solving sessions were immensely helpful.",
                 "Rahul Kapoor"),
             _testimonialCard(
-                "I owe my success in the J\&K SSB exam to EduHUB Institute. The comprehensive course structure and strategic approach to each topic laid a strong foundation. The institute not only prepares you for exams but also instills confidence.",
+                "I owe my success in the J&K SSB exam to EduHUB Institute. The comprehensive course structure and strategic approach to each topic laid a strong foundation. The institute not only prepares you for exams but also instills confidence.",
                 "Nisha Sharma"),
             _testimonialCard(
                 "EduHUB Institute is more than just a coaching center; it's a mentor and guide. The faculty's commitment to students' success is commendable.",
@@ -699,7 +700,7 @@ Vikram Patel*/
             SizedBox(
               height: 2.h,
             ),
-            Text(name, style: TextStyle(fontWeight: FontWeight.bold))
+            Text(name, style: const TextStyle(fontWeight: FontWeight.bold))
           ],
         ),
       ),
@@ -724,7 +725,7 @@ Vikram Patel*/
         child: Column(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10), topRight: Radius.circular(10)),
               child: Image.asset(
                 imageLink,
@@ -747,7 +748,7 @@ Vikram Patel*/
               height: 1.h,
             ),
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Text(
                 description,
                 style: TextStyle(fontSize: 2.5.w, color: Colors.black),

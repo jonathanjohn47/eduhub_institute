@@ -92,15 +92,15 @@ class RegisterGetController extends GetxController {
                 content: Column(
                   children: [
                     TextFormField(
-                      key: Key('otp_text_field'),
+                      key: const Key('otp_text_field'),
                       controller: otpController,
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'OTP',
                         border: OutlineInputBorder(),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     ElevatedButton(
@@ -135,7 +135,7 @@ class RegisterGetController extends GetxController {
                             ).toJson());
                         Get.offAll(DashboardScreen());
                       },
-                      child: Text('Submit'),
+                      child: const Text('Submit'),
                     ),
                   ],
                 ));
@@ -149,7 +149,7 @@ class RegisterGetController extends GetxController {
 
   void getImage() async {
     Get.dialog(AlertDialog(
-      title: Text('Select Image'),
+      title: const Text('Select Image'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -162,8 +162,8 @@ class RegisterGetController extends GetxController {
                 imageLink.value = image.path;
               }
             },
-            leading: Icon(Icons.camera_alt),
-            title: Text('Camera'),
+            leading: const Icon(Icons.camera_alt),
+            title: const Text('Camera'),
           ),
           ListTile(
             onTap: () {
@@ -174,8 +174,8 @@ class RegisterGetController extends GetxController {
                 }
               });
             },
-            leading: Icon(Icons.photo),
-            title: Text('Gallery'),
+            leading: const Icon(Icons.photo),
+            title: const Text('Gallery'),
           ),
         ],
       ),

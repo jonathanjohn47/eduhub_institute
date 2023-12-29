@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:eduhub_institute/core/app_contants.dart';
-import 'package:eduhub_institute/features/dashboard/ui/DashboardScreen.dart';
 import 'package:eduhub_institute/features/dashboard/ui/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -63,17 +62,17 @@ class SignInGetController extends GetxController {
                   content: Column(
                     children: [
                       TextFormField(
-                        key: Key('otp_text_field'),
+                        key: const Key('otp_text_field'),
                         controller: otpController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'OTP',
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       ElevatedButton(
-                        key: Key('otp_submit_button'),
+                        key: const Key('otp_submit_button'),
                         onPressed: () async {
                           try {
                             var credential = PhoneAuthProvider.credential(
@@ -93,7 +92,7 @@ class SignInGetController extends GetxController {
                             );
                           }
                         },
-                        child: Text('Submit'),
+                        child: const Text('Submit'),
                       ),
                     ],
                   ),
