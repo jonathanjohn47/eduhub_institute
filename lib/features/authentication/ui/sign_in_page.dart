@@ -69,18 +69,18 @@ class LoginScreen extends StatelessWidget {
                       decoration: InputDecoration(
                           disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
-                            borderSide: BorderSide(
-                                color: Color(0xff9e9e9e), width: 1),
+                            borderSide:
+                                BorderSide(color: Color(0xff9e9e9e), width: 1),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
-                            borderSide: BorderSide(
-                                color: Color(0xff9e9e9e), width: 1),
+                            borderSide:
+                                BorderSide(color: Color(0xff9e9e9e), width: 1),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
-                            borderSide: BorderSide(
-                                color: Color(0xff9e9e9e), width: 1),
+                            borderSide:
+                                BorderSide(color: Color(0xff9e9e9e), width: 1),
                           ),
                           labelText: "Phone",
                           labelStyle: TextStyle(
@@ -92,8 +92,8 @@ class LoginScreen extends StatelessWidget {
                           filled: true,
                           fillColor: Color(0x00ffffff),
                           isDense: false,
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 8, horizontal: 12),
+                          contentPadding:
+                              EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                           prefixIcon: CountryCodePicker(
                             onChanged: (value) {
                               getController.countryCode.value = value;
@@ -122,32 +122,34 @@ class LoginScreen extends StatelessWidget {
                         flex: 1,
                         child: Obx(() {
                           return !getController.showLoader.value
-                              ? ElevatedButton(
+                              ? MaterialButton(
                                   key: Key('sign_in_button'),
                                   onPressed: () {
-                                    getController.initiateLogin();
+                                    getController
+                                        .initiateLogin()
+                                        .catchError((error) => Get.snackbar(
+                                              'Error',
+                                              error.toString(),
+                                              snackPosition: SnackPosition.TOP,
+                                              backgroundColor: Colors.red,
+                                              colorText: Colors.white,
+                                            ));
                                   },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppColors.primary,
-                                    foregroundColor: Colors.white,
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 12, horizontal: 16),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(4.0.dp),
-                                    ),
+                                  color: AppColors.primary,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4.0.dp),
                                   ),
+                                  elevation: 1.h,
                                   child: Text(
-                                    "Login",
+                                    "Send OTP",
                                     style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      fontStyle: FontStyle.normal,
-                                    ),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        fontStyle: FontStyle.normal,
+                                        color: Colors.white),
                                   ),
                                 )
-                              : Center(
-                                  child: CircularProgressIndicator());
+                              : Center(child: CircularProgressIndicator());
                         }),
                       ),
                     ],

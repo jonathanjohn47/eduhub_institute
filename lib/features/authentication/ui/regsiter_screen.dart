@@ -386,7 +386,17 @@ class RegisterScreen extends StatelessWidget {
                                 )
                               : MaterialButton(
                                   onPressed: () {
-                                    registerGetController.registerNewStudent();
+                                    registerGetController
+                                        .registerNewStudent()
+                                        .catchError((error) {
+                                      Get.snackbar(
+                                        'Error',
+                                        error.toString(),
+                                        snackPosition: SnackPosition.TOP,
+                                        backgroundColor: Colors.red,
+                                        colorText: Colors.white,
+                                      );
+                                    });
                                   },
                                   color: Color(0xff3a57e8),
                                   elevation: 2.h,

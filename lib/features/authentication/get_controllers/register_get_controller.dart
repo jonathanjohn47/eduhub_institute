@@ -53,8 +53,8 @@ class RegisterGetController extends GetxController {
           .get();
       await FirebaseAuth.instance.signOut();
       if (userDoc.exists) {
-        Get.snackbar('Error', 'User already exists',
-            backgroundColor: Colors.red, colorText: Colors.white);
+        showLoader.value = false;
+        throw('User already exists');
       } else {
         await FirebaseAuth.instance.verifyPhoneNumber(
           phoneNumber:
