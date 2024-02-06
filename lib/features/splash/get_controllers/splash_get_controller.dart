@@ -1,4 +1,5 @@
 import 'package:eduhub_institute/features/authentication/ui/sign_in_page.dart';
+import 'package:eduhub_institute/features/pre_login/ui/pre_login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +13,7 @@ class SplashGetController extends GetxController
       vsync: this,
       duration: const Duration(seconds: 2),
     )..forward(from: 0).then((value) {
-        Get.offAll(() => LoginScreen());
+        Get.offAll(() => PreLoginPage());
       });
     super.onInit();
   }
