@@ -411,8 +411,8 @@ Vikram Patel*/
           boxShadow: [
             BoxShadow(
                 color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 1.dp,
-                blurRadius: 2.h,
+                spreadRadius: 0,
+                blurRadius: 1.h,
                 offset: Offset(1.h, 1.h))
           ],
         ),
