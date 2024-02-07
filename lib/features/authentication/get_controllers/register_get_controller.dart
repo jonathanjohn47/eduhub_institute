@@ -156,8 +156,8 @@ class RegisterGetController extends GetxController {
           ListTile(
             onTap: () async {
               final ImagePicker picker = ImagePicker();
-              final XFile? image =
-                  await picker.pickImage(source: ImageSource.camera);
+              final PickedFile? image =
+                  await picker.getImage(source: ImageSource.camera);
               if (image != null) {
                 imageLink.value = image.path;
               }
@@ -168,7 +168,7 @@ class RegisterGetController extends GetxController {
           ListTile(
             onTap: () {
               ImagePicker picker = ImagePicker();
-              picker.pickImage(source: ImageSource.gallery).then((value) {
+              picker.getImage(source: ImageSource.gallery).then((value) {
                 if (value != null) {
                   imageLink.value = value.path;
                 }
